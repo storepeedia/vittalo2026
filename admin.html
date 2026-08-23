@@ -125,7 +125,7 @@
           Logout
         </button>
       </div>
-      <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <main class="max-w-7xl mx-auto pt-16 pb-6 px-4 sm:px-6 lg:px-8">
         <!-- Packages Section -->
         <div id="sectionPackages" class="pb-24">
           <!-- Added padding bottom for nav -->
@@ -141,10 +141,12 @@
             </div>
             <button
               id="btnCreatePackage"
-              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium py-2.5 px-5 rounded-2xl shadow-sm hover:shadow flex items-center gap-2 transition-all"
+              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium w-12 h-12 rounded-full shadow-sm hover:shadow flex items-center justify-center transition-all"
+              aria-label="Add Trip"
+              title="Add Trip"
             >
               <svg
-                class="w-5 h-5"
+                class="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -156,7 +158,6 @@
                   d="M12 4v16m8-8H4"
                 ></path>
               </svg>
-              Add Trip
             </button>
           </div>
 
@@ -319,11 +320,13 @@
               </p>
             </div>
             <button
-              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium py-2.5 px-6 rounded-2xl shadow-sm flex items-center gap-2 whitespace-nowrap transition-all"
+              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium w-12 h-12 rounded-full shadow-sm hover:shadow flex items-center justify-center transition-all"
               onclick="document.getElementById('btnCreatePackage').click()"
+              aria-label="Add Trip"
+              title="Add Trip"
             >
               <svg
-                class="w-4 h-4"
+                class="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -335,7 +338,6 @@
                   d="M12 4v16m8-8H4"
                 ></path>
               </svg>
-              Add Trip
             </button>
           </div>
         </div>
