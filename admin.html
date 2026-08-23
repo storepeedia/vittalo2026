@@ -293,6 +293,23 @@
             </button>
           </div>
 
+
+          <!-- Dynamic Stats Boxes -->
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
+              <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Total Bookings</div>
+              <div id="statTotalFiltered" class="text-2xl font-bold text-slate-900">0</div>
+            </div>
+            <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 shadow-sm text-center">
+              <div class="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-1">Pending</div>
+              <div id="statPendingFiltered" class="text-2xl font-bold text-orange-700">0</div>
+            </div>
+            <div class="bg-red-50 border border-red-100 rounded-xl p-4 shadow-sm text-center">
+              <div class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-1">Cancelled</div>
+              <div id="statCancelledFiltered" class="text-2xl font-bold text-red-700">0</div>
+            </div>
+          </div>
+
           <!-- Loading State -->
           <div id="packagesLoading" class="flex justify-center py-10 hidden">
             <div class="spinner"></div>
@@ -343,89 +360,86 @@
             Bookings Dashboard
           </h2>
 
-          <div class="mb-4 flex flex-col gap-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <input
-                type="text"
-                id="searchBookings"
-                placeholder="Search name, email, or ID..."
-                class="px-3 py-2 border rounded shadow-sm"
-              />
-              <select
-                id="filterPackage"
-                class="px-3 py-2 border rounded shadow-sm"
-              >
-                <option value="">All Packages</option>
-              </select>
-              <select
-                id="filterStatus"
-                class="px-3 py-2 border rounded shadow-sm"
-              >
-                <option value="">All Statuses</option>
-                <option value="pending">Pending</option>
-                <option value="paid">Paid</option>
-                <option value="failed">Failed</option>
-                <option value="refunded">Refunded</option>
-              </select>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="mb-6 flex flex-col gap-4">
+            <!-- Top row: Trip Name & Trip Date -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="flex flex-col">
-                <label
-                  for="filterBookingDateStart"
-                  class="text-xs text-gray-600 mb-1"
-                  >Booking Date Start</label
-                >
-                <input
-                  type="date"
-                  id="filterBookingDateStart"
-                  class="px-3 py-2 border rounded shadow-sm"
-                />
-              </div>
-              <div class="flex flex-col">
-                <label
-                  for="filterBookingDateEnd"
-                  class="text-xs text-gray-600 mb-1"
-                  >Booking Date End</label
-                >
-                <input
-                  type="date"
-                  id="filterBookingDateEnd"
-                  class="px-3 py-2 border rounded shadow-sm"
-                />
+                <label for="filterPackage" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Trip Name</label>
+                <select id="filterPackage" class="px-3 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                  <option value="">All Packages</option>
+                </select>
               </div>
               <div class="flex flex-col relative" id="filterTripDateContainer">
-                <label class="text-xs text-gray-600 mb-1">Trip Dates</label>
+                <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Trip Date</label>
                 <div class="relative">
-                  <button
-                    type="button"
-                    id="filterTripDateBtn"
-                    class="w-full px-3 py-2 border rounded shadow-sm bg-white text-left text-gray-700 focus:outline-none flex justify-between items-center"
-                  >
-                    <span id="filterTripDateLabel" class="truncate pr-2"
-                      >All Dates</span
-                    >
-                    <svg
-                      class="h-4 w-4 text-gray-400 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
+                  <button type="button" id="filterTripDateBtn" class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-sm text-left text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center">
+                    <span id="filterTripDateLabel" class="truncate pr-2">All Dates</span>
+                    <svg class="h-4 w-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </button>
-                  <div
-                    id="filterTripDateDropdown"
-                    class="hidden absolute z-10 w-full mt-1 bg-white border rounded shadow-lg max-h-60 overflow-y-auto"
-                  >
+                  <div id="filterTripDateDropdown" class="hidden absolute z-10 w-full mt-1 bg-white border border-slate-100 rounded-xl shadow-lg max-h-60 overflow-y-auto">
                     <!-- Checkboxes populated by JS -->
                   </div>
                 </div>
               </div>
+            </div>
+
+            <!-- Collapsible More Filters Button -->
+            <div>
+              <button type="button" id="btnToggleFilters" class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors">
+                <span>More Filters</span>
+                <svg id="iconToggleFilters" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Collapsible More Filters Container -->
+            <div id="moreFiltersContainer" class="hidden flex-col gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col">
+                  <label for="searchBookings" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Search</label>
+                  <input type="text" id="searchBookings" placeholder="Search name, email, or ID..." class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
+                </div>
+                <div class="flex flex-col">
+                  <label for="filterStatus" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Status</label>
+                  <select id="filterStatus" class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                    <option value="">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="paid">Paid</option>
+                    <option value="failed">Failed</option>
+                    <option value="refunded">Refunded</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex flex-col">
+                  <label for="filterBookingDateStart" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Booking Date Start</label>
+                  <input type="date" id="filterBookingDateStart" class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
+                </div>
+                <div class="flex flex-col">
+                  <label for="filterBookingDateEnd" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Booking Date End</label>
+                  <input type="date" id="filterBookingDateEnd" class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Dynamic Stats Boxes -->
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
+              <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Total Bookings</div>
+              <div id="statTotalFiltered" class="text-2xl font-bold text-slate-900">0</div>
+            </div>
+            <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 shadow-sm text-center">
+              <div class="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-1">Pending</div>
+              <div id="statPendingFiltered" class="text-2xl font-bold text-orange-700">0</div>
+            </div>
+            <div class="bg-red-50 border border-red-100 rounded-xl p-4 shadow-sm text-center">
+              <div class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-1">Cancelled</div>
+              <div id="statCancelledFiltered" class="text-2xl font-bold text-red-700">0</div>
             </div>
           </div>
 
@@ -444,6 +458,18 @@
             <div class="text-right sm:text-left">Status</div>
           </div>
           <!-- Bookings List -->
+
+          <!-- List Actions -->
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Results</h3>
+            <button type="button" id="btnCopyBookings" class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors bg-white px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200" title="Copy Filtered Bookings">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              </svg>
+              Copy List
+            </button>
+          </div>
+
           <div class="flex flex-col gap-4" id="bookingsList">
             <!-- Populated by JS -->
           </div>
@@ -1111,6 +1137,7 @@
       let quill;
       let currentPackages = [];
       let currentBookings = [];
+      let currentFilteredBookings = [];
       let selectedBookingId = null;
 
       // Init Quill
@@ -1648,65 +1675,38 @@
           );
         });
 
+        // Update stats boxes
+        currentFilteredBookings = filtered;
+        const total = filtered.length;
+        const pending = filtered.filter(b => b.status === "pending" || !b.status).length;
+        const cancelled = filtered.filter(b => b.status === "cancelled" || b.status === "failed").length;
+
+        document.getElementById("statTotalFiltered").textContent = total;
+        document.getElementById("statPendingFiltered").textContent = pending;
+        document.getElementById("statCancelledFiltered").textContent = cancelled;
+
+
         const tbody = document.getElementById("bookingsList");
         tbody.innerHTML = filtered
-          .map((b) => {
-            let statusColor = "bg-slate-100 text-slate-500";
-            let statusDot = "bg-slate-500";
-            let statusLabel = (b.status || "pending").charAt(0).toUpperCase() + (b.status || "pending").slice(1);
+          .map((b, i) => {
+            let borderColor = "border-slate-200";
 
             if (b.status === "paid" || b.status === "confirmed") {
-              statusColor = "bg-emerald-50 text-emerald-600";
-              statusDot = "bg-emerald-500";
-              if (b.status === "paid") statusLabel = "Confirmed";
+              borderColor = "border-emerald-400 border-l-4";
+            } else if (b.status === "failed" || b.status === "cancelled" || b.status === "refunded") {
+              borderColor = "border-red-400 border-l-4";
+            } else {
+              // pending
+              borderColor = "border-orange-400 border-l-4";
             }
-            if (b.status === "failed" || b.status === "cancelled") {
-              statusColor = "bg-red-50 text-red-600";
-              statusDot = "bg-red-500";
-              if (b.status === "failed") statusLabel = "Cancelled";
-            }
-            if (b.status === "pending") {
-              statusColor = "bg-orange-50 text-orange-600";
-              statusDot = "bg-orange-500";
-            }
+
+            const serialNo = i + 1;
 
             return `
-              <div class="bg-white rounded-[22px] shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100 p-4 sm:p-5 flex flex-col sm:grid sm:grid-cols-4 gap-4 relative cursor-pointer hover:shadow-md transition-shadow" onclick="openBookingModal('${b.id}')">
-                <!-- Booking Info -->
-                <div class="flex flex-col pr-8 sm:pr-0">
-                  <div class="font-bold text-slate-900 text-sm mb-0.5">${b.booking_no}</div>
-                  <div class="text-[13px] text-slate-500 mb-0.5">${new Date(b.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
-                  <div class="text-[13px] text-slate-500">${new Date(b.created_at).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
-                </div>
-
-                <!-- Customer -->
-                <div class="flex flex-col">
-                  <div class="font-bold text-slate-900 text-sm mb-0.5">${b.customer_name}</div>
-                  <div class="text-[13px] text-slate-500 mb-0.5">${b.mobile_no || ""}</div>
-                  <div class="text-[13px] text-slate-500 truncate" title="${b.email || b.email_address || ""}">${b.email || b.email_address || "No Email"}</div>
-                </div>
-
-                <!-- Package -->
-                <div class="flex flex-col">
-                  <div class="font-bold text-slate-900 text-sm truncate mb-0.5" title="${b.event_name}">${b.event_name}</div>
-                  <div class="text-[13px] text-slate-500">${b.is_main_booker ? (b.guests || 1) + " Guests" : "Additional Guest"}</div>
-                </div>
-
-                <!-- Status & Action -->
-                <div class="flex justify-between sm:justify-end items-center sm:items-start pt-3 sm:pt-0 border-t border-slate-50 sm:border-t-0 mt-1 sm:mt-0">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${statusColor} text-[11px] font-bold tracking-wide">
-                    <span class="w-1.5 h-1.5 rounded-full ${statusDot}"></span>
-                    ${statusLabel}
-                  </span>
-                  <button class="text-slate-300 hover:text-slate-600 ml-4 hidden sm:block">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                  </button>
-                </div>
-
-                <!-- Mobile Action Arrow -->
-                <button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 sm:hidden">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </button>
+              <div class="bg-white rounded-lg shadow-sm ${borderColor} p-3 grid grid-cols-12 gap-2 cursor-pointer hover:bg-slate-50 transition-colors items-center text-[13px]" onclick="openBookingModal('${b.id}')">
+                <div class="col-span-2 font-medium text-slate-600 truncate px-1">${serialNo}.</div>
+                <div class="col-span-5 font-bold text-slate-900 truncate px-1" title="${b.customer_name}">${b.customer_name}</div>
+                <div class="col-span-5 text-slate-600 truncate px-1 text-right" title="${b.mobile_no || ''}">${b.mobile_no || "-"}</div>
               </div>
             `;
           })
@@ -1729,6 +1729,23 @@
         .getElementById("filterBookingDateEnd")
         .addEventListener("change", renderBookingsList);
 
+
+      // Collapsible More Filters logic
+      const btnToggleFilters = document.getElementById("btnToggleFilters");
+      if (btnToggleFilters) {
+        btnToggleFilters.addEventListener("click", () => {
+          const container = document.getElementById("moreFiltersContainer");
+          const icon = document.getElementById("iconToggleFilters");
+          container.classList.toggle("hidden");
+          container.classList.toggle("flex");
+          if (container.classList.contains("hidden")) {
+            icon.classList.remove("rotate-180");
+          } else {
+            icon.classList.add("rotate-180");
+          }
+        });
+      }
+
       // Dropdown toggle logic
       document
         .getElementById("filterTripDateBtn")
@@ -1749,22 +1766,50 @@
       });
       // We removed filterTripDate as an ID, so we also remove the listener for it here.
 
+
+      document.getElementById("btnCopyBookings")?.addEventListener("click", () => {
+        if (!currentFilteredBookings || currentFilteredBookings.length === 0) {
+          alert("No bookings to copy.");
+          return;
+        }
+
+        const textToCopy = currentFilteredBookings.map((b, i) => {
+          const serial = i + 1;
+          const name = b.customer_name || "Unknown";
+          const mobile = b.mobile_no || "-";
+          return `${serial}. ${name} : ${mobile}`;
+        }).join("\n");
+
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const btn = document.getElementById("btnCopyBookings");
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = `<svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!`;
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        }).catch(err => {
+          console.error("Failed to copy text: ", err);
+          alert("Failed to copy text.");
+        });
+      });
+
       function openBookingModal(id) {
         const b = currentBookings.find((x) => x.id === id);
         if (!b) return;
         selectedBookingId = b.id;
 
         document.getElementById("bookingDetailsContent").innerHTML = `
-                <div class="grid grid-cols-2 gap-4">
-                    <div><span class="text-gray-500 text-sm">Booking Ref:</span><br/><strong>${b.booking_no}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Date Created:</span><br/><strong>${new Date(b.created_at).toLocaleString()}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Customer:</span><br/><strong>${b.customer_name}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Phone:</span><br/><strong>${b.mobile_no || "N/A"}</strong></div>
-                    <div><span class="text-gray-500 text-sm">DOB:</span><br/><strong>${b.dob || "N/A"}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Package:</span><br/><strong>${b.event_name}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Trip Date:</span><br/><strong>${b.chosen_trip_date || "N/A"}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Total PLN:</span><br/><strong>${b.total_price_pln || "N/A"}</strong></div>
-                    <div><span class="text-gray-500 text-sm">Total EUR:</span><br/><strong>${b.total_price_eur || "N/A"}</strong></div>
+                <div class="grid grid-cols-2 gap-y-4 gap-x-2 text-[14px]">
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Booking No:</span><br/><strong class="text-gray-900">${b.booking_no}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Customer Name:</span><br/><strong class="text-gray-900">${b.customer_name}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Mobile No:</span><br/><strong class="text-gray-900">${b.mobile_no || "-"}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">DOB:</span><br/><strong class="text-gray-900">${b.dob || "-"}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Chosen Date (Trip):</span><br/><strong class="text-gray-900 text-blue-600">${b.chosen_trip_date || "-"}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Booking Date:</span><br/><strong class="text-gray-900">${new Date(b.created_at).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Package Name:</span><br/><strong class="text-gray-900">${b.event_name}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Amount (PLN):</span><br/><strong class="text-gray-900">${b.total_price_pln ? b.total_price_pln + ' PLN' : "-"}</strong></div>
+                    ${b.total_price_eur ? `<div><span class="text-gray-500 text-xs uppercase tracking-wide">Amount (EUR):</span><br/><strong class="text-gray-900">${b.total_price_eur} EUR</strong></div>` : ''}
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Email:</span><br/><strong class="text-gray-900 break-all">${b.email || b.email_address || "-"}</strong></div>
                 </div>
             `;
         document.getElementById("bookingStatusUpdate").value =
