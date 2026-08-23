@@ -970,6 +970,26 @@
                   </svg>
                   About the Trip
                 </h4>
+                <!-- New Tags, Features, Badges, Difficulty -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
+                    <input type="text" id="pkgDifficulty" placeholder="e.g. Beginner, Intermediate" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tags (comma separated)</label>
+                    <input type="text" id="pkgTags" placeholder="e.g. Tatra mnts., Hiking" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Features (comma separated)</label>
+                    <input type="text" id="pkgFeatures" placeholder="e.g. 2 days 1 night, Mountain guide" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Badges (comma separated)</label>
+                    <input type="text" id="pkgBadges" placeholder="e.g. New, Best Seller" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                  </div>
+                </div>
+
                 <div class="mb-5">
                   <label class="block text-sm font-medium text-gray-700 mb-2"
                     >Short Description</label
@@ -1413,6 +1433,10 @@
           document.getElementById("packageForm").reset();
           document.getElementById("pkgId").value = "";
           document.getElementById("pkgTitleId").readOnly = false;
+          document.getElementById("pkgDifficulty").value = "";
+          document.getElementById("pkgTags").value = "";
+          document.getElementById("pkgFeatures").value = "";
+          document.getElementById("pkgBadges").value = "";
           quill.root.innerHTML = "";
           toggleDisableOptions();
           document.getElementById("packageModal").classList.remove("hidden");
@@ -1435,6 +1459,10 @@
         document.getElementById("pkgDuration").value = pkg.duration || "";
         document.getElementById("pkgTripDate").value = pkg.trip_date || "";
         document.getElementById("pkgActivity").value = pkg.activity || "";
+        document.getElementById("pkgDifficulty").value = pkg.difficulty || "";
+        document.getElementById("pkgTags").value = pkg.tags ? pkg.tags.join(", ") : "";
+        document.getElementById("pkgFeatures").value = pkg.features ? pkg.features.join(", ") : "";
+        document.getElementById("pkgBadges").value = pkg.badges ? pkg.badges.join(", ") : "";
         document.getElementById("pkgPriority").value = pkg.priority || 0;
         document.getElementById("pkgDesc").value = pkg.desc_text || "";
         document.getElementById("pkgImages").value = (pkg.images || []).join(
@@ -1462,6 +1490,10 @@
         document.getElementById("pkgId").value = "";
         document.getElementById("pkgTitleId").value = "";
         document.getElementById("pkgTitleId").readOnly = false;
+          document.getElementById("pkgDifficulty").value = "";
+          document.getElementById("pkgTags").value = "";
+          document.getElementById("pkgFeatures").value = "";
+          document.getElementById("pkgBadges").value = "";
         document.getElementById("pkgTitle").value = "Copy of " + pkg.title;
         document.getElementById("pkgLocation").value = pkg.location || "";
         document.getElementById("pkgEmoji").value = pkg.emoji || "";
@@ -1470,6 +1502,10 @@
         document.getElementById("pkgDuration").value = pkg.duration || "";
         document.getElementById("pkgTripDate").value = pkg.trip_date || "";
         document.getElementById("pkgActivity").value = pkg.activity || "";
+        document.getElementById("pkgDifficulty").value = pkg.difficulty || "";
+        document.getElementById("pkgTags").value = pkg.tags ? pkg.tags.join(", ") : "";
+        document.getElementById("pkgFeatures").value = pkg.features ? pkg.features.join(", ") : "";
+        document.getElementById("pkgBadges").value = pkg.badges ? pkg.badges.join(", ") : "";
         document.getElementById("pkgPriority").value = pkg.priority || 0;
         document.getElementById("pkgDesc").value = pkg.desc_text || "";
         document.getElementById("pkgImages").value = (pkg.images || []).join(
@@ -1543,6 +1579,10 @@
             duration: document.getElementById("pkgDuration").value,
             trip_date: document.getElementById("pkgTripDate").value,
             activity: document.getElementById("pkgActivity").value,
+            difficulty: document.getElementById("pkgDifficulty").value,
+            tags: document.getElementById("pkgTags").value ? document.getElementById("pkgTags").value.split(",").map(s => s.trim()).filter(s => s) : [],
+            features: document.getElementById("pkgFeatures").value ? document.getElementById("pkgFeatures").value.split(",").map(s => s.trim()).filter(s => s) : [],
+            badges: document.getElementById("pkgBadges").value ? document.getElementById("pkgBadges").value.split(",").map(s => s.trim()).filter(s => s) : [],
             priority:
               parseInt(document.getElementById("pkgPriority").value) || 0,
             desc_text: document.getElementById("pkgDesc").value,
