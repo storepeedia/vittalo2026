@@ -1328,35 +1328,35 @@
             const statusDot = pkg.is_active ? 'bg-emerald-500' : 'bg-slate-500';
             const statusLabel = pkg.is_active ? 'Active' : 'Inactive';
 
-            return \`
-              <div class="bg-white rounded-[22px] shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100 p-4 sm:p-5 flex flex-col sm:grid sm:grid-cols-[2fr_1.5fr_1.5fr_1fr] gap-4 relative cursor-pointer hover:shadow-md transition-shadow" onclick="openPackageModal('\\\${pkg.id}')">
+            return `
+              <div class="bg-white rounded-[22px] shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100 p-4 sm:p-5 flex flex-col sm:grid sm:grid-cols-[2fr_1.5fr_1.5fr_1fr] gap-4 relative cursor-pointer hover:shadow-md transition-shadow" onclick="openPackageModal('\${pkg.id}')">
                 <!-- Package Info Column -->
                 <div class="flex flex-col pr-8 sm:pr-0">
                   <div class="font-bold text-slate-900 text-sm mb-0.5 flex items-center gap-2">
-                    <span class="text-lg">\\\${pkg.emoji || '🏔️'}</span>
-                    <span class="truncate">\\\${pkg.title}</span>
+                    <span class="text-lg">\${pkg.emoji || '🏔️'}</span>
+                    <span class="truncate">\${pkg.title}</span>
                   </div>
-                  <div class="text-[13px] text-slate-500 mb-0.5 whitespace-normal line-clamp-2" title="\\\${shortDesc}">\\\${shortDesc}</div>
+                  <div class="text-[13px] text-slate-500 mb-0.5 whitespace-normal line-clamp-2" title="\${shortDesc}">\${shortDesc}</div>
                 </div>
 
                 <!-- Details Column -->
                 <div class="flex flex-col">
-                  <div class="font-bold text-slate-900 text-[13px] mb-0.5 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>\\\${duration}</div>
-                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5 mb-0.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>\\\${group}</div>
-                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>\\\${pkg.location || 'N/A'}</div>
+                  <div class="font-bold text-slate-900 text-[13px] mb-0.5 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>\${duration}</div>
+                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5 mb-0.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>\${group}</div>
+                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>\${pkg.location || 'N/A'}</div>
                 </div>
 
                 <!-- Price & Activity Column -->
                 <div class="flex flex-col pr-4">
-                  <div class="font-bold text-slate-900 text-sm mb-0.5">\\\${pkg.price ? pkg.price + ' PLN' : ''} \\\${pkg.price && pkg.price_eur ? ' / ' : ''} \\\${pkg.price_eur ? pkg.price_eur + ' EUR' : (pkg.price ? '' : 'Contact for price')}</div>
-                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>\\\${pkg.activity || 'Various'}</div>
+                  <div class="font-bold text-slate-900 text-sm mb-0.5">\${pkg.price ? pkg.price + ' PLN' : ''} \${pkg.price && pkg.price_eur ? ' / ' : ''} \${pkg.price_eur ? pkg.price_eur + ' EUR' : (pkg.price ? '' : 'Contact for price')}</div>
+                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>\${pkg.activity || 'Various'}</div>
                 </div>
 
                 <!-- Status & Action Column -->
                 <div class="flex justify-between sm:justify-end items-center sm:items-start pt-3 sm:pt-0 border-t border-slate-50 sm:border-t-0 mt-1 sm:mt-0">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full \\\${statusColor} text-[11px] font-bold tracking-wide border \\\${statusColor.replace('bg-', 'border-').split(' ')[0]}">
-                    <span class="w-1.5 h-1.5 rounded-full \\\${statusDot}"></span>
-                    \\\${statusLabel}
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full \${statusColor} text-[11px] font-bold tracking-wide border \${statusColor.replace('bg-', 'border-').split(' ')[0]}">
+                    <span class="w-1.5 h-1.5 rounded-full \${statusDot}"></span>
+                    \${statusLabel}
                   </span>
                   <!-- Action Arrow -->
                   <button class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none hidden sm:block">
@@ -1369,7 +1369,7 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </button>
               </div>
-            \`;
+            `;
           })
           .join("");
       }
