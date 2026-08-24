@@ -1432,21 +1432,21 @@
         document.getElementById("loginView").classList.add("hidden");
         document.getElementById("dashboardView").classList.remove("hidden");
 
-        // Force Bookings view as default upon login
-        document.getElementById("sectionPackages").classList.add("hidden");
-        document.getElementById("sectionBookings").classList.remove("hidden");
+        // Force Trips (Packages) view as default upon login
+        document.getElementById("sectionBookings").classList.add("hidden");
+        document.getElementById("sectionPackages").classList.remove("hidden");
 
         // Update navigation UI states
         document
-          .getElementById("navBookings")
+          .getElementById("navPackages")
           .classList.remove("text-slate-400");
         document
-          .getElementById("navBookings")
+          .getElementById("navPackages")
           .classList.add("text-blue-600", "bg-blue-50/50");
         document
-          .getElementById("navPackages")
+          .getElementById("navBookings")
           .classList.remove("text-blue-600", "bg-blue-50/50");
-        document.getElementById("navPackages").classList.add("text-slate-400");
+        document.getElementById("navBookings").classList.add("text-slate-400");
 
         // Load data
         loadBookings();
