@@ -34,3 +34,13 @@ CREATE POLICY "Allow public inserts" ON public.bookings
 CREATE POLICY "Allow public select" ON public.bookings
     FOR SELECT
     USING (true);
+
+-- Policy to allow public updates (required for admin dashboard editing)
+CREATE POLICY "Allow public update" ON public.bookings
+    FOR UPDATE
+    USING (true);
+
+-- Policy to allow public deletes (required for admin dashboard deletion)
+CREATE POLICY "Allow public delete" ON public.bookings
+    FOR DELETE
+    USING (true);
