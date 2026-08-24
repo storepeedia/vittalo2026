@@ -294,9 +294,6 @@
             </button>
           </div>
 
-
-
-
           <!-- Loading State -->
           <div id="packagesLoading" class="flex justify-center py-10 hidden">
             <div class="spinner"></div>
@@ -348,25 +345,54 @@
             Bookings Dashboard
           </h2>
 
-<div class="mb-6 flex flex-col gap-4">
+          <div class="mb-6 flex flex-col gap-4">
             <!-- Top row: Trip Name & Trip Date -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="flex flex-col">
-                <label for="filterPackage" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Trip Name</label>
-                <select id="filterPackage" class="px-3 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                <label
+                  for="filterPackage"
+                  class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+                  >Trip Name</label
+                >
+                <select
+                  id="filterPackage"
+                  class="px-3 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                >
                   <option value="">All Packages</option>
                 </select>
               </div>
               <div class="flex flex-col relative" id="filterTripDateContainer">
-                <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Trip Date</label>
+                <label
+                  class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+                  >Trip Date</label
+                >
                 <div class="relative">
-                  <button type="button" id="filterTripDateBtn" class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-sm text-left text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center">
-                    <span id="filterTripDateLabel" class="truncate pr-2">All Dates</span>
-                    <svg class="h-4 w-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  <button
+                    type="button"
+                    id="filterTripDateBtn"
+                    class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl shadow-sm text-sm text-left text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all flex justify-between items-center"
+                  >
+                    <span id="filterTripDateLabel" class="truncate pr-2"
+                      >All Dates</span
+                    >
+                    <svg
+                      class="h-4 w-4 text-slate-400 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
                     </svg>
                   </button>
-                  <div id="filterTripDateDropdown" class="hidden absolute z-10 w-full mt-1 bg-white border border-slate-100 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                  <div
+                    id="filterTripDateDropdown"
+                    class="hidden absolute z-10 w-full mt-1 bg-white border border-slate-100 rounded-xl shadow-lg max-h-60 overflow-y-auto"
+                  >
                     <!-- Checkboxes populated by JS -->
                   </div>
                 </div>
@@ -375,24 +401,58 @@
 
             <!-- Collapsible More Filters Button -->
             <div>
-              <button type="button" id="btnToggleFilters" class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors">
+              <button
+                type="button"
+                id="btnToggleFilters"
+                class="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 transition-colors"
+              >
                 <span>More Filters</span>
-                <svg id="iconToggleFilters" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                <svg
+                  id="iconToggleFilters"
+                  class="w-4 h-4 transition-transform duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
                 </svg>
               </button>
             </div>
 
             <!-- Collapsible More Filters Container -->
-            <div id="moreFiltersContainer" class="hidden flex-col gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <div
+              id="moreFiltersContainer"
+              class="hidden flex-col gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100"
+            >
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex flex-col">
-                  <label for="searchBookings" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Search</label>
-                  <input type="text" id="searchBookings" placeholder="Search name, email, or ID..." class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
+                  <label
+                    for="searchBookings"
+                    class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+                    >Search</label
+                  >
+                  <input
+                    type="text"
+                    id="searchBookings"
+                    placeholder="Search name, email, or ID..."
+                    class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
                 </div>
                 <div class="flex flex-col">
-                  <label for="filterStatus" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Status</label>
-                  <select id="filterStatus" class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                  <label
+                    for="filterStatus"
+                    class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+                    >Status</label
+                  >
+                  <select
+                    id="filterStatus"
+                    class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  >
                     <option value="">All Statuses</option>
                     <option value="pending">Pending</option>
                     <option value="paid">Paid</option>
@@ -403,31 +463,79 @@
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex flex-col">
-                  <label for="filterBookingDateStart" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Booking Date Start</label>
-                  <input type="date" id="filterBookingDateStart" class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
+                  <label
+                    for="filterBookingDateStart"
+                    class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+                    >Booking Date Start</label
+                  >
+                  <input
+                    type="date"
+                    id="filterBookingDateStart"
+                    class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
                 </div>
                 <div class="flex flex-col">
-                  <label for="filterBookingDateEnd" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Booking Date End</label>
-                  <input type="date" id="filterBookingDateEnd" class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
+                  <label
+                    for="filterBookingDateEnd"
+                    class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+                    >Booking Date End</label
+                  >
+                  <input
+                    type="date"
+                    id="filterBookingDateEnd"
+                    class="px-3 py-2 bg-white border border-slate-200 rounded-lg shadow-sm text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                  />
                 </div>
               </div>
             </div>
           </div>
 
-
           <!-- Dynamic Stats Boxes -->
           <div class="grid grid-cols-3 gap-4 mb-6">
-            <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center">
-              <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Total Bookings</div>
-              <div id="statTotalFiltered" class="text-2xl font-bold text-slate-900">0</div>
+            <div
+              class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm text-center"
+            >
+              <div
+                class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1"
+              >
+                Total Bookings
+              </div>
+              <div
+                id="statTotalFiltered"
+                class="text-2xl font-bold text-slate-900"
+              >
+                0
+              </div>
             </div>
-            <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 shadow-sm text-center">
-              <div class="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-1">Pending</div>
-              <div id="statPendingFiltered" class="text-2xl font-bold text-orange-700">0</div>
+            <div
+              class="bg-orange-50 border border-orange-100 rounded-xl p-4 shadow-sm text-center"
+            >
+              <div
+                class="text-xs font-semibold text-orange-600 uppercase tracking-wider mb-1"
+              >
+                Pending
+              </div>
+              <div
+                id="statPendingFiltered"
+                class="text-2xl font-bold text-orange-700"
+              >
+                0
+              </div>
             </div>
-            <div class="bg-red-50 border border-red-100 rounded-xl p-4 shadow-sm text-center">
-              <div class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-1">Cancelled</div>
-              <div id="statCancelledFiltered" class="text-2xl font-bold text-red-700">0</div>
+            <div
+              class="bg-red-50 border border-red-100 rounded-xl p-4 shadow-sm text-center"
+            >
+              <div
+                class="text-xs font-semibold text-red-600 uppercase tracking-wider mb-1"
+              >
+                Cancelled
+              </div>
+              <div
+                id="statCancelledFiltered"
+                class="text-2xl font-bold text-red-700"
+              >
+                0
+              </div>
             </div>
           </div>
 
@@ -449,10 +557,29 @@
 
           <!-- List Actions -->
           <div class="flex justify-between items-center mb-2">
-            <h3 class="text-sm font-semibold text-slate-500 uppercase tracking-wider">Results</h3>
-            <button type="button" id="btnCopyBookings" class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors bg-white px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200" title="Copy Filtered Bookings">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            <h3
+              class="text-sm font-semibold text-slate-500 uppercase tracking-wider"
+            >
+              Results
+            </h3>
+            <button
+              type="button"
+              id="btnCopyBookings"
+              class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors bg-white px-2.5 py-1.5 rounded-lg shadow-sm border border-slate-200"
+              title="Copy Filtered Bookings"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                ></path>
               </svg>
               Copy List
             </button>
@@ -463,7 +590,8 @@
           </div>
         </div>
         <!-- Bottom Navigation (Mobile) -->
-        <nav id="bottomNav"
+        <nav
+          id="bottomNav"
           style="z-index: 9999"
           class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-[2rem] z-40"
         >
@@ -973,20 +1101,48 @@
                 <!-- New Tags, Features, Badges, Difficulty -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Difficulty</label>
-                    <input type="text" id="pkgDifficulty" placeholder="e.g. Beginner, Intermediate" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                    <label class="block text-sm font-medium text-gray-700 mb-1"
+                      >Difficulty</label
+                    >
+                    <input
+                      type="text"
+                      id="pkgDifficulty"
+                      placeholder="e.g. Beginner, Intermediate"
+                      class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tags (comma separated)</label>
-                    <input type="text" id="pkgTags" placeholder="e.g. Tatra mnts., Hiking" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                    <label class="block text-sm font-medium text-gray-700 mb-1"
+                      >Tags (comma separated)</label
+                    >
+                    <input
+                      type="text"
+                      id="pkgTags"
+                      placeholder="e.g. Tatra mnts., Hiking"
+                      class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Features (comma separated)</label>
-                    <input type="text" id="pkgFeatures" placeholder="e.g. 2 days 1 night, Mountain guide" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                    <label class="block text-sm font-medium text-gray-700 mb-1"
+                      >Features (comma separated)</label
+                    >
+                    <input
+                      type="text"
+                      id="pkgFeatures"
+                      placeholder="e.g. 2 days 1 night, Mountain guide"
+                      class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Badges (comma separated)</label>
-                    <input type="text" id="pkgBadges" placeholder="e.g. New, Best Seller" class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                    <label class="block text-sm font-medium text-gray-700 mb-1"
+                      >Badges (comma separated)</label
+                    >
+                    <input
+                      type="text"
+                      id="pkgBadges"
+                      placeholder="e.g. New, Best Seller"
+                      class="block w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    />
                   </div>
                 </div>
 
@@ -1087,7 +1243,7 @@
     <!-- Bookings View Modal -->
     <div
       id="bookingModal"
-      class="fixed z-10 inset-0 overflow-y-auto hidden"
+      class="fixed z-50 inset-0 overflow-y-auto hidden"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
@@ -1109,13 +1265,100 @@
           class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
         >
           <div class="p-6">
-            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
-              Booking Details
-            </h3>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Booking Details
+              </h3>
+              <div class="flex items-center space-x-3">
+                <!-- Edit mode actions -->
+                <button
+                  type="button"
+                  id="btnSaveBookingEdit"
+                  class="hidden text-green-600 hover:text-green-800 focus:outline-none p-2 rounded-full hover:bg-green-50"
+                  title="Save Changes"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="btnCancelBookingEdit"
+                  class="hidden text-gray-600 hover:text-gray-800 focus:outline-none p-2 rounded-full hover:bg-gray-100"
+                  title="Cancel Edit"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                </button>
+                <!-- View mode actions -->
+                <button
+                  type="button"
+                  id="btnEditBooking"
+                  class="text-blue-600 hover:text-blue-800 focus:outline-none p-2 rounded-full hover:bg-blue-50"
+                  title="Edit Booking"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="btnDeleteBooking"
+                  class="text-red-600 hover:text-red-800 focus:outline-none p-2 rounded-full hover:bg-red-50"
+                  title="Delete Booking"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
             <div id="bookingDetailsContent" class="space-y-4">
               <!-- Populated by JS -->
             </div>
-            <div class="mt-4 border-t pt-4">
+            <div id="bookingStatusSection" class="mt-4 border-t pt-4">
               <label class="block text-sm font-medium text-gray-700"
                 >Update Status</label
               >
@@ -1129,7 +1372,10 @@
                 <option value="refunded">Refunded</option>
               </select>
             </div>
-            <div class="mt-5 sm:mt-6 sm:flex sm:flex-row-reverse">
+            <div
+              id="bookingModalActions"
+              class="mt-5 sm:mt-6 sm:flex sm:flex-row-reverse"
+            >
               <button
                 type="button"
                 id="btnUpdateBookingStatus"
@@ -1345,16 +1591,18 @@
             // We don't have explicit group size in fields, so we fallback gracefully
             const group = "6-12 People";
 
-            const statusColor = pkg.is_active ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-slate-100 text-slate-500 border-slate-200';
-            const statusDot = pkg.is_active ? 'bg-emerald-500' : 'bg-slate-500';
-            const statusLabel = pkg.is_active ? 'Active' : 'Inactive';
+            const statusColor = pkg.is_active
+              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
+              : "bg-slate-100 text-slate-500 border-slate-200";
+            const statusDot = pkg.is_active ? "bg-emerald-500" : "bg-slate-500";
+            const statusLabel = pkg.is_active ? "Active" : "Inactive";
 
             return `
               <div class="bg-white rounded-[22px] shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100 p-4 sm:p-5 flex flex-col sm:grid sm:grid-cols-[2fr_1.5fr_1.5fr_1fr] gap-4 relative cursor-pointer hover:shadow-md transition-shadow" onclick="openPackageModal('${pkg.id}')">
                 <!-- Package Info Column -->
                 <div class="flex flex-col pr-8 sm:pr-0">
                   <div class="font-bold text-slate-900 text-sm mb-0.5 flex items-center gap-2">
-                    <span class="text-lg">${pkg.emoji || '🏔️'}</span>
+                    <span class="text-lg">${pkg.emoji || "🏔️"}</span>
                     <span class="truncate">${pkg.title}</span>
                   </div>
                   <div class="text-[13px] text-slate-500 mb-0.5 whitespace-normal line-clamp-2" title="${shortDesc}">${shortDesc}</div>
@@ -1364,18 +1612,18 @@
                 <div class="flex flex-col">
                   <div class="font-bold text-slate-900 text-[13px] mb-0.5 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>${duration}</div>
                   <div class="text-[13px] text-slate-500 flex items-center gap-1.5 mb-0.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>${group}</div>
-                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>${pkg.location || 'N/A'}</div>
+                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>${pkg.location || "N/A"}</div>
                 </div>
 
                 <!-- Price & Activity Column -->
                 <div class="flex flex-col pr-4">
-                  <div class="font-bold text-slate-900 text-sm mb-0.5">${pkg.price ? pkg.price + ' PLN' : ''} ${pkg.price && pkg.price_eur ? ' / ' : ''} ${pkg.price_eur ? pkg.price_eur + ' EUR' : (pkg.price ? '' : 'Contact for price')}</div>
-                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>${pkg.activity || 'Various'}</div>
+                  <div class="font-bold text-slate-900 text-sm mb-0.5">${pkg.price ? pkg.price + " PLN" : ""} ${pkg.price && pkg.price_eur ? " / " : ""} ${pkg.price_eur ? pkg.price_eur + " EUR" : pkg.price ? "" : "Contact for price"}</div>
+                  <div class="text-[13px] text-slate-500 flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>${pkg.activity || "Various"}</div>
                 </div>
 
                 <!-- Status & Action Column -->
                 <div class="flex justify-between sm:justify-end items-center sm:items-start pt-3 sm:pt-0 border-t border-slate-50 sm:border-t-0 mt-1 sm:mt-0">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${statusColor} text-[11px] font-bold tracking-wide border ${statusColor.replace('bg-', 'border-').split(' ')[0]}">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full ${statusColor} text-[11px] font-bold tracking-wide border ${statusColor.replace("bg-", "border-").split(" ")[0]}">
                     <span class="w-1.5 h-1.5 rounded-full ${statusDot}"></span>
                     ${statusLabel}
                   </span>
@@ -1460,9 +1708,15 @@
         document.getElementById("pkgTripDate").value = pkg.trip_date || "";
         document.getElementById("pkgActivity").value = pkg.activity || "";
         document.getElementById("pkgDifficulty").value = pkg.difficulty || "";
-        document.getElementById("pkgTags").value = pkg.tags ? pkg.tags.join(", ") : "";
-        document.getElementById("pkgFeatures").value = pkg.features ? pkg.features.join(", ") : "";
-        document.getElementById("pkgBadges").value = pkg.badges ? pkg.badges.join(", ") : "";
+        document.getElementById("pkgTags").value = pkg.tags
+          ? pkg.tags.join(", ")
+          : "";
+        document.getElementById("pkgFeatures").value = pkg.features
+          ? pkg.features.join(", ")
+          : "";
+        document.getElementById("pkgBadges").value = pkg.badges
+          ? pkg.badges.join(", ")
+          : "";
         document.getElementById("pkgPriority").value = pkg.priority || 0;
         document.getElementById("pkgDesc").value = pkg.desc_text || "";
         document.getElementById("pkgImages").value = (pkg.images || []).join(
@@ -1490,10 +1744,10 @@
         document.getElementById("pkgId").value = "";
         document.getElementById("pkgTitleId").value = "";
         document.getElementById("pkgTitleId").readOnly = false;
-          document.getElementById("pkgDifficulty").value = "";
-          document.getElementById("pkgTags").value = "";
-          document.getElementById("pkgFeatures").value = "";
-          document.getElementById("pkgBadges").value = "";
+        document.getElementById("pkgDifficulty").value = "";
+        document.getElementById("pkgTags").value = "";
+        document.getElementById("pkgFeatures").value = "";
+        document.getElementById("pkgBadges").value = "";
         document.getElementById("pkgTitle").value = "Copy of " + pkg.title;
         document.getElementById("pkgLocation").value = pkg.location || "";
         document.getElementById("pkgEmoji").value = pkg.emoji || "";
@@ -1503,9 +1757,15 @@
         document.getElementById("pkgTripDate").value = pkg.trip_date || "";
         document.getElementById("pkgActivity").value = pkg.activity || "";
         document.getElementById("pkgDifficulty").value = pkg.difficulty || "";
-        document.getElementById("pkgTags").value = pkg.tags ? pkg.tags.join(", ") : "";
-        document.getElementById("pkgFeatures").value = pkg.features ? pkg.features.join(", ") : "";
-        document.getElementById("pkgBadges").value = pkg.badges ? pkg.badges.join(", ") : "";
+        document.getElementById("pkgTags").value = pkg.tags
+          ? pkg.tags.join(", ")
+          : "";
+        document.getElementById("pkgFeatures").value = pkg.features
+          ? pkg.features.join(", ")
+          : "";
+        document.getElementById("pkgBadges").value = pkg.badges
+          ? pkg.badges.join(", ")
+          : "";
         document.getElementById("pkgPriority").value = pkg.priority || 0;
         document.getElementById("pkgDesc").value = pkg.desc_text || "";
         document.getElementById("pkgImages").value = (pkg.images || []).join(
@@ -1580,9 +1840,27 @@
             trip_date: document.getElementById("pkgTripDate").value,
             activity: document.getElementById("pkgActivity").value,
             difficulty: document.getElementById("pkgDifficulty").value,
-            tags: document.getElementById("pkgTags").value ? document.getElementById("pkgTags").value.split(",").map(s => s.trim()).filter(s => s) : [],
-            features: document.getElementById("pkgFeatures").value ? document.getElementById("pkgFeatures").value.split(",").map(s => s.trim()).filter(s => s) : [],
-            badges: document.getElementById("pkgBadges").value ? document.getElementById("pkgBadges").value.split(",").map(s => s.trim()).filter(s => s) : [],
+            tags: document.getElementById("pkgTags").value
+              ? document
+                  .getElementById("pkgTags")
+                  .value.split(",")
+                  .map((s) => s.trim())
+                  .filter((s) => s)
+              : [],
+            features: document.getElementById("pkgFeatures").value
+              ? document
+                  .getElementById("pkgFeatures")
+                  .value.split(",")
+                  .map((s) => s.trim())
+                  .filter((s) => s)
+              : [],
+            badges: document.getElementById("pkgBadges").value
+              ? document
+                  .getElementById("pkgBadges")
+                  .value.split(",")
+                  .map((s) => s.trim())
+                  .filter((s) => s)
+              : [],
             priority:
               parseInt(document.getElementById("pkgPriority").value) || 0,
             desc_text: document.getElementById("pkgDesc").value,
@@ -1727,13 +2005,17 @@
         // Update stats boxes
         currentFilteredBookings = filtered;
         const total = filtered.length;
-        const pending = filtered.filter(b => b.status === "pending" || !b.status).length;
-        const cancelled = filtered.filter(b => b.status === "cancelled" || b.status === "failed").length;
+        const pending = filtered.filter(
+          (b) => b.status === "pending" || !b.status,
+        ).length;
+        const cancelled = filtered.filter(
+          (b) => b.status === "cancelled" || b.status === "failed",
+        ).length;
 
         document.getElementById("statTotalFiltered").textContent = total;
         document.getElementById("statPendingFiltered").textContent = pending;
-        document.getElementById("statCancelledFiltered").textContent = cancelled;
-
+        document.getElementById("statCancelledFiltered").textContent =
+          cancelled;
 
         const tbody = document.getElementById("bookingsList");
         tbody.innerHTML = filtered
@@ -1742,7 +2024,11 @@
 
             if (b.status === "paid" || b.status === "confirmed") {
               borderColor = "border-emerald-400 border-l-4";
-            } else if (b.status === "failed" || b.status === "cancelled" || b.status === "refunded") {
+            } else if (
+              b.status === "failed" ||
+              b.status === "cancelled" ||
+              b.status === "refunded"
+            ) {
               borderColor = "border-red-400 border-l-4";
             } else {
               // pending
@@ -1755,7 +2041,7 @@
               <div class="bg-white rounded-lg shadow-sm ${borderColor} p-3 grid grid-cols-12 gap-2 cursor-pointer hover:bg-slate-50 transition-colors items-center text-[13px]" onclick="openBookingModal('${b.id}')">
                 <div class="col-span-2 font-medium text-slate-600 truncate px-1">${serialNo}.</div>
                 <div class="col-span-5 font-bold text-slate-900 truncate px-1" title="${b.customer_name}">${b.customer_name}</div>
-                <div class="col-span-5 text-slate-600 truncate px-1 text-right" title="${b.mobile_no || ''}">${b.mobile_no || "-"}</div>
+                <div class="col-span-5 text-slate-600 truncate px-1 text-right" title="${b.mobile_no || ""}">${b.mobile_no || "-"}</div>
               </div>
             `;
           })
@@ -1777,7 +2063,6 @@
       document
         .getElementById("filterBookingDateEnd")
         .addEventListener("change", renderBookingsList);
-
 
       // Collapsible More Filters logic
       const btnToggleFilters = document.getElementById("btnToggleFilters");
@@ -1815,50 +2100,73 @@
       });
       // We removed filterTripDate as an ID, so we also remove the listener for it here.
 
+      document
+        .getElementById("btnCopyBookings")
+        ?.addEventListener("click", () => {
+          if (
+            !currentFilteredBookings ||
+            currentFilteredBookings.length === 0
+          ) {
+            alert("No bookings to copy.");
+            return;
+          }
 
-      document.getElementById("btnCopyBookings")?.addEventListener("click", () => {
-        if (!currentFilteredBookings || currentFilteredBookings.length === 0) {
-          alert("No bookings to copy.");
-          return;
-        }
+          const textToCopy = currentFilteredBookings
+            .map((b, i) => {
+              const serial = i + 1;
+              const name = b.customer_name || "Unknown";
+              const mobile = b.mobile_no || "-";
+              return `${serial}. ${name} : ${mobile}`;
+            })
+            .join("\n");
 
-        const textToCopy = currentFilteredBookings.map((b, i) => {
-          const serial = i + 1;
-          const name = b.customer_name || "Unknown";
-          const mobile = b.mobile_no || "-";
-          return `${serial}. ${name} : ${mobile}`;
-        }).join("\n");
-
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          const btn = document.getElementById("btnCopyBookings");
-          const originalHTML = btn.innerHTML;
-          btn.innerHTML = `<svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!`;
-          setTimeout(() => {
-            btn.innerHTML = originalHTML;
-          }, 2000);
-        }).catch(err => {
-          console.error("Failed to copy text: ", err);
-          alert("Failed to copy text.");
+          navigator.clipboard
+            .writeText(textToCopy)
+            .then(() => {
+              const btn = document.getElementById("btnCopyBookings");
+              const originalHTML = btn.innerHTML;
+              btn.innerHTML = `<svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!`;
+              setTimeout(() => {
+                btn.innerHTML = originalHTML;
+              }, 2000);
+            })
+            .catch((err) => {
+              console.error("Failed to copy text: ", err);
+              alert("Failed to copy text.");
+            });
         });
-      });
 
       function openBookingModal(id) {
         const b = currentBookings.find((x) => x.id === id);
         if (!b) return;
         selectedBookingId = b.id;
+        currentEditBooking = b;
+
+        // Reset edit UI buttons
+        document.getElementById("btnSaveBookingEdit").classList.add("hidden");
+        document.getElementById("btnCancelBookingEdit").classList.add("hidden");
+        document.getElementById("btnEditBooking").classList.remove("hidden");
+        document.getElementById("btnDeleteBooking").classList.remove("hidden");
+        document
+          .getElementById("bookingStatusSection")
+          .classList.remove("hidden");
+        document
+          .getElementById("bookingModalActions")
+          .classList.remove("hidden");
 
         document.getElementById("bookingDetailsContent").innerHTML = `
+
                 <div class="grid grid-cols-2 gap-y-4 gap-x-2 text-[14px]">
                     <div><span class="text-gray-500 text-xs uppercase tracking-wide">Booking No:</span><br/><strong class="text-gray-900">${b.booking_no}</strong></div>
                     <div><span class="text-gray-500 text-xs uppercase tracking-wide">Customer Name:</span><br/><strong class="text-gray-900">${b.customer_name}</strong></div>
-                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Mobile No:</span><br/><strong class="text-gray-900">${b.mobile_no || "-"}</strong></div>
-                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">DOB:</span><br/><strong class="text-gray-900">${b.dob || "-"}</strong></div>
-                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Chosen Date (Trip):</span><br/><strong class="text-gray-900 text-blue-600">${b.chosen_trip_date || "-"}</strong></div>
-                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Booking Date:</span><br/><strong class="text-gray-900">${new Date(b.created_at).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</strong></div>
+                    <div id="container-mobile_no"><span class="text-gray-500 text-xs uppercase tracking-wide">Mobile No:</span><br/><strong class="text-gray-900" id="val-mobile_no">${b.mobile_no || "-"}</strong></div>
+                    <div id="container-dob"><span class="text-gray-500 text-xs uppercase tracking-wide">DOB:</span><br/><strong class="text-gray-900" id="val-dob">${b.dob || "-"}</strong></div>
+                    <div id="container-chosen_trip_date"><span class="text-gray-500 text-xs uppercase tracking-wide">Chosen Date (Trip):</span><br/><strong class="text-gray-900 text-blue-600" id="val-chosen_trip_date">${b.chosen_trip_date || "-"}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Booking Date:</span><br/><strong class="text-gray-900">${new Date(b.created_at).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</strong></div>
                     <div><span class="text-gray-500 text-xs uppercase tracking-wide">Package Name:</span><br/><strong class="text-gray-900">${b.event_name}</strong></div>
-                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Amount (PLN):</span><br/><strong class="text-gray-900">${b.total_price_pln ? b.total_price_pln + ' PLN' : "-"}</strong></div>
-                    ${b.total_price_eur ? `<div><span class="text-gray-500 text-xs uppercase tracking-wide">Amount (EUR):</span><br/><strong class="text-gray-900">${b.total_price_eur} EUR</strong></div>` : ''}
-                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Email:</span><br/><strong class="text-gray-900 break-all">${b.email || b.email_address || "-"}</strong></div>
+                    <div><span class="text-gray-500 text-xs uppercase tracking-wide">Amount (PLN):</span><br/><strong class="text-gray-900">${b.total_price_pln ? b.total_price_pln + " PLN" : "-"}</strong></div>
+                    ${b.total_price_eur ? `<div><span class="text-gray-500 text-xs uppercase tracking-wide">Amount (EUR):</span><br/><strong class="text-gray-900">${b.total_price_eur} EUR</strong></div>` : ""}
+                    <div id="container-email" class="col-span-2 sm:col-span-1"><span class="text-gray-500 text-xs uppercase tracking-wide">Email:</span><br/><strong class="text-gray-900 break-all" id="val-email">${b.email || b.email_address || "-"}</strong></div>
                 </div>
             `;
         document.getElementById("bookingStatusUpdate").value =
@@ -1888,6 +2196,142 @@
           } else {
             closeBookingModal();
             loadBookings(); // reload data
+          }
+        });
+
+      let isEditMode = false;
+      let currentEditBooking = null;
+
+      function toggleBookingEditMode(edit) {
+        isEditMode = edit;
+        const b = currentEditBooking;
+        if (!b) return;
+
+        const btnSave = document.getElementById("btnSaveBookingEdit");
+        const btnCancel = document.getElementById("btnCancelBookingEdit");
+        const btnEdit = document.getElementById("btnEditBooking");
+        const btnDelete = document.getElementById("btnDeleteBooking");
+
+        const statusSection = document.getElementById("bookingStatusSection");
+        const modalActions = document.getElementById("bookingModalActions");
+
+        if (edit) {
+          btnSave.classList.remove("hidden");
+          btnCancel.classList.remove("hidden");
+          btnEdit.classList.add("hidden");
+          btnDelete.classList.add("hidden");
+
+          statusSection.classList.add("hidden");
+          modalActions.classList.add("hidden");
+
+          // Convert fields to inputs
+          document.getElementById("val-mobile_no").innerHTML =
+            `<input type="text" id="edit-mobile_no" class="mt-1 block w-full px-2 py-1 border border-gray-300 rounded-md text-sm" value="${b.mobile_no || ""}" />`;
+          document.getElementById("val-dob").innerHTML =
+            `<input type="date" id="edit-dob" class="mt-1 block w-full px-2 py-1 border border-gray-300 rounded-md text-sm" value="${b.dob || ""}" />`;
+
+          let emailVal = b.email || b.email_address || "";
+          document.getElementById("val-email").innerHTML =
+            `<input type="email" id="edit-email" class="mt-1 block w-full px-2 py-1 border border-gray-300 rounded-md text-sm" value="${emailVal}" />`;
+
+          // Chosen Trip Date - lookup package
+          let dateOptions = "";
+          const pkg = currentPackages.find(
+            (p) => p.id === b.event_id || p.title === b.event_name,
+          );
+          if (pkg && pkg.trip_date) {
+            const dates = pkg.trip_date
+              .split(",")
+              .map((d) => d.trim())
+              .filter((d) => d);
+            dateOptions = dates
+              .map(
+                (d) =>
+                  `<option value="${d}" ${b.chosen_trip_date === d ? "selected" : ""}>${d}</option>`,
+              )
+              .join("");
+          }
+          if (!dateOptions) {
+            dateOptions = `<option value="${b.chosen_trip_date || ""}">${b.chosen_trip_date || "No dates found"}</option>`;
+          }
+          document.getElementById("val-chosen_trip_date").innerHTML =
+            `<select id="edit-chosen_trip_date" class="mt-1 block w-full px-2 py-1 border border-gray-300 rounded-md text-sm">${dateOptions}</select>`;
+        } else {
+          // View Mode (re-render)
+          openBookingModal(b.id);
+        }
+      }
+
+      document
+        .getElementById("btnEditBooking")
+        .addEventListener("click", () => {
+          toggleBookingEditMode(true);
+        });
+
+      document
+        .getElementById("btnCancelBookingEdit")
+        .addEventListener("click", () => {
+          toggleBookingEditMode(false);
+        });
+
+      document
+        .getElementById("btnSaveBookingEdit")
+        .addEventListener("click", async () => {
+          if (!selectedBookingId) return;
+
+          const newMobile = document.getElementById("edit-mobile_no").value;
+          const newDob = document.getElementById("edit-dob").value;
+          const newEmail = document.getElementById("edit-email").value;
+          const newTripDate = document.getElementById(
+            "edit-chosen_trip_date",
+          ).value;
+
+          const updateData = {
+            mobile_no: newMobile,
+            dob: newDob || null,
+            chosen_trip_date: newTripDate,
+            email: newEmail,
+          };
+
+          const { error } = await dbClient
+            .from("bookings")
+            .update(updateData)
+            .eq("id", selectedBookingId);
+
+          if (error) {
+            alert("Error updating booking details: " + error.message);
+          } else {
+            // Update local state to reflect changes instantly without full reload
+            if (currentEditBooking) {
+              currentEditBooking.mobile_no = newMobile;
+              currentEditBooking.dob = newDob || null;
+              currentEditBooking.chosen_trip_date = newTripDate;
+              currentEditBooking.email = newEmail;
+            }
+
+            // Refresh list to show updated data
+            renderBookingsList();
+
+            // Toggle back to view mode, which will re-render modal with updated local state
+            toggleBookingEditMode(false);
+          }
+        });
+
+      document
+        .getElementById("btnDeleteBooking")
+        .addEventListener("click", async () => {
+          if (!selectedBookingId) return;
+          if (confirm("Are you sure you want to delete this booking?")) {
+            const { error } = await dbClient
+              .from("bookings")
+              .delete()
+              .eq("id", selectedBookingId);
+            if (error) {
+              alert("Error deleting booking: " + error.message);
+            } else {
+              closeBookingModal();
+              loadBookings();
+            }
           }
         });
     </script>
