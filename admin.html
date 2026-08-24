@@ -969,7 +969,7 @@
                       type="number"
                       id="pkgPrice"
                       class="block w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-sm shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                      required
+
                     />
                   </div>
                   <div>
@@ -1832,7 +1832,9 @@
             title: document.getElementById("pkgTitle").value,
             location: document.getElementById("pkgLocation").value,
             emoji: document.getElementById("pkgEmoji").value,
-            price: parseFloat(document.getElementById("pkgPrice").value),
+            price: document.getElementById("pkgPrice").value
+              ? parseFloat(document.getElementById("pkgPrice").value)
+              : null,
             price_eur: document.getElementById("pkgPriceEur").value
               ? parseFloat(document.getElementById("pkgPriceEur").value)
               : null,

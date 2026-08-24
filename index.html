@@ -723,8 +723,8 @@ function updateLivePrice() {
     const guestCount = (bookGuestsEl && bookGuestsEl.value) ? parseInt(bookGuestsEl.value) || 1 : 1;
     
     // 2. Use the FIXED prices from your TRIPS array multiplied by guests
-    const totalPln = currentTrip.price * guestCount;
-    const totalEur = currentTrip.priceEur * guestCount; // This uses your manual input
+    const totalPln = currentTrip.price ? (currentTrip.price * guestCount) : '--';
+    const totalEur = currentTrip.priceEur ? (currentTrip.priceEur * guestCount) : '--'; // This uses your manual input
 
     // 3. Update the sidebar text
     const priceDisplay = document.getElementById('modalPrice');
@@ -834,10 +834,10 @@ function renderTrips(data) {
           <div>
             <div class="trip-price-label">Starting from</div>
             <div class="trip-price" style="display: flex; align-items: baseline; font-weight: 800; color: #2952c8;">
-    ${isComingSoon ? '---' : trip.price + ' <span style="font-size: 0.75rem; color: #2952c8; margin-left: 2px;">PLN</span>'}
+    ${isComingSoon ? '---' : (trip.price ? trip.price : '--') + ' <span style="font-size: 0.75rem; color: #2952c8; margin-left: 2px;">PLN</span>'}
     
     <span style="font-size: 1.1rem; color: #A0AEC0; font-weight: 800; margin-left: 6px;">
-        ${isComingSoon ? '' : '/ ~' + trip.priceEur + ' <span style="font-size: 0.75rem; color: #A0AEC0; margin-left: 2px;">EUR</span>'}
+        ${isComingSoon ? '' : '/ ~' + (trip.priceEur ? trip.priceEur : '--') + ' <span style="font-size: 0.75rem; color: #A0AEC0; margin-left: 2px;">EUR</span>'}
     </span>
 </div>
             <div class="trip-included">
@@ -944,7 +944,7 @@ function openModal(id) {
   if (t.showPrice) {
     let priceText = '';
     if (isComingSoon) priceText = "Price Coming Soon";
-    else priceText = `${t.price} <span style="font-size:1rem">PLN</span> <span style="font-size:.9rem;font-weight:700;color:#4a5568;margin-left:8px">(~${t.priceEur} EUR)</span>`;
+    else priceText = `${t.price ? t.price : '--'} <span style="font-size:1rem">PLN</span> <span style="font-size:.9rem;font-weight:700;color:#4a5568;margin-left:8px">(~${t.priceEur ? t.priceEur : '--'} EUR)</span>`;
     document.getElementById('modalPrice').innerHTML = priceText;
   }
   
@@ -1071,8 +1071,8 @@ function updateLivePrice() {
     const bookGuestsEl = document.getElementById('bookGuests');
     const guestCount = (bookGuestsEl && bookGuestsEl.value) ? parseInt(bookGuestsEl.value) || 1 : 1;
 
-    const totalPln = currentTrip.price * guestCount;
-    const totalEur = currentTrip.priceEur * guestCount;
+    const totalPln = currentTrip.price ? (currentTrip.price * guestCount) : '--';
+    const totalEur = currentTrip.priceEur ? (currentTrip.priceEur * guestCount) : '--';
 
     const priceText = `${totalPln} <span style="font-size:1rem">PLN</span> <span style="font-size:.9rem;font-weight:700;color:#4a5568;margin-left:8px">(~${totalEur} EUR)</span>`;
 
@@ -1125,8 +1125,8 @@ async function confirmBooking() {
 
 
     // Price logic
-    const totalPln = currentTrip.price * guestCount;
-    const totalEur = currentTrip.priceEur * guestCount;
+    const totalPln = currentTrip.price ? (currentTrip.price * guestCount) : null;
+    const totalEur = currentTrip.priceEur ? (currentTrip.priceEur * guestCount) : null;
     const bookingDate = new Date().toISOString().split('T')[0];
 
     // Array to hold all insert payloads
