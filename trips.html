@@ -229,7 +229,7 @@ button{cursor:pointer;font-family:inherit}
   bottom: 40px; /* Moved up slightly for better visibility */
   left: 50%;
   transform: translateX(-50%) translateY(80px);
-  
+
   /* --- SQUARE BLOCK STYLE --- */
   background: rgba(15, 34, 102, 0.85); /* Lightly transparent (0.85) */
   backdrop-filter: blur(8px);          /* Adds a modern frosted-glass effect */
@@ -239,14 +239,14 @@ button{cursor:pointer;font-family:inherit}
   width: auto;
   min-width: 200px;                    /* Ensures it looks like a block */
   text-align: center;
-  
+
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   border: 1px solid rgba(74, 114, 232, 0.5); /* Subtle border */
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   z-index: 9999;
-  
+
   /* Transitions and visibility */
   opacity: 0;
   visibility: hidden;
@@ -316,7 +316,7 @@ button{cursor:pointer;font-family:inherit}
     from { transform: translateX(0); }
     to { transform: translateX(-100%); }
   }
-  
+
   /* Style for disabled buttons on the home page */
 .btn-disabled-home {
     background-color: #cbd5e0 !important;
@@ -348,7 +348,7 @@ button{cursor:pointer;font-family:inherit}
 
 /* Ensure the section BELOW the mountains doesn't have a huge top margin */
 .always-included-bar {
-    margin-top: 0 !important; 
+    margin-top: 0 !important;
 }
 .hero > div:last-of-type { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 /* Container for the side-by-side Guest Selector */
@@ -401,149 +401,33 @@ button{cursor:pointer;font-family:inherit}
   transform: none !important;
   box-shadow: none !important;
 }
+</style>
 
-/* SLIDER SECTIONS */
-.landing-sections {
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 40px 32px 80px;
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<style>
+/* Override trip card grid to be 2 columns of squares */
+#tripsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.trip-card {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  grid-template-columns: none !important; /* override original */
 }
-.slider-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.slider-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #dde4f5;
-  padding-bottom: 10px;
-}
-.slider-header h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
-  color: #1a1f36;
-}
-.view-all-link {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: #2952c8;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.view-all-link:hover {
-  color: #1a3a9e;
-}
-.slider-container {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 20px; /* Space for scrollbar */
-  scrollbar-width: thin;
-}
-.slider-container::-webkit-scrollbar {
-  height: 8px;
-}
-.slider-container::-webkit-scrollbar-track {
-  background: #f5f7fc;
-  border-radius: 4px;
-}
-.slider-container::-webkit-scrollbar-thumb {
-  background: #c0ccee;
-  border-radius: 4px;
-}
-
-/* Sqaure Trip Card for Slider */
-.trip-card-square {
-  flex: 0 0 calc(33.333% - 14px); /* 3 cards visible */
-  min-width: 280px;
-  background: #fff;
-  border: 1px solid #dde4f5;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(41, 82, 200, 0.10);
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.2s, transform 0.2s;
-  cursor: pointer;
-  scroll-snap-align: start;
-}
-@media (max-width: 980px) {
-  .trip-card-square { flex: 0 0 calc(50% - 10px); }
-}
-@media (max-width: 640px) {
-  .trip-card-square { flex: 0 0 85%; }
-}
-
-.trip-card-square:hover {
-  box-shadow: 0 8px 40px rgba(41, 82, 200, 0.18);
-  transform: translateY(-2px);
-}
-.trip-card-square .trip-img {
+.trip-card .trip-img {
   aspect-ratio: 1 / 1;
   min-height: auto;
-  position: relative;
-  background: linear-gradient(145deg, #1a3a9e, #2952c8);
 }
-.trip-card-square .trip-img img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.trip-card-square .trip-body {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.trip-card-square .trip-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: #1a1f36;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-.trip-card-square .trip-loc {
-  font-size: 0.8rem;
-  color: #7a8599;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-.trip-card-square .trip-footer {
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 12px;
-  border-top: 1px solid #dde4f5;
-}
-.trip-card-square .trip-price {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: 1.3rem;
-  color: #2952c8;
-}
-.trip-card-square .btn-book {
-  padding: 8px 16px;
-  font-size: 0.8rem;
+@media (max-width: 768px) {
+  #tripsList {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 
-
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
 <body>
@@ -572,8 +456,8 @@ button{cursor:pointer;font-family:inherit}
       <div class="nav-logo-text">NNA VITTALO<small>Adventure Travel</small></div>
     </a>
     <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#camps" style="color:#1a1f36">Camps</a>
+      <a href="index.html">Home</a>
+      <a href="trips.html" style="color:#1a1f36">All Trips</a>
       <a href="#contact" style="color:#1a1f36">Contact</a>
     </div>
     <div class="nav-actions">
@@ -584,7 +468,7 @@ button{cursor:pointer;font-family:inherit}
     </button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#camps" onclick="closeMobileMenu()">🏄 Camps</a>
+    <a href="trips.html" onclick="closeMobileMenu()">🏄 All Trips</a>
     <a href="#contact" onclick="closeMobileMenu()">📞 Contact</a>
     <div class="mobile-menu-btns">
       <button class="btn-solid btn-whatsapp" style="border-radius:6px; display:flex; align-items:center; justify-content:center; gap:8px;" onclick="closeMobileMenu(); window.open(`https://wa.me/${window.APP_CONFIG.phoneNumber.replace('+', '')}`, '_blank')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg> Chat</button>
@@ -613,29 +497,75 @@ button{cursor:pointer;font-family:inherit}
 </div>
 
 <!-- MAIN CONTENT -->
-<div class="landing-sections" id="camps">
-  <!-- CAMPS SECTION -->
-  <div class="slider-section">
-    <div class="slider-header">
-      <h2>Camps</h2>
-      <a href="trips.html" class="view-all-link">View All ➔</a>
+<div class="main-wrap" id="packages">
+  <!-- Filters -->
+  <aside class="filters-sidebar">
+    <div class="filters-header" onclick="toggleFilters()">
+      <h3>🔍 Filters</h3>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span id="filtersClear" style="font-family:Montserrat,sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.75);text-decoration:underline;cursor:pointer;display:none" onclick="event.stopPropagation();clearFilters()">Clear</span>
+        <span class="arr" id="filtersArrow" style="transform:rotate(0deg)">▼</span>
+      </div>
     </div>
-    <div class="slider-container" id="campsSlider">
-      <!-- Cards will be injected here -->
+    <div id="filtersBody" style="display:none">
+      <div class="fgroup">
+        <div class="fgroup-title">Activity Type</div>
+        <div id="activityFilters">
+          <label class="chk-opt"><input type="checkbox" value="Kayaking" onchange="applyFilters()"> Kayaking</label>
+          <label class="chk-opt"><input type="checkbox" value="Skiing" onchange="applyFilters()"> Skiing</label>
+          <label class="chk-opt"><input type="checkbox" value="Surfing" onchange="applyFilters()"> Surfing</label>
+          <label class="chk-opt"><input type="checkbox" value="Hiking" onchange="applyFilters()"> Hiking</label>
+          <label class="chk-opt"><input type="checkbox" value="Camping" onchange="applyFilters()"> Camping</label>
+          <label class="chk-opt"><input type="checkbox" value="City Tours" onchange="applyFilters()"> City Tours</label>
+        </div>
+      </div>
+      <div class="fgroup">
+        <div class="fgroup-title">Duration</div>
+        <div id="durationFilters">
+          <label class="chk-opt"><input type="checkbox" value="Weekend (2–3 days)" onchange="applyFilters()"> Weekend (2–3 days)</label>
+          <label class="chk-opt"><input type="checkbox" value="Short (4–5 days)" onchange="applyFilters()"> Short (4–5 days)</label>
+          <label class="chk-opt"><input type="checkbox" value="Week (6–7 days)" onchange="applyFilters()"> Week (6–7 days)</label>
+        </div>
+      </div>
+      <div class="fgroup">
+        <div class="fgroup-title">Price Range (PLN / person)</div>
+        <div id="priceFilters">
+          <label class="chk-opt"><input type="checkbox" value="Under 400" onchange="applyFilters()"> Under 400</label>
+          <label class="chk-opt"><input type="checkbox" value="400–700 PLN" onchange="applyFilters()"> 400–700 PLN</label>
+          <label class="chk-opt"><input type="checkbox" value="700–1000 PLN" onchange="applyFilters()"> 700–1000 PLN</label>
+          <label class="chk-opt"><input type="checkbox" value="1000+ PLN" onchange="applyFilters()"> 1000+ PLN</label>
+        </div>
+      </div>
+      <div class="fgroup">
+        <div class="fgroup-title">Difficulty</div>
+        <div class="diff-btns">
+          <button class="diff-btn active" data-diff="All" onclick="setDiff(this)">All</button>
+          <button class="diff-btn" data-diff="Beginner" onclick="setDiff(this)">Beginner</button>
+          <button class="diff-btn" data-diff="Intermediate" onclick="setDiff(this)">Intermediate</button>
+          <button class="diff-btn" data-diff="Advanced" onclick="setDiff(this)">Advanced</button>
+        </div>
+      </div>
+      <button class="filters-apply" onclick="showToast('✅ Filters applied!')">Show Results</button>
     </div>
-  </div>
+  </aside>
 
-  <!-- TOUR PACKAGES SECTION -->
-  <div class="slider-section" id="tour-packages">
-    <div class="slider-header">
-      <h2>Tour Packages</h2>
-      <a href="trips.html" class="view-all-link">View All ➔</a>
+  <!-- Trips -->
+  <div>
+    <div class="trips-header">
+      <div id="tripCount" style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.88rem;color:#4a5568">Showing <span style="color:#2952c8">6 trips</span> available</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:.82rem;font-weight:600;color:#4a5568">Sort:</span>
+        <div class="sort-btns">
+          <button class="sort-btn active" onclick="setSort('Upcoming',this)">Upcoming</button>
+          <button class="sort-btn" onclick="setSort('Price',this)">Price ↑</button>
+          <button class="sort-btn" onclick="setSort('Popular',this)">Most Popular</button>
+        </div>
+      </div>
     </div>
-    <div class="slider-container" id="tourPackagesSlider">
-      <!-- Leave blank for now -->
-    </div>
+    <div id="tripsList"></div>
   </div>
 </div>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
@@ -668,7 +598,7 @@ button{cursor:pointer;font-family:inherit}
       <div style="font-size:.82rem">📧 info@nnavittalo.com<br>📞 <span class="dynamic-phone"></span></div>
     </div>
     <div class="footer-col"><h4>Our Trips</h4><a href="#packages">Kayaking Getaway</a><a href="#packages">Ski Trip</a><a href="#packages">Surfing Camp</a><a href="#packages">Hiking in Tatra</a><a href="#packages">Camping Weekend</a></div>
-    <div class="footer-col"><h4>Company</h4><a href="#contact">Contact</a><a href="trips.html">All Trips</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="#contact">Contact</a><a href="#packages">All Trips</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="mailto:info@nnavittalo.com">info@nnavittalo.com</a><a href="#" class="dynamic-wa-link"><span class="dynamic-phone"></span></a><a href="#">Warsaw, Poland</a><a href="#">Mon–Fri 9:00–18:00</a></div>
   </div>
   <div class="footer-bottom">
@@ -722,7 +652,7 @@ button{cursor:pointer;font-family:inherit}
     <div class="booking-label">Total price</div>
     <div id="modalPrice" class="booking-price"></div>
     <div id="modalIncluded" style="font-size:.78rem;color:#7a8599;margin-bottom:16px"></div>
-    
+
     <button class="btn-book-modal" id="btnShowForm" onclick="showBookingForm()">🎉 Book Your Spot</button>
     <p style="font-size:.72rem;color:#7a8599;text-align:center;margin-top:10px">Free cancellation up to 7 days before departure</p>
     </div>
@@ -786,7 +716,7 @@ button{cursor:pointer;font-family:inherit}
 </div> <!-- end modal-overlay -->
 
 <script>
-  
+
 
 // Function to calculate the price based on guest count
 function updateLivePrice() {
@@ -795,7 +725,7 @@ function updateLivePrice() {
     // 1. Get number of guests from the dropdown
     const bookGuestsEl = document.getElementById('bookGuests');
     const guestCount = (bookGuestsEl && bookGuestsEl.value) ? parseInt(bookGuestsEl.value) || 1 : 1;
-    
+
     // 2. Use the FIXED prices from your TRIPS array multiplied by guests
     const totalPln = currentTrip.price ? (currentTrip.price * guestCount) : '--';
     const totalEur = currentTrip.priceEur ? (currentTrip.priceEur * guestCount) : '--'; // This uses your manual input
@@ -804,7 +734,7 @@ function updateLivePrice() {
     const priceDisplay = document.getElementById('modalPrice');
     if (priceDisplay) {
         priceDisplay.innerHTML = `
-            ${totalPln} <span style="font-size:1rem">PLN</span> 
+            ${totalPln} <span style="font-size:1rem">PLN</span>
             <span style="font-size:.9rem;font-weight:700;color:#4a5568;margin-left:8px">
                 (~${totalEur} EUR)
             </span>
@@ -834,108 +764,162 @@ let activeDiff = 'All';
 let currentTrip = null;
 
 
-
 function renderTrips(data) {
-  const container = document.getElementById('campsSlider');
-  if (!container) return;
-  container.innerHTML = '';
+  const list = document.getElementById('tripsList');
+  const count = document.getElementById('tripCount');
+  if (!list) return;
+
+  list.innerHTML = '';
+  count.innerHTML = `Showing <span style="color:#2952c8">${data.length} trips</span> available`;
 
   data.forEach(trip => {
     const card = document.createElement('div');
-    card.className = 'trip-card-square';
-    
+    card.className = 'trip-card';
+
     const isComingSoon = trip.comingSoon === true;
     const isDisabled = !trip.isActive;
     const lockBooking = isComingSoon || isDisabled;
 
+    // 1. Logic for the WHOLE CARD click (only if not locked)
     if (!lockBooking) {
         card.onclick = (e) => {
-            if (e.target.tagName !== 'BUTTON') openModal(trip.id);
+            // Check if a button was clicked to prevent opening twice
+            if (e.target.tagName !== 'BUTTON') {
+                openModal(trip.id);
+            }
         };
     } else {
         card.style.cursor = 'default';
+        // Still allow opening modal for disabled packages if you just want to see it,
+        // but the prompt said "If a package is disabled: The Book Now button must become unclickable"
+        // Let's allow modal opening so they can read it, but booking is locked inside.
         card.onclick = (e) => {
-            if (e.target.tagName !== 'BUTTON') openModal(trip.id);
+            if (e.target.tagName !== 'BUTTON') {
+                openModal(trip.id);
+            }
         };
     }
 
+    // 2. Prepare button styles and actions
     const buttonClass = lockBooking ? 'btn-disabled-home' : '';
-
-    let badgeHtml = '';
-    if (trip.badges && trip.badges.length > 0) {
-        let label = typeof trip.badges[0] === 'object' ? trip.badges[0].l : trip.badges[0];
-        if (isDisabled && label.toLowerCase() === 'available') label = 'Unavailable';
-        let colorClass = isDisabled ? 'soon' : 'white';
-        badgeHtml = `<span class="badge badge-${colorClass}">${label}</span>`;
-    }
-
-    let priceHtml = '';
-    if (trip.showPrice) {
-        if (trip.price) {
-            priceHtml = `<div class="trip-price">${trip.price}<span>zł</span></div>`;
-        } else {
-            priceHtml = `<div class="trip-price-na">TBA</div>`;
-        }
-    } else {
-        priceHtml = `<div></div>`;
-    }
+    const clickAction = `onclick="openModal('${trip.id}')"`;
 
     card.innerHTML = `
       <div class="trip-img">
         <img src="${trip.photo}" alt="${trip.title}">
-        <div class="trip-badges" style="position:absolute; top:12px; left:12px;">
-          ${badgeHtml}
+        <div class="trip-badges">
+          ${trip.badges ? trip.badges.map((b, i) => {
+            let label = typeof b === 'object' ? b.l : b;
+            if (isDisabled && label.toLowerCase() === 'available') {
+              label = 'Unavailable';
+            }
+            let colorClass = i % 2 === 0 ? 'white' : 'green';
+            if (isDisabled) colorClass = 'soon'; // Use grey/orange or similar disabled class if 'soon' exists, otherwise use 'dark' or inline style.
+            if (isDisabled && label.toLowerCase() === 'unavailable') {
+                return `<span class="badge badge-soon" style="background:#cbd5e0; color:#4a5568">${label}</span>`;
+            }
+            return `<span class="badge badge-${colorClass}">${label}</span>`;
+          }).join('') : ''}
         </div>
-        ${trip.tripDate ? `<div class="trip-date-badge" style="position:absolute; bottom:12px; right:12px; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:.68rem; padding:4px 10px; border-radius:4px; letter-spacing:.5px; text-transform:uppercase; z-index:2; background:rgba(15,34,102,0.85); backdrop-filter:blur(4px)">${trip.tripDate}</div>` : ''}
       </div>
       <div class="trip-body">
-        <div class="trip-title">${trip.title}</div>
+        <div class="trip-tags">
+          ${trip.tags ? trip.tags.map(t => `<span class="tag tag-tatra">${typeof t === 'object' ? t.l : t}</span>`).join('') : ''}
+        </div>
+        <h3 class="trip-title">${trip.title}</h3>
         <div class="trip-loc">📍 ${trip.location}</div>
+        <div class="trip-date-text">📅 ${trip.tripDate ? (trip.tripDate.includes(",") ? "Multiple dates available" : trip.tripDate) : 'Dates Coming Soon'}</div>
+
+        <div class="trip-features">
+          ${trip.features ? trip.features.map(f => `<span class="feature-tag">${f}</span>`).join('') : ''}
+        </div>
+
         <div class="trip-footer">
-          ${priceHtml}
-          <button class="btn-book ${buttonClass}" onclick="openModal('${trip.id}')" ${lockBooking ? 'disabled' : ''}>
-            ${lockBooking ? 'View Details' : 'Book Now'}
-          </button>
+          <div>
+            <div class="trip-price-label">Starting from</div>
+            <div class="trip-price" style="display: flex; align-items: baseline; font-weight: 800; color: #2952c8;">
+    ${isComingSoon ? '---' : (trip.price ? trip.price : '--') + ' <span style="font-size: 0.75rem; color: #2952c8; margin-left: 2px;">PLN</span>'}
+
+    <span style="font-size: 1.1rem; color: #A0AEC0; font-weight: 800; margin-left: 6px;">
+        ${isComingSoon ? '' : '/ ~' + (trip.priceEur ? trip.priceEur : '--') + ' <span style="font-size: 0.75rem; color: #A0AEC0; margin-left: 2px;">EUR</span>'}
+    </span>
+</div>
+            <div class="trip-included">
+               ${isComingSoon ? '' : '<span>✓</span> ' + (trip.included || 'Equipment included')}
+            </div>
+          </div>
+          <div class="trip-btns">
+            <button class="btn-book ${buttonClass}" ${lockBooking ? 'disabled' : ''} ${clickAction}>${isDisabled ? 'Unavailable' : 'Book Now'}</button>
+            <button class="btn-details" ${clickAction}>View Details</button>
+          </div>
         </div>
       </div>
     `;
-    container.appendChild(card);
+    list.appendChild(card);
   });
 }
 
+
+
+
 function getFilteredTrips() {
-    // No filters on homepage
-    return TRIPS;
+  const activities = [...document.querySelectorAll('#activityFilters input:checked')].map(i=>i.value);
+  const durations = [...document.querySelectorAll('#durationFilters input:checked')].map(i=>i.value);
+  const prices = [...document.querySelectorAll('#priceFilters input:checked')].map(i=>i.value);
+  let trips = TRIPS.filter(t => {
+    if(activities.length && !activities.includes(t.activity)) return false;
+    if(durations.length && !durations.includes(t.durationTag)) return false;
+    if(prices.length && !prices.includes(t.priceRange)) return false;
+    if(activeDiff !== 'All' && t.difficulty !== activeDiff) return false;
+    return true;
+  });
+  if(activeSort === 'Price') trips = [...trips].sort((a,b)=>a.price-b.price);
+  return trips;
 }
 
-// Auto scroll hero to camps
-setTimeout(() => {
-    const campsSec = document.getElementById('camps');
-    if(campsSec) campsSec.scrollIntoView({ behavior: 'smooth' });
-}, 5000);
+function applyFilters() {
+  renderTrips(getFilteredTrips());
+  const anyActive = document.querySelectorAll('#activityFilters input:checked, #durationFilters input:checked, #priceFilters input:checked').length > 0 || activeDiff !== 'All';
+  document.getElementById('filtersClear').style.display = anyActive ? 'inline' : 'none';
+}
 
-// Auto scroll slider
-setInterval(() => {
-    const slider = document.getElementById('campsSlider');
-    if (!slider) return;
+function clearFilters() {
+  document.querySelectorAll('.filters-sidebar input[type=checkbox]').forEach(i=>i.checked=false);
+  activeDiff='All';
+  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.toggle('active',b.dataset.diff==='All'));
+  applyFilters();
+}
 
-    // Check if we reached the end
-    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
-        // scroll back to start
-        slider.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-        // scroll next item
-        const cardWidth = slider.querySelector('.trip-card-square')?.offsetWidth || 300;
-        slider.scrollBy({ left: cardWidth + 20, behavior: 'smooth' });
-    }
-}, 3000);
+function setDiff(btn) {
+  activeDiff = btn.dataset.diff;
+  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function setSort(s, btn) {
+  activeSort = s;
+  document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+let filtersOpen = window.innerWidth >= 768;
+function toggleFilters() {
+  filtersOpen = !filtersOpen;
+  document.getElementById('filtersBody').style.display = filtersOpen ? 'block' : 'none';
+  document.getElementById('filtersArrow').style.transform = filtersOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+// init
+document.getElementById('filtersBody').style.display = filtersOpen ? 'block' : 'none';
+document.getElementById('filtersArrow').style.transform = filtersOpen ? 'rotate(180deg)' : 'rotate(0deg)';
 
 
 function openModal(id) {
   currentTrip = TRIPS.find(t => t.id === id);
   if (!currentTrip) return;
   const t = currentTrip;
-  
+
   // --- NEW LOGIC START: Check if trip is Coming Soon or Disabled ---
   const isComingSoon = t.comingSoon === true;
   const isDisabled = !t.isActive;
@@ -956,18 +940,18 @@ function openModal(id) {
   if (gallerySubEl) gallerySubEl.innerHTML = subImages;
 
   document.getElementById('modalDesc').textContent = (t.desc || '') + ' Whether you\'re a first-timer or a seasoned adventurer, this package is carefully designed to deliver an unforgettable experience from start to finish.';
-  
+
   const amenities = ['✅ ' + (t.included || 'Equipment included'), '✅ Professional guide / instructor', '✅ Accommodation included', '✅ Meals & snacks', '✅ Safety gear & insurance', '✅ Transport from meeting point'];
   document.getElementById('amenitiesGrid').innerHTML = amenities.map(a => `<div class="amenity-item">${a}</div>`).join('');
   document.getElementById('modalDate').textContent = t.showPrice ? (t.tripDate ? t.tripDate.replace(/,/g, ' & ') : 'Dates Coming Soon') : 'Dates Coming Soon';
-  
+
   if (t.showPrice) {
     let priceText = '';
     if (isComingSoon) priceText = "Price Coming Soon";
     else priceText = `${t.price ? t.price : '--'} <span style="font-size:1rem">PLN</span> <span style="font-size:.9rem;font-weight:700;color:#4a5568;margin-left:8px">(~${t.priceEur ? t.priceEur : '--'} EUR)</span>`;
     document.getElementById('modalPrice').innerHTML = priceText;
   }
-  
+
   document.getElementById('modalIncluded').textContent = '✓ ' + (t.included || 'Equipment & guide included');
 
   // Inject Rich Text Itinerary
@@ -992,7 +976,7 @@ function openModal(id) {
   } else {
       itinContainer.style.display = 'none';
   }
-  
+
   const bookBtn = document.getElementById("btnShowForm");
   // Lock button and change style if Coming Soon or Disabled
   if (bookBtn) {
@@ -1255,8 +1239,8 @@ function showToast(msg) {
   // 1. Force stop any current animations/timers
   clearTimeout(toastTimer);
   el.classList.remove('show');
-  
-  // 2. Small delay to allow the browser to register the "reset" 
+
+  // 2. Small delay to allow the browser to register the "reset"
   // before showing it again
   setTimeout(() => {
     el.textContent = msg;
@@ -1266,7 +1250,7 @@ function showToast(msg) {
     toastTimer = setTimeout(() => {
       el.classList.remove('show');
     }, 3000);
-  }, 50); 
+  }, 50);
 }
 
 function subscribeNewsletter() {
@@ -1289,12 +1273,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.APP_CONFIG && window.APP_CONFIG.phoneNumber) {
         const phoneText = window.APP_CONFIG.phoneNumber;
         const waLink = `https://wa.me/${phoneText.replace("+", "")}`;
-        
+
         // Update all text occurrences
         document.querySelectorAll(".dynamic-phone").forEach(el => {
             el.textContent = phoneText;
         });
-        
+
         // Update all WhatsApp links
         document.querySelectorAll(".dynamic-wa-link").forEach(el => {
             el.href = waLink;
@@ -1306,7 +1290,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 3. RUN THIS IMMEDIATELY when the page loads
 // Init
 async function init() {
-    const { data, error } = await _supabase.from('packages').select('*').order('priority', { ascending: false });
+    const { data, error } = await _supabase.from('trips').select('*').order('priority', { ascending: false });
     if (error) {
         console.error("Error fetching packages", error);
         return;

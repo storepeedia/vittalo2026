@@ -1258,7 +1258,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // 3. RUN THIS IMMEDIATELY when the page loads
 // Init
 async function init() {
-    const { data, error } = await _supabase.from('packages').select('*').order('priority', { ascending: false });
+    const { data, error } = await _supabase.from('trips').select('*').order('priority', { ascending: false });
     if (error) {
         console.error("Error fetching packages", error);
         return;
