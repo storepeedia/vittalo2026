@@ -1549,7 +1549,7 @@
       async function loadPackages() {
         document.getElementById("packagesLoading").classList.remove("hidden");
         const { data, error } = await dbClient
-          .from("packages")
+          .from("trips")
           .select("*")
           .order("priority", { ascending: false });
         document.getElementById("packagesLoading").classList.add("hidden");
@@ -1790,7 +1790,7 @@
           confirm("Are you sure you want to completely remove this package?")
         ) {
           const { error } = await dbClient
-            .from("packages")
+            .from("trips")
             .delete()
             .eq("id", id);
           if (error) {
@@ -1874,7 +1874,7 @@
               .checked,
           };
 
-          const { error } = await dbClient.from("packages").upsert(payload);
+          const { error } = await dbClient.from("trips").upsert(payload);
           if (error) {
             alert("Error saving package: " + error.message);
           } else {
