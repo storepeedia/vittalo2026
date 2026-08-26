@@ -340,6 +340,83 @@
         </div>
 
         <!-- Bookings Section -->
+
+        <!-- B2B Packages Section -->
+        <div id="sectionB2BPackages" class="hidden pb-24">
+          <!-- Page Header -->
+          <div class="flex justify-between items-start mb-8">
+            <div>
+              <h2 class="text-3xl font-bold text-slate-900 tracking-tight">
+                B2B Trips
+              </h2>
+              <p class="text-slate-500 mt-1 text-sm">
+                Manage your B2B adventure trip packages
+              </p>
+            </div>
+            <button
+              id="btnCreateB2BPackage"
+              class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium w-12 h-12 rounded-full shadow-sm hover:shadow flex items-center justify-center transition-all"
+              aria-label="Add B2B Trip"
+              title="Add B2B Trip"
+              onclick="openB2BPackageModal()"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div
+              class="bg-white p-5 rounded-[20px] shadow-sm border border-slate-100 flex flex-col justify-center"
+            >
+              <div class="text-sm font-medium text-slate-500 mb-1">
+                Total B2B Trips
+              </div>
+              <div
+                class="text-2xl font-bold text-slate-900"
+                id="statTotalB2BTrips"
+              >
+                0
+              </div>
+            </div>
+            <div
+              class="bg-white p-5 rounded-[20px] shadow-sm border border-slate-100 flex flex-col justify-center"
+            >
+              <div class="text-sm font-medium text-slate-500 mb-1">
+                Active B2B
+              </div>
+              <div
+                class="text-2xl font-bold text-emerald-600"
+                id="statActiveB2BTrips"
+              >
+                0
+              </div>
+            </div>
+          </div>
+
+          <!-- Loading State -->
+          <div id="b2bPackagesLoading" class="flex justify-center py-10 hidden">
+            <div class="spinner"></div>
+          </div>
+
+          <!-- Packages List -->
+          <div class="flex flex-col gap-4" id="b2bPackagesList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
         <div id="sectionBookings" class="hidden pb-24">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">
             Bookings Dashboard
@@ -635,6 +712,27 @@
               </svg>
               <span class="text-[10px] font-medium">Trips</span>
             </button>
+
+            <button
+              id="navB2BPackages"
+              class="flex-1 flex flex-col items-center px-4 py-2 text-slate-400 hover:text-slate-600 rounded-2xl transition-all"
+            >
+              <svg
+                class="w-6 h-6 mb-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              <span class="text-[10px] font-medium">B2B Trips</span>
+            </button>
+
           </div>
         </nav>
       </main>
@@ -1403,6 +1501,10 @@
 
       let quill;
       let currentPackages = [];
+
+      let currentB2BPackages = [];
+      let currentEditingB2BPackageId = null;
+
       let currentBookings = [];
       let currentFilteredBookings = [];
       let selectedBookingId = null;
@@ -1434,6 +1536,11 @@
 
         // Force Bookings view as default upon login
         document.getElementById("sectionPackages").classList.add("hidden");
+        document.getElementById("sectionB2BPackages").classList.add("hidden");
+        if(document.getElementById("navB2BPackages")) { document.getElementById("navB2BPackages").classList.remove("text-blue-600", "bg-blue-50/50"); document.getElementById("navB2BPackages").classList.add("text-slate-400"); }
+        document.getElementById("sectionB2BPackages").classList.add("hidden");
+        document.getElementById("navB2BPackages").classList.remove("text-blue-600", "bg-blue-50/50");
+        document.getElementById("navB2BPackages").classList.add("text-slate-400");
         document.getElementById("sectionBookings").classList.remove("hidden");
 
         // Update navigation UI states
@@ -1501,6 +1608,27 @@
       // ------------------
       // Navigation Logic
       // ------------------
+
+      document.getElementById("navB2BPackages").addEventListener("click", () => {
+        document.getElementById("sectionB2BPackages").classList.remove("hidden");
+        document.getElementById("sectionPackages").classList.add("hidden");
+        document.getElementById("sectionBookings").classList.add("hidden");
+        document.getElementById("sectionB2BPackages").classList.add("hidden");
+        document.getElementById("navB2BPackages").classList.remove("text-blue-600", "bg-blue-50/50");
+        document.getElementById("navB2BPackages").classList.add("text-slate-400");
+
+        document.getElementById("navB2BPackages").classList.remove("text-slate-400");
+        document.getElementById("navB2BPackages").classList.add("text-blue-600", "bg-blue-50/50");
+
+        document.getElementById("navPackages").classList.remove("text-blue-600", "bg-blue-50/50");
+        document.getElementById("navPackages").classList.add("text-slate-400");
+
+        document.getElementById("navBookings").classList.remove("text-blue-600", "bg-blue-50/50");
+        document.getElementById("navBookings").classList.add("text-slate-400");
+
+        loadB2BPackages();
+      });
+
       document.getElementById("navPackages").addEventListener("click", () => {
         document.getElementById("sectionPackages").classList.remove("hidden");
         document.getElementById("sectionBookings").classList.add("hidden");
@@ -1519,8 +1647,8 @@
           .classList.remove("text-blue-600", "bg-blue-50/50");
         document.getElementById("navBookings").classList.add("text-slate-400");
 
-        loadPackages();
-      });
+        if(isB2b) { loadB2BPackages(); } else { loadPackages(); }
+          });
 
       document.getElementById("navBookings").addEventListener("click", () => {
         document.getElementById("sectionBookings").classList.remove("hidden");
@@ -1546,6 +1674,164 @@
       // ------------------
       // Package Management
       // ------------------
+
+      async function loadB2BPackages() {
+        document.getElementById("b2bPackagesLoading").classList.remove("hidden");
+        const { data, error } = await dbClient
+          .from("b2b_packages")
+          .select("*")
+          .order("priority", { ascending: false });
+        document.getElementById("b2bPackagesLoading").classList.add("hidden");
+        if (error) return console.error(error);
+
+        currentB2BPackages = data;
+        renderB2BPackagesList();
+      }
+
+      function renderB2BPackagesList() {
+        const list = document.getElementById("b2bPackagesList");
+        const total = currentB2BPackages.length;
+        const active = currentB2BPackages.filter((p) => p.is_active).length;
+        document.getElementById("statTotalB2BTrips").textContent = total;
+        document.getElementById("statActiveB2BTrips").textContent = active;
+
+        list.innerHTML = currentB2BPackages
+          .map((pkg) => {
+            const shortDesc = pkg.desc_text
+              ? pkg.desc_text.length > 60
+                ? pkg.desc_text.substring(0, 60) + "..."
+                : pkg.desc_text
+              : "Scenic adventure...";
+            const duration = pkg.duration || "N/A";
+            const statusColor = pkg.is_active
+              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
+              : "bg-slate-100 text-slate-500 border-slate-200";
+            const statusDot = pkg.is_active ? "bg-emerald-500" : "bg-slate-500";
+            const statusLabel = pkg.is_active ? "Active" : "Inactive";
+
+            return `
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group relative flex flex-col sm:flex-row gap-5">
+              <div class="relative w-full sm:w-48 h-40 shrink-0 rounded-xl overflow-hidden bg-slate-100">
+                ${pkg.photo ? `<img src="${pkg.photo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />` : `<div class="w-full h-full flex items-center justify-center text-3xl">${pkg.emoji || "⛰️"}</div>`}
+                <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide backdrop-blur-md ${pkg.is_active ? "bg-white/90 text-emerald-700" : "bg-white/90 text-slate-600"} shadow-sm border border-white/20 flex items-center gap-1.5">
+                  <div class="w-1.5 h-1.5 rounded-full ${statusDot}"></div>
+                  ${statusLabel}
+                </div>
+              </div>
+              <div class="flex-1 flex flex-col min-w-0">
+                <div class="flex justify-between items-start gap-4 mb-1">
+                  <h3 class="text-lg font-bold text-slate-900 truncate pr-8">${pkg.title}</h3>
+                  <div class="relative action-menu hidden sm:block">
+                    <button onclick="toggleActionMenu('b2b-menu-${pkg.id}', event)" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+                    </button>
+                    <div id="b2b-menu-${pkg.id}" class="hidden absolute right-0 mt-1 w-36 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-10 text-sm">
+                      <button onclick="openB2BPackageModal('${pkg.id}')" class="w-full text-left px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-blue-600 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Edit
+                      </button>
+                      <button onclick="duplicateB2BPackage('${pkg.id}')" class="w-full text-left px-4 py-2 text-slate-700 hover:bg-slate-50 hover:text-blue-600 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg> Duplicate
+                      </button>
+                      <div class="border-t border-slate-100 my-1"></div>
+                      <button onclick="deleteB2BPackage('${pkg.id}')" class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg> Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-sm text-slate-500 mb-3 flex items-center gap-3">
+                  <span class="flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg> ${pkg.location || "Location N/A"}</span>
+                </div>
+                <p class="text-sm text-slate-600 mb-4 line-clamp-2">${shortDesc}</p>
+                <div class="mt-auto flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-50">
+                  <div class="flex items-center gap-4">
+                    <div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">Price</span><span class="text-base font-bold text-blue-600">${pkg.price ? pkg.price + " PLN" : "--"}</span></div>
+                    <div class="w-px h-6 bg-slate-200"></div>
+                    <div><span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">Duration</span><span class="text-sm font-medium text-slate-700">${duration}</span></div>
+                  </div>
+                  <!-- Mobile Action Buttons -->
+                  <div class="flex sm:hidden gap-2 w-full mt-2">
+                    <button onclick="openB2BPackageModal('${pkg.id}')" class="flex-1 bg-blue-50 text-blue-600 py-2 rounded-lg text-sm font-medium">Edit</button>
+                    <button onclick="duplicateB2BPackage('${pkg.id}')" class="flex-1 bg-slate-100 text-slate-600 py-2 rounded-lg text-sm font-medium">Duplicate</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            `;
+          })
+          .join("");
+      }
+
+      function openB2BPackageModal(id = null) {
+        document.getElementById("packageForm").dataset.isB2b = "true";
+        document.getElementById("modal-title").innerHTML = `
+          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+          </svg>
+          Create / Edit B2B Trip Package
+        `;
+
+        const form = document.getElementById("packageForm");
+        form.reset();
+        quill.root.innerHTML = "";
+        toggleDisableOptions();
+
+        if (id) {
+            const pkg = currentB2BPackages.find((p) => p.id === id);
+            if(pkg) {
+                document.getElementById("pkgId").value = pkg.id;
+                document.getElementById("pkgTitleId").value = pkg.id;
+                document.getElementById("pkgTitleId").readOnly = true;
+                document.getElementById("pkgTitle").value = pkg.title;
+                document.getElementById("pkgLocation").value = pkg.location || "";
+                document.getElementById("pkgEmoji").value = pkg.emoji || "";
+                document.getElementById("pkgPrice").value = pkg.price || "";
+                document.getElementById("pkgPriceEur").value = pkg.price_eur || "";
+                document.getElementById("pkgDuration").value = pkg.duration || "";
+                document.getElementById("pkgTripDate").value = pkg.trip_date || "";
+                document.getElementById("pkgActivity").value = pkg.activity || "";
+                document.getElementById("pkgDifficulty").value = pkg.difficulty || "";
+                document.getElementById("pkgTags").value = pkg.tags ? pkg.tags.join(", ") : "";
+                document.getElementById("pkgFeatures").value = pkg.features ? pkg.features.join(", ") : "";
+                document.getElementById("pkgBadges").value = pkg.badges ? pkg.badges.join(", ") : "";
+                document.getElementById("pkgImages").value = (pkg.images || []).join("
+");
+                document.getElementById("pkgPriority").value = pkg.priority || 0;
+                document.getElementById("pkgDesc").value = pkg.desc_text || "";
+                document.getElementById("pkgIsActive").checked = pkg.is_active !== false;
+                document.getElementById("pkgHideWhenDisabled").checked = pkg.hide_when_disabled === true;
+                toggleDisableOptions();
+                quill.root.innerHTML = pkg.itinerary_text || "";
+            }
+        } else {
+            document.getElementById("pkgId").value = "";
+            document.getElementById("pkgTitleId").value = "";
+            document.getElementById("pkgTitleId").readOnly = false;
+        }
+
+        document.getElementById("packageModal").classList.remove("hidden");
+        const bottomNav = document.getElementById("bottomNav");
+        if (bottomNav) bottomNav.classList.add("hidden");
+      }
+
+      function duplicateB2BPackage(id) {
+        const pkg = currentB2BPackages.find((p) => p.id === id);
+        if(!pkg) return;
+        openB2BPackageModal(id);
+        document.getElementById("pkgId").value = "";
+        document.getElementById("pkgTitleId").value = "";
+        document.getElementById("pkgTitleId").readOnly = false;
+        document.getElementById("pkgTitle").value = "Copy of " + pkg.title;
+      }
+
+      async function deleteB2BPackage(id) {
+          if(confirm("Are you sure you want to completely remove this B2B package?")) {
+              const { error } = await dbClient.from("b2b_packages").delete().eq("id", id);
+              if (error) alert("Error deleting package: " + error.message);
+              else loadB2BPackages();
+          }
+      }
+
       async function loadPackages() {
         document.getElementById("packagesLoading").classList.remove("hidden");
         const { data, error } = await dbClient
@@ -1678,6 +1964,8 @@
       document
         .getElementById("btnCreatePackage")
         .addEventListener("click", () => {
+          document.getElementById("packageForm").dataset.isB2b = "false";
+          document.getElementById("modal-title").innerHTML = `<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Create / Edit Trip Package`;
           document.getElementById("packageForm").reset();
           document.getElementById("pkgId").value = "";
           document.getElementById("pkgTitleId").readOnly = false;
@@ -1693,6 +1981,8 @@
         });
 
       function openPackageModal(id) {
+        document.getElementById("packageForm").dataset.isB2b = "false";
+        document.getElementById("modal-title").innerHTML = `<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Create / Edit Trip Package`;
         const pkg = currentPackages.find((p) => p.id === id);
         if (!pkg) return;
 
@@ -1737,6 +2027,8 @@
       }
 
       function duplicatePackage(id) {
+        document.getElementById("packageForm").dataset.isB2b = "false";
+        document.getElementById("modal-title").innerHTML = `<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Create / Edit Trip Package`;
         const pkg = currentPackages.find((p) => p.id === id);
         if (!pkg) return;
 
@@ -1796,15 +2088,16 @@
           if (error) {
             alert("Error deleting package: " + error.message);
           } else {
-            loadPackages();
+            if(isB2b) { loadB2BPackages(); } else { loadPackages(); }
           }
         }
       }
 
       function deleteCurrentPackage() {
+        const isB2b = document.getElementById("packageForm").dataset.isB2b === "true";
         const id = document.getElementById("pkgTitleId").value;
         if (id) {
-          deletePackage(id);
+          if(isB2b) { deleteB2BPackage(id); } else { deletePackage(id); }
           closePackageModal();
         }
       }
@@ -1815,12 +2108,16 @@
         if (bottomNav) bottomNav.classList.remove("hidden");
       }
 
-      document
+
+        document
         .getElementById("packageForm")
         .addEventListener("submit", async (e) => {
           e.preventDefault();
+          const isB2b = document.getElementById("packageForm").dataset.isB2b === "true";
+          const table = isB2b ? "b2b_packages" : "packages";
 
           const id = document.getElementById("pkgTitleId").value;
+
           const imagesText = document.getElementById("pkgImages").value;
           const images = imagesText
             .split("\n")
@@ -1874,12 +2171,12 @@
               .checked,
           };
 
-          const { error } = await dbClient.from("packages").upsert(payload);
+          const { error } = await dbClient.from(table).upsert(payload);
           if (error) {
             alert("Error saving package: " + error.message);
           } else {
             closePackageModal();
-            loadPackages();
+            if(isB2b) { loadB2BPackages(); } else { loadPackages(); }
           }
         });
 
