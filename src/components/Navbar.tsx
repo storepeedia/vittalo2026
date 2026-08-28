@@ -32,18 +32,38 @@ export default function Navbar() {
   // Admin routes don't use this navbar
   if (pathname.startsWith("/admin")) return null;
 
+
   return (
-    <nav
-      className={clsx(
-        "fixed top-0 w-full z-50 transition-all duration-300",
-        scrolled ? "bg-[#0B1E36]/90 backdrop-blur-md py-4" : "bg-transparent py-6"
-      )}
-    >
+    <>
+      {/* Scrolling Top Bar */}
+      <div className="bg-[#0B1E36] overflow-hidden w-full py-1">
+        <div className="animate-marquee whitespace-nowrap">
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+          <span className="text-white text-xs font-medium mx-4">🏔️ All Passes are included in the price!</span>
+        </div>
+      </div>
+
+      <nav
+        className={clsx(
+          "fixed top-7 w-full z-50 transition-all duration-300",
+          scrolled ? "bg-white shadow-md py-4" : "bg-transparent py-6"
+        )}
+      >
+
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 text-white">
+        <Link href="/" className={clsx("flex items-center gap-2", scrolled ? "text-[#0B1E36]" : "text-white")}>
           <Image src="/logo.png" alt="Navittalo Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-md" />
-          <span className="text-xl font-bold tracking-wider">NNAVITTALO</span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold tracking-wider leading-tight">NNA VITTALO</span>
+            <span className="text-[10px] tracking-widest uppercase leading-tight font-medium text-blue-500">Adventure Travel</span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
@@ -54,7 +74,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-white text-sm font-medium relative group"
+                className={clsx("text-sm font-medium relative group", scrolled ? "text-[#0B1E36]" : "text-white")}
               >
                 {link.name}
                 <span
@@ -80,7 +100,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className={clsx("md:hidden", scrolled ? "text-[#0B1E36]" : "text-white")}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -110,5 +130,6 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+    </>
   );
 }

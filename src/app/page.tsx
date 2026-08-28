@@ -33,12 +33,29 @@ export default async function Home() {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-[90vh] text-center px-4 pt-32 pb-12">
-        <p className="text-[#F59E0B] font-bold tracking-widest text-sm mb-4">EXPERIENCE MORE. LIVE MORE.</p>
-        <h1 className="text-white text-5xl md:text-7xl font-bold max-w-4xl leading-tight mb-6">Travel differently. Experience more.</h1>
-        <p className="text-gray-200 text-lg md:text-xl max-w-2xl mb-12">Adventure camps and unforgettable Europe journeys, made for you.</p>
+      <div className="relative z-10 flex flex-col items-center justify-start min-h-[100vh] text-center pt-32">
+        <div className="border border-white/20 rounded-full px-6 py-2 mb-6 backdrop-blur-sm">
+            <p className="text-white font-bold tracking-widest text-xs">🏆 EUROPE'S PREMIER ADVENTURE OPERATOR</p>
+        </div>
+        <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-bold max-w-4xl leading-tight mb-6">Your Next<br/>Epic Adventure<br/>Starts with<br/>NNA VITTALO</h1>
+        <p className="text-gray-200 text-lg md:text-xl max-w-3xl mb-10 font-light">From mountain peaks to ocean waves — we craft unforgettable travel and adventure camps. Skipass, equipment, guides and accommodation always included.</p>
 
-        <div className="flex flex-col md:flex-row gap-6 max-w-4xl w-full translate-y-12">
+        <div className="flex flex-row justify-between gap-8 md:gap-24 max-w-4xl border-t border-white/20 pt-8 mb-12">
+            <div>
+                <p className="text-white font-bold text-3xl md:text-4xl mb-1">150+</p>
+                <p className="text-gray-300 text-xs md:text-sm">Happy Adventurers</p>
+            </div>
+            <div>
+                <p className="text-white font-bold text-3xl md:text-4xl mb-1">3+</p>
+                <p className="text-gray-300 text-xs md:text-sm">Destinations</p>
+            </div>
+            <div>
+                <p className="text-white font-bold text-3xl md:text-4xl mb-1">1 yr</p>
+                <p className="text-gray-300 text-xs md:text-sm">Experience</p>
+            </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-6 max-w-4xl w-full translate-y-12 relative z-10 px-4">
           <div className="bg-white rounded-2xl p-6 flex-1 flex items-center gap-6 shadow-2xl relative overflow-hidden group">
             <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop')] bg-cover transition-opacity group-hover:opacity-10" />
             <div className="bg-green-100 p-4 rounded-full relative z-10"><Tent className="text-green-700 w-8 h-8" /></div>
@@ -58,9 +75,16 @@ export default async function Home() {
             </div>
           </div>
         </div>
+
+        <div className="bg-[#4279E4] w-full py-10 mt-auto mt-24 shadow-2xl relative z-0 flex flex-col items-center border-t border-white/20">
+            <div className="bg-white rounded-full px-6 py-1 mb-4 shadow-sm">
+                <span className="text-[#1E3A8A] font-bold text-sm tracking-wider">ALWAYS INCLUDED</span>
+            </div>
+            <p className="text-white font-bold text-lg md:text-xl px-4 text-center max-w-2xl">Skipass, equipment & guide are included in<br className="hidden md:block"/> every camp price — no hidden extras!</p>
+        </div>
       </div>
 
-      <div className="relative z-10 bg-gray-50 pt-32 pb-16">
+      <div className="relative z-10 bg-gray-50 pt-16 pb-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex justify-between items-end mb-10">
             <div>
