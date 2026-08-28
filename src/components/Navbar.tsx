@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X, Mountain } from "lucide-react";
@@ -41,7 +42,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 text-white">
-          <Mountain className="text-[#F59E0B] w-8 h-8" />
+          <Image src="/logo.png" alt="Navittalo Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-md" />
           <span className="text-xl font-bold tracking-wider">NNAVITTALO</span>
         </Link>
 
