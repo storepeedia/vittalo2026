@@ -1,0 +1,1 @@
+Since the local Docker daemon has overlayfs restrictions blocking `npx supabase start`, please run the SQL found in `supabase/migrations/20260826213657_init_schema.sql` and the seed script on your actual Supabase remote project.
