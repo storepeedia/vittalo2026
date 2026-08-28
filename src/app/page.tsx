@@ -28,7 +28,7 @@ export default async function Home() {
   return (
     <div className="relative min-h-screen pb-20 bg-white">
       {/* Hero Background Image */}
-      <div className="absolute top-0 w-full h-[100vh] z-0">
+      <div className="absolute top-0 w-full h-full z-0">
         <Image src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" alt="Alpine lake mountains" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
@@ -55,7 +55,7 @@ export default async function Home() {
             </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 max-w-4xl w-full translate-y-12 relative z-10 px-4">
+        <div className="flex flex-col md:flex-row gap-6 max-w-4xl w-full relative z-10 px-4 mb-16">
           <div className="bg-white rounded-2xl p-6 flex-1 flex items-center gap-6 shadow-2xl relative overflow-hidden group">
             <div className="absolute inset-0 opacity-5 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop')] bg-cover transition-opacity group-hover:opacity-10" />
             <div className="bg-green-100 p-4 rounded-full relative z-10"><Tent className="text-green-700 w-8 h-8" /></div>
@@ -76,12 +76,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="bg-[#4279E4] w-full py-10 mt-auto mt-24 shadow-2xl relative z-0 flex flex-col items-center border-t border-white/20">
-            <div className="bg-white rounded-full px-6 py-1 mb-4 shadow-sm">
-                <span className="text-[#1E3A8A] font-bold text-sm tracking-wider">ALWAYS INCLUDED</span>
-            </div>
-            <p className="text-white font-bold text-lg md:text-xl px-4 text-center max-w-2xl">Skipass, equipment & guide are included in<br className="hidden md:block"/> every camp price — no hidden extras!</p>
-        </div>
+
       </div>
 
       <div className="relative z-10 bg-gray-50 pt-16 pb-16">
