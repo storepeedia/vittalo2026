@@ -62,7 +62,7 @@ export default async function Home() {
             <div className="text-left relative z-10 flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Join a Camp</h3>
               <p className="text-gray-600 text-sm mb-4">Discover our thrilling outdoor adventure camps.</p>
-              <Link href="/camps" className="text-green-700 font-bold text-sm flex items-center hover:underline">Explore Camps &rarr;</Link>
+              <Link prefetch={true} href="/camps" className="text-green-700 font-bold text-sm flex items-center hover:underline">Explore Camps &rarr;</Link>
             </div>
           </div>
           <div className="bg-white rounded-2xl p-6 flex-1 flex items-center gap-6 shadow-2xl relative overflow-hidden group">
@@ -71,7 +71,7 @@ export default async function Home() {
             <div className="text-left relative z-10 flex-1">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Explore Europe</h3>
               <p className="text-gray-600 text-sm mb-4">Curated European packages for the perfect holiday.</p>
-              <Link href="/packages" className="text-blue-700 font-bold text-sm flex items-center hover:underline">Explore Packages &rarr;</Link>
+              <Link prefetch={true} href="/packages" className="text-blue-700 font-bold text-sm flex items-center hover:underline">Explore Packages &rarr;</Link>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default async function Home() {
               <p className="text-gray-500 font-bold tracking-widest text-sm mb-2">ADVENTURE AWAITS</p>
               <h2 className="text-4xl font-bold text-gray-900">Upcoming Camps</h2>
             </div>
-            <Link href="/camps" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all camps &rarr;</Link>
+            <Link prefetch={true} href="/camps" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all camps &rarr;</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayCamps.map((camp: any) => (
@@ -103,7 +103,7 @@ export default async function Home() {
                       <p className="text-xs text-gray-500 font-medium">Price</p>
                       <p className="text-lg font-bold text-gray-900">€{camp.price_per_person}<span className="text-sm font-normal text-gray-500">/p</span></p>
                     </div>
-                    <Link href={`/camps/${camp.id}`} className="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">View Details</Link>
+                    <Link prefetch={true} href={`/camps/${camp.id}`} className="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">View Details</Link>
                   </div>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default async function Home() {
               <p className="text-gray-500 font-bold tracking-widest text-sm mb-2">JOURNEYS THAT STAY WITH YOU</p>
               <h2 className="text-4xl font-bold text-gray-900">Popular Europe Packages</h2>
             </div>
-            <Link href="/packages" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all packages &rarr;</Link>
+            <Link prefetch={true} href="/packages" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all packages &rarr;</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayPackages.map((pkg: any) => (
@@ -135,7 +135,7 @@ export default async function Home() {
                       <p className="text-xs text-gray-500 font-medium">From</p>
                       <p className="text-xl font-bold text-gray-900">€{pkg.starting_price}<span className="text-sm font-normal text-gray-500">/p</span></p>
                     </div>
-                    <Link href={`/packages/${pkg.id}`} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors">View Package</Link>
+                    <Link prefetch={true} href={`/packages/${pkg.id}`} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors">View Package</Link>
                   </div>
                 </div>
               </div>

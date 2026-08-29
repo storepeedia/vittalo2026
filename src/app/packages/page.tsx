@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
-export const revalidate = 0; // Disable cache to always fetch fresh data
+export const revalidate = 60; // Cache for 60 seconds (ISR) for faster loading
 
 export default async function PackagesPage() {
   const supabase = await createClient();
@@ -96,6 +96,7 @@ export default async function PackagesPage() {
                     </div>
                     {/* Placeholder Link for now */}
                     <Link
+                      prefetch={true}
                       href={`/packages/${pkg.id}`}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
                     >
