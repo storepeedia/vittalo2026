@@ -37,7 +37,12 @@ export default function Navbar() {
     <>
       <div className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
         {/* Scrolling Top Bar */}
-        <div className="bg-[#0B1E36] overflow-hidden w-full py-1">
+        <div
+          className={clsx(
+            "bg-[#0B1E36] overflow-hidden w-full transition-all duration-500 ease-in-out",
+            scrolled ? "max-h-0 py-0 opacity-0" : "max-h-12 py-1 opacity-100"
+          )}
+        >
           <div className="animate-marquee whitespace-nowrap">
             <span className="text-white text-xs font-medium mx-4">🗻 All passes are included in the price. ⛷️ Skipass, equipment & guide are included in every camp price — no hidden extras!</span>
             <span className="text-white text-xs font-medium mx-4">🗻 All passes are included in the price. ⛷️ Skipass, equipment & guide are included in every camp price — no hidden extras!</span>
