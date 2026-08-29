@@ -10,6 +10,7 @@ export async function bookCamp(formData: FormData) {
   const full_name = formData.get("full_name") as string;
   const email = formData.get("email") as string;
   const phone = formData.get("phone") as string;
+  const chosen_date = formData.get("chosen_date") as string;
   const spots_booked = parseInt(formData.get("spots_booked") as string);
   const price_per_person = parseFloat(formData.get("price_per_person") as string);
 
@@ -22,6 +23,7 @@ export async function bookCamp(formData: FormData) {
     phone,
     spots_booked,
     total_price,
+    chosen_date
   });
 
   if (error) {

@@ -8,13 +8,14 @@ export async function createCamp(formData: FormData) {
   const { data, error } = await supabase.from("camps").insert({
     title: formData.get("title"),
     activity_type: formData.get("activity_type"),
-    start_date: formData.get("start_date"),
-    end_date: formData.get("end_date"),
+    camp_dates: formData.get("camp_dates"),
     total_spots: parseInt(formData.get("total_spots") as string),
-    available_spots: parseInt(formData.get("total_spots") as string), // Assuming new camp has all spots available
+    available_spots: parseInt(formData.get("total_spots") as string),
     price_per_person: parseFloat(formData.get("price_per_person") as string),
+    price_per_person_pln: parseFloat(formData.get("price_per_person_pln") as string),
     image_url: formData.get("image_url"),
     description: formData.get("description"),
+    itinerary: formData.get("itinerary"),
     inclusions: (formData.get("inclusions") as string).split(",").map((s) => s.trim()),
     is_active: formData.get("is_active") === "true",
   });
@@ -32,12 +33,13 @@ export async function updateCamp(id: string, formData: FormData) {
     .update({
       title: formData.get("title"),
       activity_type: formData.get("activity_type"),
-      start_date: formData.get("start_date"),
-      end_date: formData.get("end_date"),
+      camp_dates: formData.get("camp_dates"),
       total_spots: parseInt(formData.get("total_spots") as string),
       price_per_person: parseFloat(formData.get("price_per_person") as string),
+      price_per_person_pln: parseFloat(formData.get("price_per_person_pln") as string),
       image_url: formData.get("image_url"),
       description: formData.get("description"),
+      itinerary: formData.get("itinerary"),
       inclusions: (formData.get("inclusions") as string).split(",").map((s) => s.trim()),
       is_active: formData.get("is_active") === "true",
     })
