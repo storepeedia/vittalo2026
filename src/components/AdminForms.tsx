@@ -25,9 +25,13 @@ export function AdminCamps({ camps }: { camps: any[] }) {
             <input name="end_date" type="date" required className="p-2 border rounded" />
             <input name="total_spots" type="number" required placeholder="Total Spots" className="p-2 border rounded" />
             <input name="price_per_person" type="number" required placeholder="Price per person (€)" className="p-2 border rounded" />
+            <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" className="p-2 border rounded" />
             <input name="image_url" required placeholder="Image URL" className="p-2 border rounded col-span-2" />
             <textarea name="description" required placeholder="Description" className="p-2 border rounded col-span-2" />
             <input name="inclusions" required placeholder="Inclusions (comma separated)" className="p-2 border rounded col-span-2" />
+            <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" className="p-2 border rounded col-span-2" />
+            <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 2 Days 1 Night, Riverside Camp)" className="p-2 border rounded col-span-2" />
+            <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Beginner, Kayaking Sport)" className="p-2 border rounded col-span-2" />
             <div className="col-span-2 flex items-center gap-2">
                <input name="is_active" type="checkbox" value="true" defaultChecked id="activeCamp"/>
                <label htmlFor="activeCamp">Is Active?</label>
@@ -97,6 +101,9 @@ export function AdminPackages({ packages }: { packages: any[] }) {
             <input name="image_url" required placeholder="Image URL" className="p-2 border rounded col-span-2" />
             <textarea name="description" required placeholder="Description" className="p-2 border rounded col-span-2" />
             <textarea name="itinerary" required placeholder='Itinerary JSON: [{"day":1,"description":"..."}]' className="p-2 border rounded col-span-2 font-mono text-sm" />
+            <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" className="p-2 border rounded col-span-2" />
+            <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 7 Days, Train)" className="p-2 border rounded col-span-2" />
+            <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Alps, Sightseeing)" className="p-2 border rounded col-span-2" />
             <div className="col-span-2 flex items-center gap-2">
                <input name="is_active" type="checkbox" value="true" defaultChecked id="activePkg"/>
                <label htmlFor="activePkg">Is Active?</label>
