@@ -54,7 +54,7 @@ export default function Navbar() {
         >
           <div className="container mx-auto px-6 flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className={clsx("flex items-center gap-2", scrolled ? "text-[#0B1E36]" : "text-white")}>
+            <Link prefetch={true} href="/" className={clsx("flex items-center gap-2", scrolled ? "text-[#0B1E36]" : "text-white")}>
               <Image src="/logo.png" alt="Navittalo Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-md" />
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-wider leading-tight">NNA VITTALO</span>
@@ -69,7 +69,7 @@ export default function Navbar() {
                 return (
                   <Link
                     key={link.name}
-                    href={link.href}
+                    prefetch={true} href={link.href}
                     className={clsx("text-sm font-medium relative group", scrolled ? "text-[#0B1E36]" : "text-white")}
                   >
                     {link.name}
@@ -109,7 +109,7 @@ export default function Navbar() {
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  prefetch={true} href={link.href}
                   className="text-white text-lg font-medium"
                   onClick={() => setIsOpen(false)}
                 >

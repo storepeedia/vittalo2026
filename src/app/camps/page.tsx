@@ -3,7 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { format } from "date-fns";
 
-export const revalidate = 0; // Disable cache to always fetch fresh data
+export const revalidate = 60; // Cache for 60 seconds (ISR) for faster loading
 
 export default async function CampsPage() {
   const supabase = await createClient();
@@ -105,6 +105,7 @@ export default async function CampsPage() {
                     </div>
                     {/* Placeholder Link for now */}
                     <Link
+                      prefetch={true}
                       href={`/camps/${camp.id}`}
                       className="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
                     >
