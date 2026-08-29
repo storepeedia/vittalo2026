@@ -1,5 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
-import { AdminCamps, AdminPackages } from "@/components/AdminForms";
+import { AdminCamps, AdminPackages, AdminContactSettings } from "@/components/AdminForms";
 
 export const revalidate = 0;
 
@@ -10,6 +10,7 @@ export default async function AdminDashboard() {
   const { data: packages } = await supabase.from("packages").select("*").order("created_at", { ascending: false });
   const { data: campBookings } = await supabase.from("camp_bookings").select("*, camps(title)").order("created_at", { ascending: false });
   const { data: packageBookings } = await supabase.from("package_bookings").select("*, packages(title)").order("created_at", { ascending: false });
+  const { data: contactSettings } = await supabase.from("contact_settings").select("*").single();
 
   return (
     <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -23,6 +24,11 @@ export default async function AdminDashboard() {
             <a href="#packages" className="px-4 py-2 font-medium text-gray-500 hover:text-gray-900">Packages</a>
             <a href="#camp-bookings" className="px-4 py-2 font-medium text-gray-500 hover:text-gray-900">Camp Bookings</a>
             <a href="#package-bookings" className="px-4 py-2 font-medium text-gray-500 hover:text-gray-900">Package Bookings</a>
+            <a href="#settings" className="px-4 py-2 font-medium text-gray-500 hover:text-gray-900">Settings</a>
+         </div>
+
+         <div id="settings">
+            <AdminContactSettings settings={contactSettings} />
          </div>
 
          <div id="camps">
