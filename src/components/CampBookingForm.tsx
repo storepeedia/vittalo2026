@@ -8,6 +8,8 @@ export default function CampBookingForm({ camp }: { camp: any }) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
+  const dates = (camp.camp_dates || "").split(",").map((d: string) => d.trim()).filter(Boolean);
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -16,6 +18,7 @@ export default function CampBookingForm({ camp }: { camp: any }) {
     const formData = new FormData(e.currentTarget);
     formData.append("camp_id", camp.id);
     formData.append("price_per_person", camp.price_per_person.toString());
+    formData.append("price_per_person_pln", (camp.price_per_person_pln || (camp.price_per_person * 4.3)).toString());
 
     const result = await bookCamp(formData);
 
@@ -29,7 +32,7 @@ export default function CampBookingForm({ camp }: { camp: any }) {
 
   if (success) {
     return (
-      <div className="bg-green-50 p-6 rounded-xl border border-green-200 text-center">
+      <div className="bg-green-50 p-6 rounded-2xl border border-green-200 text-center">
         <h3 className="text-xl font-bold text-green-800 mb-2">Booking Confirmed!</h3>
         <p className="text-green-700">We have received your booking and will contact you shortly.</p>
       </div>
@@ -37,9 +40,20 @@ export default function CampBookingForm({ camp }: { camp: any }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-4">
-      <h3 className="text-2xl font-bold text-gray-900 mb-2">Book this Camp</h3>
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 flex flex-col gap-4">
       {error && <div className="p-3 bg-red-100 text-red-700 rounded-lg text-sm">{error}</div>}
+
+      {dates.length > 0 && (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Select Date</label>
+          <select name="chosen_date" required className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-white">
+            <option value="">-- Choose a date --</option>
+            {dates.map((d: string, idx: number) => (
+              <option key={idx} value={d}>{d}</option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -58,9 +72,13 @@ export default function CampBookingForm({ camp }: { camp: any }) {
         <input name="spots_booked" type="number" min="1" max={camp.available_spots} defaultValue="1" required className="w-full border border-gray-300 rounded-lg px-4 py-2" />
       </div>
 
-      <button type="submit" disabled={loading} className="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 rounded-xl mt-4 transition-colors disabled:opacity-50">
-        {loading ? "Processing..." : "Confirm Booking"}
+      <button type="submit" disabled={loading} className="w-full bg-[#2563eb] hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl mt-4 transition-colors disabled:opacity-50">
+        {loading ? "Processing..." : "Book Your Spot"}
       </button>
+
+      <div className="text-center text-xs text-gray-500 mt-2">
+        Free cancellation up to 7 days before departure
+      </div>
     </form>
   );
 }
