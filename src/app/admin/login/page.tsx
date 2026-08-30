@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { login } from "@/actions/admin/auth";
-import { Mountain } from "lucide-react";
+import { Mountain, Eye, EyeOff } from "lucide-react";
 
 export default function AdminLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,12 +39,21 @@ export default function AdminLogin() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input name="email" type="email" defaultValue="nnavittalo@gmail.com" required className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B]" />
+          <input name="email" type="email" required className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B]" />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-          <input name="password" type="password" defaultValue="12345678" required className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B]" />
+          <div className="relative">
+            <input name="password" type={showPassword ? "text" : "password"} required className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B] pr-12" />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+            >
+              {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         <button type="submit" disabled={loading} className="w-full bg-[#0B1E36] hover:bg-[#112d52] text-white font-bold py-3 rounded-lg mt-2 transition-colors disabled:opacity-50">
