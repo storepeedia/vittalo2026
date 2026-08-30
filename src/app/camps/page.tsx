@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { format } from "date-fns";
 import { TripCard } from "@/components/TripCard";
 
 export const revalidate = 60; // Cache for 60 seconds (ISR) for faster loading
