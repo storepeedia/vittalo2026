@@ -150,3 +150,40 @@ export function AdminPackages({ packages }: { packages: any[] }) {
     </div>
   );
 }
+
+import { updateContactSettings } from "@/actions/admin/settings";
+
+export function AdminContactSettings({ settings }: { settings: { email: string; phone: string } | null }) {
+  const [isEditing, setIsEditing] = useState(false);
+
+
+  return (
+    <div className="mb-12 border-b border-gray-200 pb-12">
+       <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-bold">Contact Settings</h2>
+          <button onClick={() => setIsEditing(!isEditing)} className="bg-[#0B1E36] text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+            {isEditing ? 'Cancel' : 'Edit Settings'}
+          </button>
+       </div>
+
+       {isEditing ? (
+         <form action={async (fd) => { await updateContactSettings(fd); setIsEditing(false); }} className="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-6 grid grid-cols-2 gap-4">
+            <input name="email" type="email" required placeholder="Email" defaultValue={settings?.email || ""} className="p-2 border rounded" />
+            <input name="phone" required placeholder="Phone (e.g. +48...)" defaultValue={settings?.phone || ""} className="p-2 border rounded" />
+            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded font-bold col-span-2">Save Settings</button>
+         </form>
+       ) : (
+         <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 grid grid-cols-2 gap-4">
+           <div>
+             <p className="text-sm text-gray-500 font-semibold mb-1">Email</p>
+             <p className="font-medium text-gray-900">{settings?.email || "Not set"}</p>
+           </div>
+           <div>
+             <p className="text-sm text-gray-500 font-semibold mb-1">Phone</p>
+             <p className="font-medium text-gray-900">{settings?.phone || "Not set"}</p>
+           </div>
+         </div>
+       )}
+    </div>
+  );
+}
