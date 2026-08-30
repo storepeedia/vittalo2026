@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { TripCard } from "@/components/TripCard";
 
 export const revalidate = 60; // Cache for 60 seconds (ISR) for faster loading
 
@@ -9,7 +10,6 @@ export default async function PackagesPage() {
   const { data: packages, error } = await supabase
     .from("packages")
     .select("*")
-    .eq("is_active", true)
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -26,6 +26,10 @@ export default async function PackagesPage() {
       route: "Zurich – Interlaken – Zermatt – Geneva",
       starting_price: 1299,
       image_url: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=2070&auto=format&fit=crop",
+      is_active: true,
+      tags_top_left: "Available",
+      tags_image_bottom: "7 Days 6 Nights, Train Tour",
+      tags_body_top: "Sightseeing, Alps, Comfort"
     },
     {
       id: "2",
@@ -35,16 +39,11 @@ export default async function PackagesPage() {
       route: "Prague – Vienna – Budapest",
       starting_price: 999,
       image_url: "https://images.unsplash.com/photo-1513807016779-d51c0c026263?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: "3",
-      title: "Iberian Sun Tour",
-      duration_days: 8,
-      duration_nights: 7,
-      route: "Lisbon – Porto – Madrid",
-      starting_price: 1150,
-      image_url: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=2070&auto=format&fit=crop",
-    },
+      is_active: false,
+      tags_top_left: "",
+      tags_image_bottom: "10 Days 9 Nights, Bus Tour",
+      tags_body_top: "City Tour, History, Culture"
+    }
   ];
 
   return (

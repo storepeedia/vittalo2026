@@ -1,15 +1,12 @@
-ALTER TABLE camps
-DROP COLUMN IF EXISTS start_date,
-DROP COLUMN IF EXISTS end_date,
-ADD COLUMN IF NOT EXISTS camp_dates text,
-ADD COLUMN IF NOT EXISTS itinerary text,
-ADD COLUMN IF NOT EXISTS price_per_person_pln numeric(10,2);
+-- Add PLN price to camps
+alter table camps add column price_per_person_pln numeric(10,2) default 0.00;
 
--- Note: The table `camp_bookings` does not seem to exist in production based on your migrations / local setup mismatch.
--- But the code uses `camp_bookings`. Let's create it if it doesn't exist just to be safe, or alter it if it does.
-DO $$
-BEGIN
-    IF EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = 'camp_bookings') THEN
-        ALTER TABLE camp_bookings ADD COLUMN IF NOT EXISTS chosen_date text;
-    END IF;
-END $$;
+-- Add tag groups to camps
+alter table camps add column tags_top_left text;
+alter table camps add column tags_image_bottom text;
+alter table camps add column tags_body_top text;
+
+-- Add tag groups to packages
+alter table packages add column tags_top_left text;
+alter table packages add column tags_image_bottom text;
+alter table packages add column tags_body_top text;

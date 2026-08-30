@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { format } from "date-fns";
+import { TripCard } from "@/components/TripCard";
 
 export const revalidate = 60; // Cache for 60 seconds (ISR) for faster loading
 
@@ -10,7 +10,6 @@ export default async function CampsPage() {
   const { data: camps, error } = await supabase
     .from("camps")
     .select("*")
-    .eq("is_active", true)
     .order("start_date", { ascending: true });
 
   if (error) {
@@ -27,7 +26,12 @@ export default async function CampsPage() {
       available_spots: 12,
       total_spots: 15,
       price_per_person: 450,
+      price_per_person_pln: 1950,
       image_url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop",
+      is_active: true,
+      tags_top_left: "Available",
+      tags_image_bottom: "6 Days 5 Nights, Mountain Trek",
+      tags_body_top: "Advanced, Trekking, Summer"
     },
     {
       id: "2",
@@ -37,28 +41,13 @@ export default async function CampsPage() {
       available_spots: 8,
       total_spots: 20,
       price_per_person: 320,
+      price_per_person_pln: 1400,
       image_url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop",
-    },
-    {
-      id: "3",
-      title: "Alpine Downhill Ski Adventure",
-      start_date: "2024-01-20",
-      end_date: "2024-01-27",
-      available_spots: 25,
-      total_spots: 25,
-      price_per_person: 850,
-      image_url: "https://images.unsplash.com/photo-1551524164-687a55dd1126?q=80&w=1925&auto=format&fit=crop",
-    },
-    {
-      id: "4",
-      title: "Cozy Alpine Cabin Staycation",
-      start_date: "2024-12-22",
-      end_date: "2024-12-27",
-      available_spots: 2,
-      total_spots: 10,
-      price_per_person: 599,
-      image_url: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=2070&auto=format&fit=crop",
-    },
+      is_active: false,
+      tags_top_left: "",
+      tags_image_bottom: "5 Days 4 Nights, Riverside Camp",
+      tags_body_top: "Beginner, Kayaking Sport"
+    }
   ];
 
   return (
@@ -73,7 +62,7 @@ export default async function CampsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayCamps.map((camp: any) => {
             return (
               <div key={camp.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 flex flex-col">
