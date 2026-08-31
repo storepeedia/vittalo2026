@@ -16,8 +16,7 @@ interface TripCardProps {
   tagsBodyTop?: string; // Comma separated
 
   // Specific to camps
-  startDate?: string;
-  endDate?: string;
+  campDates?: string | string[];
   priceEur?: number;
   pricePln?: number;
 
@@ -37,8 +36,7 @@ export function TripCard({
   tagsTopLeft,
   tagsImageBottom,
   tagsBodyTop,
-  startDate,
-  endDate,
+  campDates,
   priceEur,
   pricePln,
   durationDays,
@@ -112,12 +110,29 @@ export function TripCard({
         {/* Dates / Route */}
         <div className="text-gray-500 text-sm mb-6 flex items-start gap-2 font-medium">
             {type === "camp" ? (
-                <>
-                    <Calendar className="w-4 h-4 mt-0.5 text-gray-400 shrink-0" />
-                    <span>
-                        {startDate && endDate ? `${format(new Date(startDate), "MMM d")} - ${format(new Date(endDate), "MMM d, yyyy")}` : ''}
-                    </span>
-                </>
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
+                    {(() => {
+                        const datesArray = Array.isArray(campDates)
+                            ? campDates
+                            : (typeof campDates === 'string' ? campDates.split(',').map(d => d.trim()).filter(Boolean) : []);
+
+                        if (datesArray.length === 0) return null;
+
+                        return datesArray.map((dateStr, idx) => (
+                            <div key={idx} className="flex items-center gap-1">
+                                <Calendar className="w-4 h-4 text-gray-400 shrink-0" />
+                                <span>{(() => {
+                                    try {
+                                        const d = new Date(dateStr);
+                                        return isNaN(d.getTime()) ? dateStr : format(d, "MMM d, yyyy");
+                                    } catch (e) {
+                                        return dateStr;
+                                    }
+                                })()}</span>
+                            </div>
+                        ));
+                    })()}
+                </div>
             ) : (
                 <>
                     <MapPin className="w-4 h-4 mt-0.5 text-gray-400 shrink-0" />
