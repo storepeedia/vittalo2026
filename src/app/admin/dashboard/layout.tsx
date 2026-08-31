@@ -1,10 +1,9 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { logout } from "@/actions/admin/auth";
-import { Mountain, LayoutDashboard, LogOut } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import { AdminNav } from "@/components/admin/AdminNav";
 
 export default async function AdminLayout({ children }: { children: ReactNode }) {
   const supabase = await createClient();
@@ -21,14 +20,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
           <Image src="/logo.png" alt="Navittalo Admin Logo" width={24} height={24} className="w-6 h-6 object-contain rounded-md" />
           <span className="text-lg font-bold tracking-wider hidden sm:block">NAVITTALO ADMIN</span>
         </Link>
-        <div className="flex items-center gap-6">
-          <span className="text-sm text-gray-300 hidden sm:block">{user.email}</span>
-          <form action={logout}>
-            <button className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
-              <LogOut className="w-4 h-4" /> Logout
-            </button>
-          </form>
-        </div>
+        <AdminNav email={user.email || ""} />
       </header>
 
       <main className="flex-grow p-4 sm:p-8">
