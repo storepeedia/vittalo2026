@@ -22,19 +22,58 @@ export function AdminCamps({ camps }: { camps: any[] }) {
 
        {showForm && (
          <form action={async (fd) => { await createCamp(fd); setShowForm(false); }} className="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-6 grid grid-cols-2 gap-4">
-            <input name="title" required placeholder="Camp Title" className="p-2 border rounded" />
-            <input name="activity_type" required placeholder="Activity (e.g. Skiing)" className="p-2 border rounded" />
-            <input name="camp_dates" required placeholder="Dates (e.g. Dec 15 - Dec 20)" className="p-2 border rounded col-span-2" />
-            <input name="total_spots" type="number" required placeholder="Total Spots" className="p-2 border rounded" />
-            <input name="price_per_person" type="number" required placeholder="Price per person (€)" className="p-2 border rounded" />
-            <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" className="p-2 border rounded" />
-            <input name="image_url" required placeholder="Image URL" className="p-2 border rounded col-span-2" />
-            <textarea name="description" required placeholder="Description" className="p-2 border rounded col-span-2" />
-            <textarea name="itinerary" placeholder="Itinerary (Rich Text HTML)" className="p-2 border rounded col-span-2 min-h-[100px]" />
-            <input name="inclusions" required placeholder="Inclusions (comma separated)" className="p-2 border rounded col-span-2" />
-            <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" className="p-2 border rounded col-span-2" />
-            <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 2 Days 1 Night, Riverside Camp)" className="p-2 border rounded col-span-2" />
-            <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Beginner, Kayaking Sport)" className="p-2 border rounded col-span-2" />
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Camp Title</label>
+               <input name="title" required placeholder="Camp Title" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Activity (e.g. Skiing)</label>
+               <input name="activity_type" required placeholder="Activity (e.g. Skiing)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Dates (e.g. Dec 15 - Dec 20)</label>
+               <input name="camp_dates" required placeholder="Dates (e.g. Dec 15 - Dec 20)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Total Spots</label>
+               <input name="total_spots" type="number" required placeholder="Total Spots" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Price per person (€)</label>
+               <input name="price_per_person" type="number" required placeholder="Price per person (€)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Price per person (PLN)</label>
+               <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Image URL</label>
+               <input name="image_url" required placeholder="Image URL" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Description</label>
+               <textarea name="description" required placeholder="Description" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Itinerary (Rich Text HTML)</label>
+               <textarea name="itinerary" placeholder="Itinerary (Rich Text HTML)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 min-h-[100px]" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Inclusions (comma separated)</label>
+               <input name="inclusions" required placeholder="Inclusions (comma separated)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Top Left Tag (e.g. Available)</label>
+               <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Bottom Image Tags (comma separated)</label>
+               <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 2 Days 1 Night, Riverside Camp)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Body Top Tags (comma separated)</label>
+               <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Beginner, Kayaking Sport)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
             <div className="col-span-2 flex items-center gap-2">
                <input name="is_active" type="checkbox" value="true" defaultChecked id="activeCamp"/>
                <label htmlFor="activeCamp">Is Active?</label>
@@ -99,17 +138,50 @@ export function AdminPackages({ packages }: { packages: any[] }) {
 
        {showForm && (
          <form action={async (fd) => { await createPackage(fd); setShowForm(false); }} className="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-6 grid grid-cols-2 gap-4">
-            <input name="title" required placeholder="Package Title" className="p-2 border rounded" />
-            <input name="route" required placeholder="Route (e.g. Zurich - Paris)" className="p-2 border rounded" />
-            <input name="duration_days" type="number" required placeholder="Days" className="p-2 border rounded" />
-            <input name="duration_nights" type="number" required placeholder="Nights" className="p-2 border rounded" />
-            <input name="starting_price" type="number" required placeholder="Starting Price (€)" className="p-2 border rounded col-span-2" />
-            <input name="image_url" required placeholder="Image URL" className="p-2 border rounded col-span-2" />
-            <textarea name="description" required placeholder="Description" className="p-2 border rounded col-span-2" />
-            <textarea name="itinerary" required placeholder='Itinerary JSON: [{"day":1,"description":"..."}]' className="p-2 border rounded col-span-2 font-mono text-sm" />
-            <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" className="p-2 border rounded col-span-2" />
-            <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 7 Days, Train)" className="p-2 border rounded col-span-2" />
-            <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Alps, Sightseeing)" className="p-2 border rounded col-span-2" />
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Package Title</label>
+               <input name="title" required placeholder="Package Title" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Route (e.g. Zurich - Paris)</label>
+               <input name="route" required placeholder="Route (e.g. Zurich - Paris)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Days</label>
+               <input name="duration_days" type="number" required placeholder="Days" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Nights</label>
+               <input name="duration_nights" type="number" required placeholder="Nights" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Starting Price (€)</label>
+               <input name="starting_price" type="number" required placeholder="Starting Price (€)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Image URL</label>
+               <input name="image_url" required placeholder="Image URL" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Description</label>
+               <textarea name="description" required placeholder="Description" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Itinerary JSON</label>
+               <textarea name="itinerary" required placeholder='Itinerary JSON: [{"day":1,"description":"..."}]' className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 font-mono text-sm" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Top Left Tag (e.g. Available)</label>
+               <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Bottom Image Tags (comma separated)</label>
+               <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 7 Days, Train)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Body Top Tags (comma separated)</label>
+               <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Alps, Sightseeing)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
             <div className="col-span-2 flex items-center gap-2">
                <input name="is_active" type="checkbox" value="true" defaultChecked id="activePkg"/>
                <label htmlFor="activePkg">Is Active?</label>
@@ -176,8 +248,14 @@ export function AdminContactSettings({ settings }: { settings: { email: string; 
 
        {isEditing ? (
          <form action={async (fd) => { await updateContactSettings(fd); setIsEditing(false); }} className="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-6 grid grid-cols-2 gap-4">
-            <input name="email" type="email" required placeholder="Email" defaultValue={settings?.email || ""} className="p-2 border rounded" />
-            <input name="phone" required placeholder="Phone (e.g. +48...)" defaultValue={settings?.phone || ""} className="p-2 border rounded" />
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Email</label>
+               <input name="email" type="email" required placeholder="Email" defaultValue={settings?.email || ""} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Phone</label>
+               <input name="phone" required placeholder="Phone (e.g. +48...)" defaultValue={settings?.phone || ""} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
             <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded font-bold col-span-2">Save Settings</button>
          </form>
        ) : (
