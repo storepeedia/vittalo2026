@@ -149,8 +149,7 @@ export function TripCard({
             <span className="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-0.5">From</span>
             {type === "camp" ? (
                 <div className="flex items-baseline gap-2">
-                    <span className="text-lg font-black text-gray-900">{priceEur}€</span>
-                    <span className="text-sm font-bold text-gray-500">{pricePln} PLN</span>
+                    <span className="text-lg font-black text-gray-900">€{priceEur} zł{pricePln}</span>
                 </div>
             ) : (
                 <div className="flex items-baseline gap-1">
