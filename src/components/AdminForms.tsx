@@ -3,13 +3,16 @@ import { useState } from "react";
 import { createCamp, deleteCamp } from "@/actions/admin/camps";
 import { createPackage, deletePackage } from "@/actions/admin/packages";
 import { format } from "date-fns";
-import { Trash2, Plus } from "lucide-react";
+import { Trash2, Plus, Edit2 } from "lucide-react";
+import { EditCampModal } from "./admin/EditCampModal";
+import { EditPackageModal } from "./admin/EditPackageModal";
 
 export function AdminCamps({ camps }: { camps: any[] }) {
   const [showForm, setShowForm] = useState(false);
+  const [editingCamp, setEditingCamp] = useState<any | null>(null);
 
   return (
-    <div className="mb-12 border-b border-gray-200 pb-12">
+    <div className="mb-12 pb-12">
        <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">Camp Inventory</h2>
           <button onClick={() => setShowForm(!showForm)} className="bg-[#0B1E36] text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
@@ -20,8 +23,8 @@ export function AdminCamps({ camps }: { camps: any[] }) {
        {showForm && (
          <form action={async (fd) => { await createCamp(fd); setShowForm(false); }} className="bg-gray-50 p-6 rounded-xl border border-gray-200 mb-6 grid grid-cols-2 gap-4">
             <input name="title" required placeholder="Camp Title" className="p-2 border rounded" />
-            <input name="activity_type" required placeholder="Activity Type (e.g. Trekking)" className="p-2 border rounded" />
-            <input name="camp_dates" required placeholder="Camp Dates (Comma separated: Sep 5 2026, Oct 10 2026)" className="p-2 border rounded col-span-2" />
+            <input name="activity_type" required placeholder="Activity (e.g. Skiing)" className="p-2 border rounded" />
+            <input name="camp_dates" required placeholder="Dates (e.g. Dec 15 - Dec 20)" className="p-2 border rounded col-span-2" />
             <input name="total_spots" type="number" required placeholder="Total Spots" className="p-2 border rounded" />
             <input name="price_per_person" type="number" required placeholder="Price per person (€)" className="p-2 border rounded" />
             <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" className="p-2 border rounded" />
@@ -64,7 +67,8 @@ export function AdminCamps({ camps }: { camps: any[] }) {
                        {c.is_active ? 'Active' : 'Inactive'}
                      </span>
                    </td>
-                   <td className="p-3">
+                   <td className="p-3 flex items-center gap-3">
+                     <button onClick={() => setEditingCamp(c)} className="text-blue-500 hover:text-blue-700"><Edit2 className="w-4 h-4"/></button>
                      <button onClick={() => deleteCamp(c.id)} className="text-red-500 hover:text-red-700"><Trash2 className="w-4 h-4"/></button>
                    </td>
                  </tr>
@@ -75,15 +79,17 @@ export function AdminCamps({ camps }: { camps: any[] }) {
              </tbody>
           </table>
        </div>
+       {editingCamp && <EditCampModal camp={editingCamp} onClose={() => setEditingCamp(null)} />}
     </div>
   );
 }
 
 export function AdminPackages({ packages }: { packages: any[] }) {
   const [showForm, setShowForm] = useState(false);
+  const [editingPackage, setEditingPackage] = useState<any | null>(null);
 
   return (
-    <div className="mb-12 border-b border-gray-200 pb-12">
+    <div className="mb-12 pb-12">
        <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">Europe Packages</h2>
           <button onClick={() => setShowForm(!showForm)} className="bg-[#0B1E36] text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
@@ -136,7 +142,8 @@ export function AdminPackages({ packages }: { packages: any[] }) {
                        {p.is_active ? 'Active' : 'Inactive'}
                      </span>
                    </td>
-                   <td className="p-3">
+                   <td className="p-3 flex items-center gap-3">
+                     <button onClick={() => setEditingPackage(p)} className="text-blue-500 hover:text-blue-700"><Edit2 className="w-4 h-4"/></button>
                      <button onClick={() => deletePackage(p.id)} className="text-red-500 hover:text-red-700"><Trash2 className="w-4 h-4"/></button>
                    </td>
                  </tr>
@@ -147,6 +154,7 @@ export function AdminPackages({ packages }: { packages: any[] }) {
              </tbody>
           </table>
        </div>
+       {editingPackage && <EditPackageModal pkg={editingPackage} onClose={() => setEditingPackage(null)} />}
     </div>
   );
 }
@@ -158,7 +166,7 @@ export function AdminContactSettings({ settings }: { settings: { email: string; 
 
 
   return (
-    <div className="mb-12 border-b border-gray-200 pb-12">
+    <div className="mb-12 pb-12">
        <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">Contact Settings</h2>
           <button onClick={() => setIsEditing(!isEditing)} className="bg-[#0B1E36] text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
