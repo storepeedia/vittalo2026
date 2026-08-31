@@ -23,7 +23,7 @@ export function EditCampModal({ camp, onClose }: { camp: any; onClose: () => voi
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 flex items-start justify-center z-50 p-4 pt-10 pb-10 overflow-y-auto">
       <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl my-8">
         <div className="flex justify-between items-center p-6 border-b border-gray-100">
           <h2 className="text-xl font-bold text-gray-900">Edit Camp: {camp.title}</h2>
@@ -32,19 +32,58 @@ export function EditCampModal({ camp, onClose }: { camp: any; onClose: () => voi
           </button>
         </div>
         <form onSubmit={handleSubmit} className="p-6 grid grid-cols-2 gap-4">
-          <input name="title" required placeholder="Camp Title" defaultValue={camp.title} className="p-2 border rounded" />
-          <input name="activity_type" required placeholder="Activity (e.g. Skiing)" defaultValue={camp.activity_type} className="p-2 border rounded" />
-          <input name="camp_dates" required placeholder="Dates (e.g. Dec 15 - Dec 20)" defaultValue={camp.camp_dates} className="p-2 border rounded col-span-2" />
-          <input name="total_spots" type="number" required placeholder="Total Spots" defaultValue={camp.total_spots} className="p-2 border rounded" />
-          <input name="price_per_person" type="number" required placeholder="Price per person (€)" defaultValue={camp.price_per_person} className="p-2 border rounded" />
-          <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" defaultValue={camp.price_per_person_pln} className="p-2 border rounded" />
-          <input name="image_url" required placeholder="Image URL" defaultValue={camp.image_url} className="p-2 border rounded col-span-2" />
-          <textarea name="description" required placeholder="Description" defaultValue={camp.description} className="p-2 border rounded col-span-2" />
-          <textarea name="itinerary" placeholder="Itinerary (Rich Text HTML)" defaultValue={camp.itinerary} className="p-2 border rounded col-span-2 min-h-[100px]" />
-          <input name="inclusions" required placeholder="Inclusions (comma separated)" defaultValue={camp.inclusions?.join(", ")} className="p-2 border rounded col-span-2" />
-          <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" defaultValue={camp.tags_top_left} className="p-2 border rounded col-span-2" />
-          <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 2 Days 1 Night, Riverside Camp)" defaultValue={camp.tags_image_bottom} className="p-2 border rounded col-span-2" />
-          <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Beginner, Kayaking Sport)" defaultValue={camp.tags_body_top} className="p-2 border rounded col-span-2" />
+          <div className="flex flex-col gap-1">
+             <label className="text-sm font-semibold text-gray-700">Camp Title</label>
+             <input name="title" required placeholder="Camp Title" defaultValue={camp.title} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1">
+             <label className="text-sm font-semibold text-gray-700">Activity (e.g. Skiing)</label>
+             <input name="activity_type" required placeholder="Activity (e.g. Skiing)" defaultValue={camp.activity_type} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Dates (e.g. Dec 15 - Dec 20)</label>
+             <input name="camp_dates" required placeholder="Dates (e.g. Dec 15 - Dec 20)" defaultValue={camp.camp_dates} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1">
+             <label className="text-sm font-semibold text-gray-700">Total Spots</label>
+             <input name="total_spots" type="number" required placeholder="Total Spots" defaultValue={camp.total_spots} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1">
+             <label className="text-sm font-semibold text-gray-700">Price per person (€)</label>
+             <input name="price_per_person" type="number" required placeholder="Price per person (€)" defaultValue={camp.price_per_person} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1">
+             <label className="text-sm font-semibold text-gray-700">Price per person (PLN)</label>
+             <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" defaultValue={camp.price_per_person_pln} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Image URL</label>
+             <input name="image_url" required placeholder="Image URL" defaultValue={camp.image_url} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Description</label>
+             <textarea name="description" required placeholder="Description" defaultValue={camp.description} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Itinerary (Rich Text HTML)</label>
+             <textarea name="itinerary" placeholder="Itinerary (Rich Text HTML)" defaultValue={camp.itinerary} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 min-h-[100px]" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Inclusions (comma separated)</label>
+             <input name="inclusions" required placeholder="Inclusions (comma separated)" defaultValue={camp.inclusions?.join(", ")} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Top Left Tag (e.g. Available)</label>
+             <input name="tags_top_left" placeholder="Top Left Tag (e.g. Available)" defaultValue={camp.tags_top_left} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Bottom Image Tags (comma separated)</label>
+             <input name="tags_image_bottom" placeholder="Bottom Image Tags (comma separated, e.g. 2 Days 1 Night, Riverside Camp)" defaultValue={camp.tags_image_bottom} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Body Top Tags (comma separated)</label>
+             <input name="tags_body_top" placeholder="Body Top Tags (comma separated, e.g. Beginner, Kayaking Sport)" defaultValue={camp.tags_body_top} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
           <div className="col-span-2 flex items-center gap-2">
              <input name="is_active" type="checkbox" value="true" defaultChecked={camp.is_active} id="editActiveCamp"/>
              <label htmlFor="editActiveCamp">Is Active?</label>
