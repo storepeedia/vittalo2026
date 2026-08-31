@@ -39,13 +39,13 @@ export default function AdminLogin() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-          <input name="email" type="email" required className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B]" />
+          <input name="email" type="email" required className="w-full bg-gray-100 border-none text-gray-700 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B]" />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
           <div className="relative">
-            <input name="password" type={showPassword ? "text" : "password"} required className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B] pr-12" />
+            <input name="password" type={showPassword ? "text" : "password"} required className="w-full bg-gray-100 border-none text-gray-700 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#F59E0B] pr-12" />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
