@@ -16,7 +16,7 @@ export function EditCampModal({ camp, onClose }: { camp: any; onClose: () => voi
       onClose();
     } catch (error) {
       console.error(error);
-      alert("Failed to update camp");
+      alert("Failed to update camp: " + (error instanceof Error ? error.message : String(error)));
     } finally {
       setIsSubmitting(false);
     }

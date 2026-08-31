@@ -16,7 +16,7 @@ export function EditPackageModal({ pkg, onClose }: { pkg: any; onClose: () => vo
       onClose();
     } catch (error) {
       console.error(error);
-      alert("Failed to update package");
+      alert("Failed to update package: " + (error instanceof Error ? error.message : String(error)));
     } finally {
       setIsSubmitting(false);
     }
