@@ -36,7 +36,7 @@ export default async function PackageDetailsPage({ params }: { params: { id: str
   // Parse images for masonry grid similar to camps
   const images = (finalPkg.image_url || "").split(",").map((s: string) => s.trim()).filter(Boolean);
 
-  const hardcodedDescriptionText = "Feel the thrill of the wild 🌿\n\nDiscover the magic... Whether you're a first-timer or a seasoned adventurer, this package is carefully designed to deliver an unforgettable experience from start to finish.";
+
 
   return (
     <div className="min-h-screen bg-gray-50 pt-32 pb-20">
@@ -78,7 +78,7 @@ export default async function PackageDetailsPage({ params }: { params: { id: str
               <h1 className="text-4xl font-bold text-gray-900 mb-4">{finalPkg.title}</h1>
 
               <p className="text-gray-600 text-[15px] leading-relaxed mb-10 whitespace-pre-line">
-                {hardcodedDescriptionText}
+                {finalPkg.description || "No description provided."}
               </p>
 
               <h3 className="text-sm font-bold text-gray-900 tracking-wider uppercase mb-4">Itinerary</h3>
