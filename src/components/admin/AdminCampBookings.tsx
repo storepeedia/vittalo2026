@@ -12,9 +12,9 @@ export function AdminCampBookings({ bookings }: { bookings: any[] }) {
     const matchesSearch = b.full_name?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCamp = b.camps?.title?.toLowerCase().includes(campFilter.toLowerCase());
 
-    // Format creation date to match YYYY-MM-DD input if dateFilter is present
-    const createdAt = new Date(b.created_at).toISOString().split('T')[0];
-    const matchesDate = dateFilter ? createdAt === dateFilter : true;
+    // Filter by camp start date rather than booking creation date
+    const campDate = b.camps?.start_date ? new Date(b.camps.start_date).toISOString().split('T')[0] : null;
+    const matchesDate = dateFilter ? campDate === dateFilter : true;
 
     return matchesSearch && matchesCamp && matchesDate;
   });

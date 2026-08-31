@@ -5,7 +5,7 @@ export const revalidate = 0;
 
 export default async function AdminCampBookingsPage() {
   const supabase = await createClient();
-  const { data: campBookings } = await supabase.from("camp_bookings").select("*, camps(title)").order("created_at", { ascending: false });
+  const { data: campBookings } = await supabase.from("camp_bookings").select("*, camps(title, start_date)").order("created_at", { ascending: false });
 
   return (
     <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">

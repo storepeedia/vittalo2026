@@ -101,23 +101,21 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayCamps.map((camp: any) => (
-              <div key={camp.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 flex flex-col">
-                <div className="relative h-48 w-full">
-                  <Image src={camp.image_url} alt={camp.title} fill className="object-cover" />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800 shadow-sm">{camp.available_spots} Spots Left</div>
-                </div>
-                <div className="p-5 flex-grow flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">{camp.title}</h3>
-                  <p className="text-gray-500 text-sm mb-4">{format(new Date(camp.start_date), "MMM d")} - {format(new Date(camp.end_date), "MMM d, yyyy")}</p>
-                  <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-gray-500 font-medium">Price</p>
-                      <p className="text-lg font-bold text-gray-900">€{camp.price_per_person}<span className="text-sm font-normal text-gray-500">/p</span></p>
-                    </div>
-                    <Link prefetch={true} href={`/camps/${camp.id}`} className="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">View Details</Link>
-                  </div>
-                </div>
-              </div>
+              <TripCard
+                key={camp.id}
+                id={camp.id}
+                type="camp"
+                title={camp.title}
+                imageUrl={camp.image_url}
+                isActive={camp.is_active !== false}
+                tagsTopLeft={camp.tags_top_left}
+                tagsImageBottom={camp.tags_image_bottom}
+                tagsBodyTop={camp.tags_body_top}
+                startDate={camp.start_date}
+                endDate={camp.end_date}
+                priceEur={camp.price_per_person}
+                pricePln={camp.price_per_person_pln}
+              />
             ))}
           </div>
 
@@ -130,26 +128,21 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayPackages.map((pkg: any) => (
-              <div key={pkg.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100 flex flex-col group">
-                <div className="relative h-64 w-full overflow-hidden">
-                  <Image src={pkg.image_url} alt={pkg.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-800 shadow-sm">{pkg.duration_days} Days / {pkg.duration_nights} Nights</div>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-2xl font-bold text-white mb-1 leading-tight">{pkg.title}</h3>
-                    <p className="text-gray-200 text-sm flex items-center gap-2">{pkg.route}</p>
-                  </div>
-                </div>
-                <div className="p-5 flex-grow flex flex-col">
-                  <div className="mt-auto flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-gray-500 font-medium">From</p>
-                      <p className="text-xl font-bold text-gray-900">€{pkg.starting_price}<span className="text-sm font-normal text-gray-500">/p</span></p>
-                    </div>
-                    <Link prefetch={true} href={`/packages/${pkg.id}`} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors">View Package</Link>
-                  </div>
-                </div>
-              </div>
+              <TripCard
+                key={pkg.id}
+                id={pkg.id}
+                type="package"
+                title={pkg.title}
+                imageUrl={pkg.image_url}
+                isActive={pkg.is_active !== false}
+                tagsTopLeft={pkg.tags_top_left}
+                tagsImageBottom={pkg.tags_image_bottom}
+                tagsBodyTop={pkg.tags_body_top}
+                durationDays={pkg.duration_days}
+                durationNights={pkg.duration_nights}
+                route={pkg.route}
+                startingPriceEur={pkg.starting_price}
+              />
             ))}
           </div>
         </div>

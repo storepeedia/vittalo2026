@@ -12,9 +12,9 @@ export function AdminPackageInquiries({ inquiries }: { inquiries: any[] }) {
     const matchesSearch = b.full_name?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesPackage = b.packages?.title?.toLowerCase().includes(packageFilter.toLowerCase());
 
-    // Format creation date to match YYYY-MM-DD input if dateFilter is present
-    const createdAt = new Date(b.created_at).toISOString().split('T')[0];
-    const matchesDate = dateFilter ? createdAt === dateFilter : true;
+    // Filter by package selected travel dates rather than inquiry creation date
+    const selectedDate = b.selected_dates ? new Date(b.selected_dates).toISOString().split('T')[0] : null;
+    const matchesDate = dateFilter ? selectedDate === dateFilter : true;
 
     return matchesSearch && matchesPackage && matchesDate;
   });
