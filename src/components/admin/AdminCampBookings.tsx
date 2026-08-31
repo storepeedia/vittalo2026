@@ -59,6 +59,7 @@ export function AdminCampBookings({ bookings }: { bookings: any[] }) {
               <th className="p-3 font-semibold">Customer</th>
               <th className="p-3 font-semibold">Camp</th>
               <th className="p-3 font-semibold">Booking Date</th>
+              <th className="p-3 font-semibold">Chosen Date</th>
               <th className="p-3 font-semibold">Spots</th>
               <th className="p-3 font-semibold">Total Price</th>
               <th className="p-3 font-semibold">Status</th>
@@ -72,13 +73,14 @@ export function AdminCampBookings({ bookings }: { bookings: any[] }) {
                 </td>
                 <td className="p-3">{b.camps?.title}</td>
                 <td className="p-3">{new Date(b.created_at).toLocaleDateString()}</td>
+                <td className="p-3">{b.chosen_date || 'N/A'}</td>
                 <td className="p-3">{b.spots_booked}</td>
                 <td className="p-3">€{b.total_price}</td>
                 <td className="p-3 capitalize">{b.booking_status}</td>
               </tr>
             ))}
             {filteredBookings.length === 0 && (
-              <tr><td colSpan={6} className="p-4 text-center text-gray-500">No camp bookings match your filters.</td></tr>
+              <tr><td colSpan={7} className="p-4 text-center text-gray-500">No camp bookings match your filters.</td></tr>
             )}
           </tbody>
         </table>
