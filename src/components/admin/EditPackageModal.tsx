@@ -50,6 +50,10 @@ export function EditPackageModal({ pkg, onClose }: { pkg: any; onClose: () => vo
              <input name="duration_nights" type="number" required placeholder="Nights" defaultValue={pkg.duration_nights} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
           </div>
           <div className="flex flex-col gap-1 col-span-2">
+             <label className="text-sm font-semibold text-gray-700">Priority (1 is highest)</label>
+             <input name="priority" type="number" placeholder="Priority" defaultValue={pkg.priority} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1 col-span-2">
              <label className="text-sm font-semibold text-gray-700">Starting Price (€)</label>
              <input name="starting_price" type="number" required placeholder="Starting Price (€)" defaultValue={pkg.starting_price} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
           </div>

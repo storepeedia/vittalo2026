@@ -54,6 +54,10 @@ export function EditCampModal({ camp, onClose }: { camp: any; onClose: () => voi
              <input name="price_per_person" type="number" required placeholder="Price per person (€)" defaultValue={camp.price_per_person} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
           </div>
           <div className="flex flex-col gap-1">
+             <label className="text-sm font-semibold text-gray-700">Priority (1 is highest)</label>
+             <input name="priority" type="number" placeholder="Priority" defaultValue={camp.priority} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+          </div>
+          <div className="flex flex-col gap-1">
              <label className="text-sm font-semibold text-gray-700">Price per person (PLN)</label>
              <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" defaultValue={camp.price_per_person_pln} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
           </div>

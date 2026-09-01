@@ -10,7 +10,7 @@ export default async function PackagesPage() {
   const { data: packages, error } = await supabase
     .from("packages")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("priority", { ascending: true, nullsFirst: false }).order("created_at", { ascending: false });
 
   if (error) {
     console.error("Error fetching packages:", error);

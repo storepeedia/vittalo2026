@@ -21,6 +21,7 @@ export async function createCamp(formData: FormData) {
     itinerary: formData.get("itinerary"),
     inclusions: (formData.get("inclusions") as string).split(",").map((s) => s.trim()),
     is_active: formData.get("is_active") === "true",
+    priority: formData.get("priority") ? parseInt(formData.get("priority") as string) : null,
   });
 
   if (error) throw new Error(error.message);
@@ -48,6 +49,7 @@ export async function updateCamp(id: string, formData: FormData) {
       itinerary: formData.get("itinerary"),
       inclusions: (formData.get("inclusions") as string).split(",").map((s) => s.trim()),
       is_active: formData.get("is_active") === "true",
+      priority: formData.get("priority") ? parseInt(formData.get("priority") as string) : null,
     })
     .eq("id", id);
 

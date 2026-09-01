@@ -11,7 +11,7 @@ export default async function CampsPage() {
   const { data: camps, error } = await supabase
     .from("camps")
     .select("*")
-    .order("created_at", { ascending: false });
+    .order("priority", { ascending: true, nullsFirst: false }).order("created_at", { ascending: false });
 
   if (error) {
     console.error("Error fetching camps:", error);
