@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { Trash2, Plus, Edit2 } from "lucide-react";
 import { EditCampModal } from "./admin/EditCampModal";
 import { EditPackageModal } from "./admin/EditPackageModal";
+import { FormRichTextEditor } from "./FormRichTextEditor";
 
 export function AdminCamps({ camps }: { camps: any[] }) {
   const [showForm, setShowForm] = useState(false);
@@ -56,7 +57,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
             </div>
             <div className="flex flex-col gap-1 col-span-2">
                <label className="text-sm font-semibold text-gray-700">Itinerary (Rich Text HTML)</label>
-               <textarea name="itinerary" placeholder="Itinerary (Rich Text HTML)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 min-h-[100px]" />
+               <FormRichTextEditor name="itinerary" placeholder="Itinerary (Rich Text HTML)" />
             </div>
             <div className="flex flex-col gap-1 col-span-2">
                <label className="text-sm font-semibold text-gray-700">Inclusions (comma separated)</label>
@@ -167,8 +168,8 @@ export function AdminPackages({ packages }: { packages: any[] }) {
                <textarea name="description" required placeholder="Description" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
             <div className="flex flex-col gap-1 col-span-2">
-               <label className="text-sm font-semibold text-gray-700">Itinerary JSON</label>
-               <textarea name="itinerary" required placeholder='Itinerary JSON: [{"day":1,"description":"..."}]' className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 font-mono text-sm" />
+               <label className="text-sm font-semibold text-gray-700">Itinerary (Rich Text HTML)</label>
+               <FormRichTextEditor name="itinerary" placeholder="Itinerary (Rich Text HTML)" />
             </div>
             <div className="flex flex-col gap-1 col-span-2">
                <label className="text-sm font-semibold text-gray-700">Top Left Tag (e.g. Available)</label>

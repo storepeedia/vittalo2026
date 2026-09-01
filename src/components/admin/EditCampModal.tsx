@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { updateCamp } from "@/actions/admin/camps";
 import { X } from "lucide-react";
+import { FormRichTextEditor } from "../FormRichTextEditor";
 
 export function EditCampModal({ camp, onClose }: { camp: any; onClose: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,7 +67,7 @@ export function EditCampModal({ camp, onClose }: { camp: any; onClose: () => voi
           </div>
           <div className="flex flex-col gap-1 col-span-2">
              <label className="text-sm font-semibold text-gray-700">Itinerary (Rich Text HTML)</label>
-             <textarea name="itinerary" placeholder="Itinerary (Rich Text HTML)" defaultValue={camp.itinerary} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 min-h-[100px]" />
+             <FormRichTextEditor name="itinerary" defaultValue={camp.itinerary} placeholder="Itinerary (Rich Text HTML)" />
           </div>
           <div className="flex flex-col gap-1 col-span-2">
              <label className="text-sm font-semibold text-gray-700">Inclusions (comma separated)</label>
