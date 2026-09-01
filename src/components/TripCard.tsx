@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { format } from "date-fns";
 import { MapPin, Calendar, Flame, Tent, Mountain, ArrowRight } from "lucide-react";
 
 interface TripCardProps {
@@ -121,14 +120,7 @@ export function TripCard({
                         return datesArray.map((dateStr, idx) => (
                             <div key={idx} className="flex items-center gap-1">
                                 <Calendar className="w-4 h-4 text-gray-400 shrink-0" />
-                                <span>{(() => {
-                                    try {
-                                        const d = new Date(dateStr);
-                                        return isNaN(d.getTime()) ? dateStr : format(d, "MMM d, yyyy");
-                                    } catch (e) {
-                                        return dateStr;
-                                    }
-                                })()}</span>
+                                <span>{dateStr}</span>
                             </div>
                         ));
                     })()}
