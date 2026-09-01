@@ -5,8 +5,9 @@
 ▲ Next.js 16.3.3 (Turbopack)
 - Local:         http://localhost:3000
 - Network:       http://192.168.0.2:3000
-✓ Ready in 547ms
-✓ Running next.config.ts took 50ms
+- Environments: .env.local
+✓ Ready in 530ms
+✓ Running next.config.ts took 49ms
 Attention: Next.js now collects completely anonymous telemetry regarding usage.
 This information is used to shape Next.js' roadmap and prioritize features.
 You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
@@ -14,17 +15,9 @@ https://nextjs.org/telemetry
 
 
 ○ Compiling / ...
- GET / 200 in 19.3s (next.js: 4.1s, proxy.ts: 344ms, application-code: 14.8s)
- GET / 200 in 14.5s (next.js: 27ms, proxy.ts: 26ms, application-code: 14.4s)
- GET / 200 in 14.5s (next.js: 21ms, proxy.ts: 18ms, application-code: 14.5s)
- GET / 200 in 14.4s (next.js: 23ms, proxy.ts: 19ms, application-code: 14.4s)
- GET / 200 in 14.3s (next.js: 8ms, proxy.ts: 9ms, application-code: 14.3s)
-⨯ The directory at "/app/.next/dev" was deleted.
-
-Deleting this directory while Next.js is running can lead to undefined behavior. Restarting the server to recover...
-▲ Next.js 16.3.3 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://192.168.0.2:3000
-✓ Ready in 650ms
-✓ Running next.config.ts took 68ms
-
+ GET / 200 in 7.2s (next.js: 4.6s, proxy.ts: 610ms, application-code: 2.0s)
+[browser] Image with src "https://images.unsplash.com/photo-1513807016779-d51c0c026263?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[browser] Image with src "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=2070&auto=format&fit=crop" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes

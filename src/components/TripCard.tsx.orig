@@ -80,24 +80,17 @@ export function TripCard({
             {topLeftTag}
             </div>
 
-            {/* Bottom Image Dates/Duration Overlay */}
-            <div className="absolute bottom-3 left-3 right-3 z-10">
-                {type === "camp" && datesArray.length > 0 && (
-                    <div className="grid grid-cols-3 gap-2">
-                        {datesArray.map((dateStr, idx) => (
-                            <span key={idx} className="bg-black/60 backdrop-blur-md text-white px-2 py-1.5 rounded-md text-[11px] font-medium flex items-center gap-1.5 shadow-sm border border-white/10 justify-center">
-                                <Calendar className="w-3.5 h-3.5 shrink-0"/>
-                                <span className="truncate">{dateStr}</span>
-                            </span>
-                        ))}
-                    </div>
-                )}
-                {type === "package" && (durationDays || durationNights) && (
-                    <span className="bg-black/60 backdrop-blur-md text-white px-3 py-1.5 rounded-md text-[11px] font-medium flex inline-flex items-center gap-1.5 shadow-sm border border-white/10">
-                        <Calendar className="w-3.5 h-3.5 shrink-0"/>
-                        {durationDays}D / {durationNights}N
+            {/* Bottom Image Tags (Overlapping bottom edge inside image container) */}
+            <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-2 z-10">
+                {imageBottomTagsList.map((tag, idx) => (
+                    <span key={idx} className="bg-black/60 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 shadow-sm border border-white/10">
+                        {/* Try to infer some icons based on text, otherwise default circle */}
+                        {tag.toLowerCase().includes('day') || tag.toLowerCase().includes('night') ? <Calendar className="w-3.5 h-3.5"/> :
+                        tag.toLowerCase().includes('camp') ? <Tent className="w-3.5 h-3.5"/> :
+                        <Flame className="w-3.5 h-3.5" />}
+                        {tag}
                     </span>
-                )}
+                ))}
             </div>
         </div>
       </div>
@@ -118,21 +111,33 @@ export function TripCard({
           {title}
         </h3>
 
-        {/* Route (Packages) */}
-        {type === "package" && route && (
-            <div className="text-gray-500 text-sm mb-3 flex items-start gap-2 font-medium">
-                <MapPin className="w-4 h-4 mt-0.5 text-gray-400 shrink-0" />
-                <span className="line-clamp-2">{route}</span>
-            </div>
-        )}
+        {/* Dates / Route */}
+        <div className="text-gray-500 text-sm mb-6 flex items-start gap-2 font-medium">
+            {type === "camp" ? (
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
+                    {(() => {
+                        const datesArray = Array.isArray(campDates)
+                            ? campDates
+                            : (typeof campDates === 'string' ? campDates.split(',').map(d => d.trim()).filter(Boolean) : []);
 
-        {/* Below Title Tags (formerly on image) */}
-        <div className="flex flex-wrap gap-2 mb-6 mt-1">
-            {imageBottomTagsList.map((tag, idx) => (
-                <span key={idx} className="bg-gray-100 text-gray-600 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
-                    {tag}
-                </span>
-            ))}
+                        if (datesArray.length === 0) return null;
+
+                        return datesArray.map((dateStr, idx) => (
+                            <div key={idx} className="flex items-center gap-1">
+                                <Calendar className="w-4 h-4 text-gray-400 shrink-0" />
+                                <span>{dateStr}</span>
+                            </div>
+                        ));
+                    })()}
+                </div>
+            ) : (
+                <>
+                    <MapPin className="w-4 h-4 mt-0.5 text-gray-400 shrink-0" />
+                    <span className="line-clamp-2">
+                        {durationDays}D/{durationNights}N • {route}
+                    </span>
+                </>
+            )}
         </div>
 
         {/* Footer / Pricing */}

@@ -1,0 +1,13 @@
+--- src/components/TripCard.tsx
++++ src/components/TripCard.tsx
+@@ -107,11 +107,7 @@
+             {type === "camp" ? (
+                 <div className="flex flex-wrap gap-x-3 gap-y-1">
+                     {(() => {
+-                        const datesArray = Array.isArray(campDates)
+-                            ? campDates
+-                            : (typeof campDates === 'string' ? campDates.split(',').map(d => d.trim()).filter(Boolean) : []);
+-
+                         if (datesArray.length === 0) return null;
+
+                         return datesArray.map((dateStr, idx) => (
