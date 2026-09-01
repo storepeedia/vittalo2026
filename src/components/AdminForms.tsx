@@ -44,6 +44,10 @@ export function AdminCamps({ camps }: { camps: any[] }) {
                <input name="price_per_person" type="number" required placeholder="Price per person (€)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
             <div className="flex flex-col gap-1">
+               <label className="text-sm font-semibold text-gray-700">Priority (1 is highest)</label>
+               <input name="priority" type="number" placeholder="Priority" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1">
                <label className="text-sm font-semibold text-gray-700">Price per person (PLN)</label>
                <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
@@ -87,6 +91,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
           <table className="w-full text-left text-sm text-gray-600">
              <thead className="bg-gray-50 text-gray-900">
                <tr>
+                 <th className="p-3 font-semibold">Priority</th>
                  <th className="p-3 font-semibold">Title</th>
                  <th className="p-3 font-semibold">Dates</th>
                  <th className="p-3 font-semibold">Spots</th>
@@ -98,6 +103,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
              <tbody className="divide-y divide-gray-100">
                {(camps || []).map((c: any) => (
                  <tr key={c.id} className="hover:bg-gray-50">
+                   <td className="p-3">{c.priority || "-"}</td>
                    <td className="p-3 font-medium text-gray-900">{c.title}</td>
                    <td className="p-3 max-w-[200px] truncate" title={c.camp_dates}>{c.camp_dates}</td>
                    <td className="p-3">{c.available_spots} / {c.total_spots}</td>
@@ -114,7 +120,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
                  </tr>
                ))}
                {(!camps || camps.length === 0) && (
-                  <tr><td colSpan={6} className="p-4 text-center text-gray-500">No camps found. Ensure Supabase is connected.</td></tr>
+                  <tr><td colSpan={7} className="p-4 text-center text-gray-500">No camps found. Ensure Supabase is connected.</td></tr>
                )}
              </tbody>
           </table>
@@ -156,6 +162,10 @@ export function AdminPackages({ packages }: { packages: any[] }) {
                <input name="duration_nights" type="number" required placeholder="Nights" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
             <div className="flex flex-col gap-1 col-span-2">
+               <label className="text-sm font-semibold text-gray-700">Priority (1 is highest)</label>
+               <input name="priority" type="number" placeholder="Priority" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+            </div>
+            <div className="flex flex-col gap-1 col-span-2">
                <label className="text-sm font-semibold text-gray-700">Starting Price (€)</label>
                <input name="starting_price" type="number" required placeholder="Starting Price (€)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
@@ -195,6 +205,7 @@ export function AdminPackages({ packages }: { packages: any[] }) {
           <table className="w-full text-left text-sm text-gray-600">
              <thead className="bg-gray-50 text-gray-900">
                <tr>
+                 <th className="p-3 font-semibold">Priority</th>
                  <th className="p-3 font-semibold">Title</th>
                  <th className="p-3 font-semibold">Duration</th>
                  <th className="p-3 font-semibold">Route</th>
@@ -206,6 +217,7 @@ export function AdminPackages({ packages }: { packages: any[] }) {
              <tbody className="divide-y divide-gray-100">
                {(packages || []).map((p: any) => (
                  <tr key={p.id} className="hover:bg-gray-50">
+                   <td className="p-3">{p.priority || "-"}</td>
                    <td className="p-3 font-medium text-gray-900">{p.title}</td>
                    <td className="p-3">{p.duration_days}D / {p.duration_nights}N</td>
                    <td className="p-3">{p.route}</td>
@@ -222,7 +234,7 @@ export function AdminPackages({ packages }: { packages: any[] }) {
                  </tr>
                ))}
                {(!packages || packages.length === 0) && (
-                  <tr><td colSpan={6} className="p-4 text-center text-gray-500">No packages found. Ensure Supabase is connected.</td></tr>
+                  <tr><td colSpan={7} className="p-4 text-center text-gray-500">No packages found. Ensure Supabase is connected.</td></tr>
                )}
              </tbody>
           </table>

@@ -18,6 +18,7 @@ export async function createPackage(formData: FormData) {
     description: formData.get("description"),
     itinerary: JSON.stringify(formData.get("itinerary")),
     is_active: formData.get("is_active") === "true",
+    priority: formData.get("priority") ? parseInt(formData.get("priority") as string) : null,
   });
 
   if (error) throw new Error(error.message);
@@ -43,6 +44,7 @@ export async function updatePackage(id: string, formData: FormData) {
       description: formData.get("description"),
       itinerary: JSON.stringify(formData.get("itinerary")),
       is_active: formData.get("is_active") === "true",
+      priority: formData.get("priority") ? parseInt(formData.get("priority") as string) : null,
     })
     .eq("id", id);
 
