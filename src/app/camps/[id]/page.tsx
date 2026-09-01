@@ -4,6 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import CampBookingForm from "@/components/CampBookingForm";
 import { Tent, Check, Calendar } from "lucide-react";
 import React from 'react';
+import ImageGallery from "@/components/ImageGallery";
+
 
 export default async function CampDetailsPage({ params }: { params: { id: string } }) {
   const supabase = await createClient();
@@ -50,23 +52,8 @@ export default async function CampDetailsPage({ params }: { params: { id: string
           {/* LEFT COLUMN - CONTENT */}
           <div className="lg:w-2/3 flex flex-col gap-8 order-1 lg:order-1 min-w-0">
 
-            {/* IMAGE GRID */}
-            {images.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
-                <div className="relative w-full h-full">
-                  <Image src={images[0]} alt={finalCamp.title} fill className="object-cover" />
-                </div>
-                {images.length > 1 && (
-                  <div className="hidden md:grid grid-cols-2 grid-rows-2 gap-2 h-full">
-                    {images.slice(1, 5).map((imgUrl: string, idx: number) => (
-                      <div key={idx} className="relative w-full h-full">
-                        <Image src={imgUrl} alt={`${finalCamp.title} ${idx+2}`} fill className="object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+            {/* IMAGE GALLERY */}
+            <ImageGallery images={images} title={finalCamp.title} />
 
             <div>
               <h2 className="text-2xl font-bold text-[#1e1b4b] mb-4 flex items-center gap-2">

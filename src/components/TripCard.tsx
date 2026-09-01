@@ -41,8 +41,12 @@ export function TripCard({
   durationDays,
   durationNights,
   route,
+
   startingPriceEur,
 }: TripCardProps) {
+
+  // Get the first image from comma-separated list
+  const firstImage = imageUrl ? imageUrl.split(',').map(s => s.trim()).filter(Boolean)[0] : '';
 
   // Parse tags
   const imageBottomTagsList = tagsImageBottom ? tagsImageBottom.split(',').map(s => s.trim()).filter(Boolean) : [];
@@ -69,7 +73,7 @@ export function TripCard({
       <div className="relative h-64 w-full p-3 pb-0">
         <div className="relative w-full h-full rounded-2xl overflow-hidden">
             <Image
-            src={imageUrl}
+            src={firstImage || imageUrl}
             alt={title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-105"

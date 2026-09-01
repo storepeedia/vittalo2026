@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import PackageBookingForm from "@/components/PackageBookingForm";
 import { Map, Clock, CheckCircle, Check } from "lucide-react";
+import ImageGallery from "@/components/ImageGallery";
+
 
 export default async function PackageDetailsPage({ params }: { params: { id: string } }) {
   const supabase = await createClient();
@@ -45,23 +47,8 @@ export default async function PackageDetailsPage({ params }: { params: { id: str
 
           <div className="lg:w-2/3 flex flex-col gap-8 order-1 lg:order-1 min-w-0">
 
-            {/* IMAGE GRID */}
-            {images.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-[400px] md:h-[500px] rounded-2xl overflow-hidden">
-                <div className="relative w-full h-full">
-                  <Image src={images[0]} alt={finalPkg.title} fill className="object-cover" />
-                </div>
-                {images.length > 1 && (
-                  <div className="hidden md:grid grid-cols-2 grid-rows-2 gap-2 h-full">
-                    {images.slice(1, 5).map((imgUrl: string, idx: number) => (
-                      <div key={idx} className="relative w-full h-full">
-                        <Image src={imgUrl} alt={`${finalPkg.title} ${idx+2}`} fill className="object-cover" />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
+            {/* IMAGE GALLERY */}
+            <ImageGallery images={images} title={finalPkg.title} />
 
             <div>
               <div className="flex items-center gap-4 text-blue-700 font-bold mb-3">
