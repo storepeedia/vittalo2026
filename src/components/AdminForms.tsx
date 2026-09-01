@@ -41,7 +41,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
             </div>
             <div className="flex flex-col gap-1">
                <label className="text-sm font-semibold text-gray-700">Price per person (€)</label>
-               <input name="price_per_person" type="number" required placeholder="Price per person (€)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+               <input name="price_per_person" type="number" placeholder="Price per person (€)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
             <div className="flex flex-col gap-1">
                <label className="text-sm font-semibold text-gray-700">Priority (1 is highest)</label>
@@ -49,7 +49,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
             </div>
             <div className="flex flex-col gap-1">
                <label className="text-sm font-semibold text-gray-700">Price per person (PLN)</label>
-               <input name="price_per_person_pln" type="number" required placeholder="Price per person (PLN)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+               <input name="price_per_person_pln" type="number" placeholder="Price per person (PLN)" className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
             </div>
             <div className="flex flex-col gap-1 col-span-2">
                <label className="text-sm font-semibold text-gray-700">Image URL</label>
