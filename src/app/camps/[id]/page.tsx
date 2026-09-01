@@ -108,9 +108,9 @@ export default async function CampDetailsPage({ params }: { params: { id: string
 
               {/* ITINERARY */}
               <h3 className="text-sm font-bold text-gray-900 tracking-wider uppercase mb-4">Itinerary</h3>
-              <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm">
+              <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm overflow-x-auto">
                 <div
-                  className="prose prose-sm md:prose-base max-w-none text-gray-700
+                  className="prose prose-sm md:prose-base max-w-none text-gray-700 break-words
                              prose-p:my-2 prose-ol:pl-4 prose-li:my-1"
                   dangerouslySetInnerHTML={{ __html: finalCamp.itinerary || "<p>No itinerary provided.</p>" }}
                 />
