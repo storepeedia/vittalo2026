@@ -40,9 +40,7 @@ export default async function Home() {
     <div className="relative min-h-screen pb-20 bg-white">
       {/* Hero Background Image */}
       <div className="absolute top-0 w-full h-full z-0">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover object-bottom">
-          <source src="https://videos.pexels.com/video-files/3094026/3094026-uhd_3840_2160_30fps.mp4" type="video/mp4" />
-        </video>
+        <Image src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" alt="Alpine lake mountains" fill className="object-cover" priority />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
