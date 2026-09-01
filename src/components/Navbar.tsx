@@ -20,6 +20,8 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  const isSolid = !isHomePage || scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,16 +55,16 @@ export default function Navbar() {
         <nav
           className={clsx(
             "w-full transition-all duration-300",
-            scrolled ? "bg-white shadow-md py-4" : "bg-transparent py-6"
+            isSolid ? "bg-white shadow-md py-4" : "bg-transparent py-6"
           )}
         >
           <div className="container mx-auto px-6 flex items-center justify-between">
             {/* Logo */}
-            <Link prefetch={true} href="/" className={clsx("flex items-center gap-2", scrolled ? "text-[#0B1E36]" : "text-white")}>
+            <Link prefetch={true} href="/" className={clsx("flex items-center gap-2", isSolid ? "text-[#0B1E36]" : "text-white")}>
               <Image src="/logo.png" alt="Navittalo Logo" width={32} height={32} className="w-8 h-8 object-contain rounded-md" />
               <div className="flex flex-col">
                 <span className="text-xl font-bold tracking-wider leading-tight">NNA VITTALO</span>
-                <span className={clsx("text-[10px] tracking-widest uppercase leading-tight font-medium", scrolled ? "text-black" : "text-white")}>Adventure Travel</span>
+                <span className={clsx("text-[10px] tracking-widest uppercase leading-tight font-medium", isSolid ? "text-black" : "text-white")}>Adventure Travel</span>
               </div>
             </Link>
 
@@ -74,7 +76,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     prefetch={true} href={link.href}
-                    className={clsx("text-sm font-medium relative group", scrolled ? "text-[#0B1E36]" : "text-white")}
+                    className={clsx("text-sm font-medium relative group", isSolid ? "text-[#0B1E36]" : "text-white")}
                   >
                     {link.name}
                     <span
@@ -105,7 +107,7 @@ export default function Navbar() {
 
             {/* Mobile Toggle */}
             <button
-              className={clsx("md:hidden", scrolled ? "text-[#0B1E36]" : "text-white")}
+              className={clsx("md:hidden", isSolid ? "text-[#0B1E36]" : "text-white")}
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
