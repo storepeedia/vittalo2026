@@ -112,11 +112,11 @@ export default async function CampDetailsPage({ params }: { params: { id: string
                 <div className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Total Price</div>
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-[40px] font-black text-[#2563eb] leading-none">
-                    {finalCamp.price_per_person_pln || (finalCamp.price_per_person * 4.3).toFixed(0)}
+                    {finalCamp.price_per_person_pln != null ? finalCamp.price_per_person_pln : "--"}
                   </span>
                   <span className="text-xl font-bold text-[#2563eb]">PLN</span>
                   <span className="text-gray-500 font-medium ml-1">
-                    (~{finalCamp.price_per_person} EUR)
+                    ({finalCamp.price_per_person != null ? `~${finalCamp.price_per_person}` : "--"} EUR)
                   </span>
                 </div>
                 <div className="text-gray-500 text-sm flex items-center gap-1.5 mt-3 border-b border-gray-100 pb-4">

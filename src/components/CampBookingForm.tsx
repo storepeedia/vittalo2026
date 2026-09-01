@@ -9,6 +9,7 @@ export default function CampBookingForm({ camp }: { camp: any }) {
   const [error, setError] = useState("");
 
   const dates = (camp.camp_dates || "").split(",").map((d: string) => d.trim()).filter(Boolean);
+  const isBookingDisabled = camp.price_per_person == null && camp.price_per_person_pln == null;
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -17,8 +18,8 @@ export default function CampBookingForm({ camp }: { camp: any }) {
 
     const formData = new FormData(e.currentTarget);
     formData.append("camp_id", camp.id);
-    formData.append("price_per_person", camp.price_per_person.toString());
-    formData.append("price_per_person_pln", (camp.price_per_person_pln || (camp.price_per_person * 4.3)).toString());
+    formData.append("price_per_person", camp.price_per_person != null ? camp.price_per_person.toString() : "0");
+    formData.append("price_per_person_pln", camp.price_per_person_pln != null ? camp.price_per_person_pln.toString() : "0");
 
     const result = await bookCamp(formData);
 
@@ -72,8 +73,8 @@ export default function CampBookingForm({ camp }: { camp: any }) {
         <input name="spots_booked" type="number" min="1" max={camp.available_spots} defaultValue="1" required className="w-full border border-gray-300 rounded-lg px-4 py-2" />
       </div>
 
-      <button type="submit" disabled={loading} className="w-full bg-[#2563eb] hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl mt-4 transition-colors disabled:opacity-50">
-        {loading ? "Processing..." : "Book Your Spot"}
+      <button type="submit" disabled={loading || isBookingDisabled} className="w-full bg-[#2563eb] hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl mt-4 transition-colors disabled:opacity-50 disabled:bg-gray-400">
+        {isBookingDisabled ? "Price Unavailable" : (loading ? "Processing..." : "Book Your Spot")}
       </button>
 
       <div className="text-center text-xs text-gray-500 mt-2">
