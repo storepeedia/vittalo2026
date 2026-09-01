@@ -1,0 +1,14 @@
+
+> tmp_app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+- Environments: .env.local
+✓ Ready in 1176ms
+✓ Running next.config.ts took 245ms
+
+○ Compiling /admin/login ...
+ GET /admin/login 200 in 5.6s (next.js: 4.1s, proxy.ts: 9ms, application-code: 1457ms)
+ GET /admin/login 200 in 516ms (next.js: 13ms, proxy.ts: 7ms, application-code: 496ms)
