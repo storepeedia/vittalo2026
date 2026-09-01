@@ -99,7 +99,7 @@ export default async function Home() {
               <p className="text-gray-500 font-bold tracking-widest text-sm mb-2">ADVENTURE AWAITS</p>
               <h2 className="text-4xl font-bold text-gray-900">Upcoming Camps</h2>
             </div>
-            <Link prefetch={true} href="/camps" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all camps &rarr;</Link>
+            <Link prefetch={true} href="/camps" className="flex text-sm text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all camps &rarr;</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayCamps.map((camp: any) => (
@@ -125,7 +125,7 @@ export default async function Home() {
               <p className="text-gray-500 font-bold tracking-widest text-sm mb-2">JOURNEYS THAT STAY WITH YOU</p>
               <h2 className="text-4xl font-bold text-gray-900">Popular Europe Packages</h2>
             </div>
-            <Link prefetch={true} href="/packages" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all packages &rarr;</Link>
+            <Link prefetch={true} href="/packages" className="flex text-sm text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all packages &rarr;</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayPackages.map((pkg: any) => (
