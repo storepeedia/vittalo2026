@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createCamp, deleteCamp } from "@/actions/admin/camps";
 import { createPackage, deletePackage } from "@/actions/admin/packages";
 import { format } from "date-fns";
-import { Trash2, Plus, Edit2 } from "lucide-react";
+import { Trash2, Plus, Edit2, Copy } from "lucide-react";
 import { EditCampModal } from "./admin/EditCampModal";
 import { EditPackageModal } from "./admin/EditPackageModal";
 import { FormRichTextEditor } from "./FormRichTextEditor";
@@ -11,6 +11,7 @@ import { FormRichTextEditor } from "./FormRichTextEditor";
 export function AdminCamps({ camps }: { camps: any[] }) {
   const [showForm, setShowForm] = useState(false);
   const [editingCamp, setEditingCamp] = useState<any | null>(null);
+  const [duplicatingCamp, setDuplicatingCamp] = useState<any | null>(null);
 
   return (
     <div className="mb-12 pb-12">
@@ -114,8 +115,9 @@ export function AdminCamps({ camps }: { camps: any[] }) {
                      </span>
                    </td>
                    <td className="p-3 flex items-center gap-3">
-                     <button onClick={() => setEditingCamp(c)} className="text-blue-500 hover:text-blue-700"><Edit2 className="w-4 h-4"/></button>
-                     <button onClick={() => deleteCamp(c.id)} className="text-red-500 hover:text-red-700"><Trash2 className="w-4 h-4"/></button>
+                     <button onClick={() => setDuplicatingCamp(c)} className="text-green-500 hover:text-green-700" title="Duplicate"><Copy className="w-4 h-4"/></button>
+                     <button onClick={() => setEditingCamp(c)} className="text-blue-500 hover:text-blue-700" title="Edit"><Edit2 className="w-4 h-4"/></button>
+                     <button onClick={() => deleteCamp(c.id)} className="text-red-500 hover:text-red-700" title="Delete"><Trash2 className="w-4 h-4"/></button>
                    </td>
                  </tr>
                ))}
@@ -125,7 +127,8 @@ export function AdminCamps({ camps }: { camps: any[] }) {
              </tbody>
           </table>
        </div>
-       {editingCamp && <EditCampModal camp={editingCamp} onClose={() => setEditingCamp(null)} />}
+       {editingCamp && <EditCampModal camp={editingCamp} onClose={() => setEditingCamp(null)} mode="edit" />}
+       {duplicatingCamp && <EditCampModal camp={duplicatingCamp} onClose={() => setDuplicatingCamp(null)} mode="duplicate" />}
     </div>
   );
 }
@@ -133,6 +136,7 @@ export function AdminCamps({ camps }: { camps: any[] }) {
 export function AdminPackages({ packages }: { packages: any[] }) {
   const [showForm, setShowForm] = useState(false);
   const [editingPackage, setEditingPackage] = useState<any | null>(null);
+  const [duplicatingPackage, setDuplicatingPackage] = useState<any | null>(null);
 
   return (
     <div className="mb-12 pb-12">
@@ -228,8 +232,9 @@ export function AdminPackages({ packages }: { packages: any[] }) {
                      </span>
                    </td>
                    <td className="p-3 flex items-center gap-3">
-                     <button onClick={() => setEditingPackage(p)} className="text-blue-500 hover:text-blue-700"><Edit2 className="w-4 h-4"/></button>
-                     <button onClick={() => deletePackage(p.id)} className="text-red-500 hover:text-red-700"><Trash2 className="w-4 h-4"/></button>
+                     <button onClick={() => setDuplicatingPackage(p)} className="text-green-500 hover:text-green-700" title="Duplicate"><Copy className="w-4 h-4"/></button>
+                     <button onClick={() => setEditingPackage(p)} className="text-blue-500 hover:text-blue-700" title="Edit"><Edit2 className="w-4 h-4"/></button>
+                     <button onClick={() => deletePackage(p.id)} className="text-red-500 hover:text-red-700" title="Delete"><Trash2 className="w-4 h-4"/></button>
                    </td>
                  </tr>
                ))}
@@ -239,7 +244,8 @@ export function AdminPackages({ packages }: { packages: any[] }) {
              </tbody>
           </table>
        </div>
-       {editingPackage && <EditPackageModal pkg={editingPackage} onClose={() => setEditingPackage(null)} />}
+       {editingPackage && <EditPackageModal pkg={editingPackage} onClose={() => setEditingPackage(null)} mode="edit" />}
+       {duplicatingPackage && <EditPackageModal pkg={duplicatingPackage} onClose={() => setDuplicatingPackage(null)} mode="duplicate" />}
     </div>
   );
 }

@@ -1,0 +1,10 @@
+--- src/components/admin/EditCampModal.tsx
++++ src/components/admin/EditCampModal.tsx
+@@ -48,7 +48,7 @@
+           </div>
+           <div className="flex flex-col gap-1">
+              <label className="text-sm font-semibold text-gray-700">Camp Title</label>
+-             <input name="title" required placeholder="Camp Title" defaultValue={camp.title} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
++             <input name="title" required placeholder="Camp Title" defaultValue={mode === "duplicate" ? `${camp.title} (Copy)` : camp.title} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
+           </div>
+           <div className="flex flex-col gap-1">
