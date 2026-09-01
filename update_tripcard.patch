@@ -1,0 +1,14 @@
+--- src/components/TripCard.tsx
++++ src/components/TripCard.tsx
+@@ -48,6 +48,11 @@
+   const imageBottomTagsList = tagsImageBottom ? tagsImageBottom.split(',').map(s => s.trim()).filter(Boolean) : [];
+   const bodyTopTagsList = tagsBodyTop ? tagsBodyTop.split(',').map(s => s.trim()).filter(Boolean) : [];
+
++  // Parse dates
++  const datesArray = Array.isArray(campDates)
++    ? campDates
++    : (typeof campDates === 'string' ? campDates.split(',').map(d => d.trim()).filter(Boolean) : []);
++
+   const topLeftTag = !isActive ? "Coming soon" : (tagsTopLeft || "Available");
+
+   // Top Left Tag Colors
