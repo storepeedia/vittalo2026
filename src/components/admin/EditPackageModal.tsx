@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { updatePackage } from "@/actions/admin/packages";
 import { X } from "lucide-react";
+import { FormRichTextEditor } from "../FormRichTextEditor";
 
 export function EditPackageModal({ pkg, onClose }: { pkg: any; onClose: () => void }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -61,8 +62,8 @@ export function EditPackageModal({ pkg, onClose }: { pkg: any; onClose: () => vo
              <textarea name="description" required placeholder="Description" defaultValue={pkg.description} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400" />
           </div>
           <div className="flex flex-col gap-1 col-span-2">
-             <label className="text-sm font-semibold text-gray-700">Itinerary JSON</label>
-             <textarea name="itinerary" required placeholder='Itinerary JSON: [{"day":1,"description":"..."}]' defaultValue={JSON.stringify(pkg.itinerary)} className="p-2 border border-black rounded text-gray-700 placeholder-gray-400 font-mono text-sm" />
+             <label className="text-sm font-semibold text-gray-700">Itinerary (Rich Text HTML)</label>
+             <FormRichTextEditor name="itinerary" defaultValue={typeof pkg.itinerary === 'string' ? pkg.itinerary : JSON.stringify(pkg.itinerary)} placeholder="Itinerary (Rich Text HTML)" />
           </div>
           <div className="flex flex-col gap-1 col-span-2">
              <label className="text-sm font-semibold text-gray-700">Top Left Tag (e.g. Available)</label>

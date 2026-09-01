@@ -16,7 +16,7 @@ export async function createPackage(formData: FormData) {
     tags_body_top: formData.get("tags_body_top") as string,
     image_url: formData.get("image_url"),
     description: formData.get("description"),
-    itinerary: JSON.parse(formData.get("itinerary") as string || "[]"),
+    itinerary: JSON.stringify(formData.get("itinerary")),
     is_active: formData.get("is_active") === "true",
   });
 
@@ -41,7 +41,7 @@ export async function updatePackage(id: string, formData: FormData) {
     tags_body_top: formData.get("tags_body_top") as string,
       image_url: formData.get("image_url"),
       description: formData.get("description"),
-      itinerary: JSON.parse(formData.get("itinerary") as string || "[]"),
+      itinerary: JSON.stringify(formData.get("itinerary")),
       is_active: formData.get("is_active") === "true",
     })
     .eq("id", id);
