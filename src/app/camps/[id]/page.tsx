@@ -42,9 +42,7 @@ export default async function CampDetailsPage({ params }: { params: { id: string
   const images = (finalCamp.image_url || "").split(",").map((s: string) => s.trim()).filter(Boolean);
 
   // Format checkmarks for amenities
-  const hardcodedDescriptionText = "Discover the magic of the Polish mountains. Trecking Kościeliska Valley to see the Five Polish Ponds Valley. Experienced Tatra mountain guide included. Whether you're a first-timer or a seasoned adventurer, this camp is carefully designed to deliver an unforgettable experience from start to finish.";
-
-  return (
+    return (
     <div className="min-h-screen bg-gray-50 pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col lg:flex-row gap-12">
@@ -56,12 +54,12 @@ export default async function CampDetailsPage({ params }: { params: { id: string
             <ImageGallery images={images} title={finalCamp.title} />
 
             <div>
-              <h2 className="text-2xl font-bold text-[#1e1b4b] mb-4 flex items-center gap-2">
-                Feel the thrill of the wild <span className="text-xl">🌿</span>
-              </h2>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                {finalCamp.title}
+              </h1>
 
               <p className="text-gray-600 text-[15px] leading-relaxed mb-10">
-                {hardcodedDescriptionText}
+                {finalCamp.description}
               </p>
 
               {/* AMENITIES */}
