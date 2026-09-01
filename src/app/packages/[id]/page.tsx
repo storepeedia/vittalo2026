@@ -43,7 +43,7 @@ export default async function PackageDetailsPage({ params }: { params: { id: str
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col lg:flex-row gap-12">
 
-          <div className="lg:w-2/3 flex flex-col gap-8 order-1 lg:order-1">
+          <div className="lg:w-2/3 flex flex-col gap-8 order-1 lg:order-1 min-w-0">
 
             {/* IMAGE GRID */}
             {images.length > 0 && (
@@ -82,16 +82,15 @@ export default async function PackageDetailsPage({ params }: { params: { id: str
               </p>
 
               <h3 className="text-sm font-bold text-gray-900 tracking-wider uppercase mb-4">Itinerary</h3>
-              <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm">
+              <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm overflow-x-auto w-full">
 
                 {typeof finalPkg.itinerary === "string" ? (
                    <div
-                     className="prose prose-sm md:prose-base max-w-none text-gray-700
-                                prose-p:my-2 prose-ol:pl-4 prose-li:my-1"
+                     className="prose prose-sm md:prose-base max-w-none text-gray-700 break-words prose-p:my-2 prose-ol:pl-4 prose-li:my-1 min-w-0 w-full"
                      dangerouslySetInnerHTML={{ __html: finalPkg.itinerary }}
                    />
                 ) : (
-                  <div className="flex flex-col gap-4 border-l-2 border-blue-100 pl-4 ml-2">
+                  <div className="flex flex-col gap-4 border-l-2 border-blue-100 pl-4 ml-2 break-words">
                     {Array.isArray(finalPkg.itinerary) && finalPkg.itinerary?.map((item: any, idx: number) => (
                       <div key={idx} className="relative">
                         <div className="absolute -left-[25px] top-1 bg-blue-500 w-3 h-3 rounded-full ring-4 ring-white"></div>
