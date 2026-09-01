@@ -1,0 +1,11 @@
+--- src/components/admin/EditCampModal.tsx
++++ src/components/admin/EditCampModal.tsx
+@@ -21,7 +21,7 @@
+       onClose();
+     } catch (error) {
+       console.error(error);
+-      alert("Failed to update camp");
++      alert(`Failed to ${mode === "duplicate" ? "duplicate" : "update"} camp`);
+     } finally {
+       setIsSubmitting(false);
+     }
