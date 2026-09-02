@@ -17,35 +17,7 @@ export default async function PackagesPage() {
   }
 
   // Fallback data
-  const displayPackages = packages && packages.length > 0 ? packages : [
-    {
-      id: "1",
-      title: "Swiss Alps Explorer",
-      duration_days: 7,
-      duration_nights: 6,
-      route: "Zurich – Interlaken – Zermatt – Geneva",
-      starting_price: 1299,
-      image_url: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=2070&auto=format&fit=crop",
-      is_active: true,
-      tags_top_left: "Available",
-      tags_image_bottom: "7 Days 6 Nights, Train Tour",
-      tags_body_top: "Sightseeing, Alps, Comfort"
-    },
-    {
-      id: "2",
-      title: "Central Europe Highlights",
-      duration_days: 10,
-      duration_nights: 9,
-      route: "Prague – Vienna – Budapest",
-      starting_price: 999,
-      image_url: "https://images.unsplash.com/photo-1513807016779-d51c0c026263?q=80&w=2070&auto=format&fit=crop",
-      is_active: false,
-      tags_top_left: "",
-      tags_image_bottom: "10 Days 9 Nights, Bus Tour",
-      tags_body_top: "City Tour, History, Culture"
-    }
-  ];
-
+  const displayPackages = packages || [];
   return (
     <div className="min-h-screen bg-gray-50 pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-6xl">
