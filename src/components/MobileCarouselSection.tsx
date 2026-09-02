@@ -1,27 +1,19 @@
 "use client";
-import React, { useMemo } from 'react';
+import React from 'react';
 import { AutoScrollCarousel } from './AutoScrollCarousel';
 
 interface MobileCarouselSectionProps {
   children: React.ReactNode[];
   row1Interval: number;
-  row2Interval: number;
+  row2Interval?: number; // now optional since we don't use it
 }
 
-export function MobileCarouselSection({ children, row1Interval, row2Interval }: MobileCarouselSectionProps) {
-  const row1 = useMemo(() => React.Children.toArray(children).filter((_, i) => i % 2 === 0), [children]);
-  const row2 = useMemo(() => React.Children.toArray(children).filter((_, i) => i % 2 !== 0), [children]);
-
+export function MobileCarouselSection({ children, row1Interval }: MobileCarouselSectionProps) {
   return (
     <div className="md:hidden flex flex-col gap-6">
-      {row1.length > 0 && (
+      {React.Children.toArray(children).length > 0 && (
         <AutoScrollCarousel intervalMs={row1Interval}>
-          {row1}
-        </AutoScrollCarousel>
-      )}
-      {row2.length > 0 && (
-        <AutoScrollCarousel intervalMs={row2Interval}>
-          {row2}
+          {children}
         </AutoScrollCarousel>
       )}
     </div>
