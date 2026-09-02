@@ -132,98 +132,16 @@ export default async function Home() {
             <Link prefetch={true} href="/camps" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all camps &rarr;</Link>
           </div>
 
-          <MobileCarouselSection
-            items={finalCamps}
-            row1Interval={3000}
-            row2Interval={4000}
-            renderItem={(camp: any) => (
-              <TripCard
-                key={camp.id}
-                id={camp.id}
-                type="camp"
-                title={camp.title}
-                imageUrl={camp.image_url}
-                isActive={camp.is_active !== false}
-                tagsTopLeft={camp.tags_top_left}
-                tagsImageBottom={camp.tags_image_bottom}
-                tagsBodyTop={camp.tags_body_top}
-                campDates={camp.camp_dates}
-                priceEur={camp.price_per_person}
-                pricePln={camp.price_per_person_pln}
-              />
-            )}
-          />
-          <DesktopGrid
-            items={finalCamps}
-            renderItem={(camp: any) => (
-              <TripCard
-                key={camp.id}
-                id={camp.id}
-                type="camp"
-                title={camp.title}
-                imageUrl={camp.image_url}
-                isActive={camp.is_active !== false}
-                tagsTopLeft={camp.tags_top_left}
-                tagsImageBottom={camp.tags_image_bottom}
-                tagsBodyTop={camp.tags_body_top}
-                campDates={camp.camp_dates}
-                priceEur={camp.price_per_person}
-                pricePln={camp.price_per_person_pln}
-              />
-            )}
-          />
-
-
-          <div className="flex justify-between items-end mb-10 mt-24">
-            <div>
-              <p className="text-gray-500 font-bold tracking-widest text-sm mb-2">JOURNEYS THAT STAY WITH YOU</p>
-              <h2 className="text-4xl font-bold text-gray-900">Popular Europe Packages</h2>
-            </div>
-            <Link prefetch={true} href="/packages" className="hidden md:flex text-gray-600 hover:text-gray-900 font-semibold items-center gap-1">View all packages &rarr;</Link>
-          </div>
-
-          <MobileCarouselSection
-            items={finalPackages}
-            row1Interval={3000}
-            row2Interval={4000}
-            renderItem={(pkg: any) => (
-              <TripCard
-                key={pkg.id}
-                id={pkg.id}
-                type="package"
-                title={pkg.title}
-                imageUrl={pkg.image_url}
-                isActive={pkg.is_active !== false}
-                tagsTopLeft={pkg.tags_top_left}
-                tagsImageBottom={pkg.tags_image_bottom}
-                tagsBodyTop={pkg.tags_body_top}
-                durationDays={pkg.duration_days}
-                durationNights={pkg.duration_nights}
-                route={pkg.route}
-                startingPriceEur={pkg.starting_price}
-              />
-            )}
-          />
-          <DesktopGrid
-            items={finalPackages}
-            renderItem={(pkg: any) => (
-              <TripCard
-                key={pkg.id}
-                id={pkg.id}
-                type="package"
-                title={pkg.title}
-                imageUrl={pkg.image_url}
-                isActive={pkg.is_active !== false}
-                tagsTopLeft={pkg.tags_top_left}
-                tagsImageBottom={pkg.tags_image_bottom}
-                tagsBodyTop={pkg.tags_body_top}
-                durationDays={pkg.duration_days}
-                durationNights={pkg.duration_nights}
-                route={pkg.route}
-                startingPriceEur={pkg.starting_price}
-              />
-            )}
-          />
+          <MobileCarouselSection row1Interval={3000} row2Interval={4000}>
+            {finalPackages.map((pkg: any) => (
+              <TripCard key={pkg.id} id={pkg.id} type="package" title={pkg.title} imageUrl={pkg.image_url} isActive={pkg.is_active !== false} tagsTopLeft={pkg.tags_top_left} tagsImageBottom={pkg.tags_image_bottom} tagsBodyTop={pkg.tags_body_top} durationDays={pkg.duration_days} durationNights={pkg.duration_nights} route={pkg.route} startingPriceEur={pkg.starting_price} />
+            ))}
+          </MobileCarouselSection>
+          <DesktopGrid>
+            {finalPackages.map((pkg: any) => (
+              <TripCard key={pkg.id} id={pkg.id} type="package" title={pkg.title} imageUrl={pkg.image_url} isActive={pkg.is_active !== false} tagsTopLeft={pkg.tags_top_left} tagsImageBottom={pkg.tags_image_bottom} tagsBodyTop={pkg.tags_body_top} durationDays={pkg.duration_days} durationNights={pkg.duration_nights} route={pkg.route} startingPriceEur={pkg.starting_price} />
+            ))}
+          </DesktopGrid>
 
         </div>
       </div>

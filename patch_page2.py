@@ -3,10 +3,9 @@ import re
 with open("src/app/page.tsx", "r") as f:
     content = f.read()
 
-# Replace MobileCarouselSection for Camps
-old_camp_str = r'<MobileCarouselSection[\s\S]*?renderItem=\{\(camp: any\) => \([\s\S]*?</MobileCarouselSection>'
-new_camp_str = """
-          <MobileCarouselSection
+# I will just replace the WHOLE section of finalCamps to DesktopGrid end.
+pattern_camps = r'<MobileCarouselSection[\s\S]*?</DesktopGrid>'
+new_camps = """<MobileCarouselSection
             row1Interval={3000}
             row2Interval={4000}
           >
@@ -27,12 +26,6 @@ new_camp_str = """
               />
             ))}
           </MobileCarouselSection>
-"""
-content = re.sub(old_camp_str, new_camp_str, content)
-
-# Replace DesktopGrid for Camps
-old_desktop_camp_str = r'<DesktopGrid[\s\S]*?renderItem=\{\(camp: any\) => \([\s\S]*?</DesktopGrid>'
-new_desktop_camp_str = """
           <DesktopGrid>
             {finalCamps.map((camp: any) => (
               <TripCard
@@ -50,15 +43,15 @@ new_desktop_camp_str = """
                 pricePln={camp.price_per_person_pln}
               />
             ))}
-          </DesktopGrid>
-"""
-content = re.sub(old_desktop_camp_str, new_desktop_camp_str, content)
+          </DesktopGrid>"""
 
+# Find the first one (camps) and replace
+matches = list(re.finditer(pattern_camps, content))
+if matches:
+    content = content[:matches[0].start()] + new_camps + content[matches[0].end():]
 
-# Replace MobileCarouselSection for Packages
-old_pkg_str = r'<MobileCarouselSection[\s\S]*?renderItem=\{\(pkg: any\) => \([\s\S]*?</MobileCarouselSection>'
-new_pkg_str = """
-          <MobileCarouselSection
+# Find the second one (packages) and replace
+new_pkgs = """<MobileCarouselSection
             row1Interval={3000}
             row2Interval={4000}
           >
@@ -80,12 +73,6 @@ new_pkg_str = """
               />
             ))}
           </MobileCarouselSection>
-"""
-content = re.sub(old_pkg_str, new_pkg_str, content)
-
-# Replace DesktopGrid for Packages
-old_desktop_pkg_str = r'<DesktopGrid[\s\S]*?renderItem=\{\(pkg: any\) => \([\s\S]*?</DesktopGrid>'
-new_desktop_pkg_str = """
           <DesktopGrid>
             {finalPackages.map((pkg: any) => (
               <TripCard
@@ -104,9 +91,11 @@ new_desktop_pkg_str = """
                 startingPriceEur={pkg.starting_price}
               />
             ))}
-          </DesktopGrid>
-"""
-content = re.sub(old_desktop_pkg_str, new_desktop_pkg_str, content)
+          </DesktopGrid>"""
+
+matches = list(re.finditer(pattern_camps, content)) # after first replacement
+if matches:
+    content = content[:matches[0].start()] + new_pkgs + content[matches[0].end():]
 
 with open("src/app/page.tsx", "w") as f:
     f.write(content)

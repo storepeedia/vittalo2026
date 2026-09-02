@@ -3,22 +3,20 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface AutoScrollCarouselProps {
-  items: any[];
+  children: React.ReactNode[];
   intervalMs: number;
-  renderItem: (item: any) => React.ReactNode;
 }
 
 export function AutoScrollCarousel({
-  items,
+  children,
   intervalMs,
-  renderItem,
 }: AutoScrollCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollDirection, setScrollDirection] = useState<"forward" | "backward">("forward");
   const isInteracting = useRef(false);
 
   useEffect(() => {
-    if (items.length <= 1) return;
+    if (React.Children.count(children) <= 1) return;
 
     const intervalId = setInterval(() => {
       if (isInteracting.current || !scrollContainerRef.current) return;
@@ -28,16 +26,12 @@ export function AutoScrollCarousel({
       const clientWidth = container.clientWidth;
       const scrollLeft = container.scrollLeft;
 
-      // Card width on mobile is roughly 80% of client width based on our CSS.
-      // We assume each snap point is approximately this wide + gap.
-      // Actually, since cards are snapped, we can scroll by clientWidth * 0.8
       const scrollAmount = clientWidth * 0.8;
-
       let nextScrollLeft = scrollLeft;
 
       if (scrollDirection === "forward") {
         nextScrollLeft += scrollAmount;
-        if (nextScrollLeft + clientWidth >= scrollWidth - 10) { // -10 for rounding errors
+        if (nextScrollLeft + clientWidth >= scrollWidth - 10) {
           setScrollDirection("backward");
         }
       } else {
@@ -54,7 +48,7 @@ export function AutoScrollCarousel({
     }, intervalMs);
 
     return () => clearInterval(intervalId);
-  }, [items.length, intervalMs, scrollDirection]);
+  }, [children, intervalMs, scrollDirection]);
 
   return (
     <div
@@ -73,12 +67,12 @@ export function AutoScrollCarousel({
           display: none;
         }
       `}} />
-      {items.map((item, index) => (
+      {React.Children.map(children, (child, index) => (
         <div
-          key={item.id || index}
+          key={index}
           className="shrink-0 w-[80vw] md:w-auto snap-center"
         >
-          {renderItem(item)}
+          {child}
         </div>
       ))}
     </div>
