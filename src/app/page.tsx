@@ -26,45 +26,8 @@ export default async function Home() {
   if (campsError) console.error("Error fetching camps:", campsError);
   if (packagesError) console.error("Error fetching packages:", packagesError);
 
-  const displayCamps = camps && camps.length > 0 ? camps : [
-    { id: "1", title: "Tatra Mountain Summit Trek", camp_dates: ["2024-06-15", "2024-06-20"], available_spots: 12, total_spots: 15, price_per_person: 450, price_per_person_pln: 1950, image_url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop", tags_top_left: "Available", tags_image_bottom: "6 Days 5 Nights", tags_body_top: "Advanced" },
-    { id: "2", title: "Crystal Waters Kayak Expedition", camp_dates: ["2024-07-10", "2024-07-14"], available_spots: 8, total_spots: 20, price_per_person: 320, price_per_person_pln: 1400, image_url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_image_bottom: "5 Days 4 Nights", tags_body_top: "Beginner" },
-    { id: "3", title: "Alpine Downhill Ski Adventure", camp_dates: ["2024-01-20", "2024-01-27"], available_spots: 25, total_spots: 25, price_per_person: 850, price_per_person_pln: 3650, image_url: "https://images.unsplash.com/photo-1551524164-687a55dd1126?q=80&w=1925&auto=format&fit=crop", tags_top_left: "Available", tags_image_bottom: "8 Days 7 Nights", tags_body_top: "Sport" },
-
-    { id: "4", title: "Kayaking Sochaczew", camp_dates: ["2024-05-15", "2024-05-16"], available_spots: 10, total_spots: 10, price_per_person: 100, price_per_person_pln: 450, image_url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "2 Days 1 Night", tags_body_top: "Beginner" },
-    { id: "5", title: "Auschwitz Historical Camp", camp_dates: ["2024-06-01"], available_spots: 20, total_spots: 20, price_per_person: 50, price_per_person_pln: 220, image_url: "https://images.unsplash.com/photo-1519006096500-264f338d1d86?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "1 Day", tags_body_top: "Sightseeing" },
-    { id: "6", title: "Prague City Camp", camp_dates: ["2024-06-10"], available_spots: 15, total_spots: 15, price_per_person: 80, price_per_person_pln: 350, image_url: "https://images.unsplash.com/photo-1513807016779-d51c0c026263?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "1 Day", tags_body_top: "City Tour" },
-  ];
-
-
-  let finalCamps = displayCamps;
-  if (finalCamps.length < 6) {
-    const defaultDummies = [
-      { id: "d4", title: "Kayaking Sochaczew", camp_dates: ["2024-05-15", "2024-05-16"], available_spots: 10, total_spots: 10, price_per_person: 100, price_per_person_pln: 450, image_url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "2 Days 1 Night", tags_body_top: "Beginner" },
-      { id: "d5", title: "Auschwitz Historical Camp", camp_dates: ["2024-06-01"], available_spots: 20, total_spots: 20, price_per_person: 50, price_per_person_pln: 220, image_url: "https://images.unsplash.com/photo-1519006096500-264f338d1d86?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "1 Day", tags_body_top: "Sightseeing" },
-      { id: "d6", title: "Prague City Camp", camp_dates: ["2024-06-10"], available_spots: 15, total_spots: 15, price_per_person: 80, price_per_person_pln: 350, image_url: "https://images.unsplash.com/photo-1513807016779-d51c0c026263?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "1 Day", tags_body_top: "City Tour" }
-    ];
-    // append only what's needed to reach at least 6 if we don't have them
-    finalCamps = [...finalCamps, ...defaultDummies.slice(0, Math.max(0, 6 - finalCamps.length))];
-  }
-
-
-  const displayPackages = packages && packages.length > 0 ? packages : [
-    { id: "1", title: "Swiss Alps Explorer", duration_days: 7, duration_nights: 6, route: "Zurich – Interlaken – Zermatt", starting_price: 1299, image_url: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=2070&auto=format&fit=crop", tags_top_left: "Available", tags_image_bottom: "7 Days", tags_body_top: "Sightseeing" },
-    { id: "2", title: "Central Europe Highlights", duration_days: 10, duration_nights: 9, route: "Prague – Vienna – Budapest", starting_price: 999, image_url: "https://images.unsplash.com/photo-1513807016779-d51c0c026263?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_image_bottom: "10 Days", tags_body_top: "City Tour" },
-    { id: "3", title: "Iberian Sun Tour", duration_days: 8, duration_nights: 7, route: "Lisbon – Porto – Madrid", starting_price: 1150, image_url: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=2070&auto=format&fit=crop", tags_top_left: "Available", tags_image_bottom: "8 Days", tags_body_top: "Comfort" },
-  ];
-
-
-  let finalPackages = displayPackages;
-  if (finalPackages.length < 6) {
-      const defaultPkgDummies = [
-        { id: "p4", title: "Italian Lakes Retreat", duration_days: 5, duration_nights: 4, route: "Milan – Como – Garda", starting_price: 850, image_url: "https://images.unsplash.com/photo-1534439091919-4977054dd9d0?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "5 Days", tags_body_top: "Relaxation" },
-        { id: "p5", title: "Nordic Fjords Cruise", duration_days: 7, duration_nights: 6, route: "Oslo – Bergen – Tromsø", starting_price: 1500, image_url: "https://images.unsplash.com/photo-1513568856947-f1c50058e381?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "7 Days", tags_body_top: "Nature" },
-        { id: "p6", title: "Greek Islands Hopping", duration_days: 10, duration_nights: 9, route: "Athens – Santorini – Mykonos", starting_price: 1200, image_url: "https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=2070&auto=format&fit=crop", is_active: false, tags_top_left: "Coming soon", tags_image_bottom: "10 Days", tags_body_top: "Beach" }
-      ];
-      finalPackages = [...finalPackages, ...defaultPkgDummies.slice(0, Math.max(0, 6 - finalPackages.length))];
-  }
+  const finalCamps = camps || [];
+  const finalPackages = packages || [];
 
   return (
     <div className="relative min-h-screen pb-20 bg-white">
