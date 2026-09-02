@@ -3,22 +3,22 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface AutoScrollCarouselProps {
-  items: any[];
   intervalMs: number;
-  renderItem: (item: any) => React.ReactNode;
+  itemCount?: number;
+  children: React.ReactNode;
 }
 
 export function AutoScrollCarousel({
-  items,
+  children,
   intervalMs,
-  renderItem,
+  itemCount = 0,
 }: AutoScrollCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollDirection, setScrollDirection] = useState<"forward" | "backward">("forward");
   const isInteracting = useRef(false);
 
   useEffect(() => {
-    if (items.length <= 1) return;
+    if (itemCount <= 1) return;
 
     const intervalId = setInterval(() => {
       if (isInteracting.current || !scrollContainerRef.current) return;
@@ -54,7 +54,7 @@ export function AutoScrollCarousel({
     }, intervalMs);
 
     return () => clearInterval(intervalId);
-  }, [items.length, intervalMs, scrollDirection]);
+  }, [itemCount, intervalMs, scrollDirection]);
 
   return (
     <div
@@ -73,12 +73,9 @@ export function AutoScrollCarousel({
           display: none;
         }
       `}} />
-      {items.map((item, index) => (
-        <div
-          key={item.id || index}
-          className="shrink-0 w-[80vw] md:w-auto snap-center"
-        >
-          {renderItem(item)}
+      {React.Children.map(children, (child, index) => (
+        <div key={index} className="shrink-0 w-[80vw] md:w-auto snap-center">
+          {child}
         </div>
       ))}
     </div>

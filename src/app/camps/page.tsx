@@ -18,37 +18,7 @@ export default async function CampsPage() {
   }
 
   // Fallback data in case DB is not populated yet or local Supabase is skipped
-  const displayCamps = camps && camps.length > 0 ? camps : [
-    {
-      id: "1",
-      title: "Tatra Mountain Summit Trek",
-      camp_dates: ["2024-06-15", "2024-06-20"],
-      available_spots: 12,
-      total_spots: 15,
-      price_per_person: 450,
-      price_per_person_pln: 1950,
-      image_url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop",
-      is_active: true,
-      tags_top_left: "Available",
-      tags_image_bottom: "6 Days 5 Nights, Mountain Trek",
-      tags_body_top: "Advanced, Trekking, Summer"
-    },
-    {
-      id: "2",
-      title: "Crystal Waters Kayak Expedition",
-      camp_dates: ["2024-07-10", "2024-07-14"],
-      available_spots: 8,
-      total_spots: 20,
-      price_per_person: 320,
-      price_per_person_pln: 1400,
-      image_url: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070&auto=format&fit=crop",
-      is_active: false,
-      tags_top_left: "",
-      tags_image_bottom: "5 Days 4 Nights, Riverside Camp",
-      tags_body_top: "Beginner, Kayaking Sport"
-    }
-  ];
-
+  const displayCamps = camps || [];
   return (
     <div className="min-h-screen bg-gray-50 pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-6xl">
