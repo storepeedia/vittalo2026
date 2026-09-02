@@ -70,9 +70,13 @@ export default async function Home() {
     <div className="relative min-h-screen pb-20 bg-white">
       {/* Hero Background Image */}
       <div className="absolute top-0 w-full h-full z-0">
-        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-          <source src="https://videos.pexels.com/video-files/3094026/3094026-uhd_3840_2160_30fps.mp4" type="video/mp4" />
-        </video>
+        <Image
+          src="https://images.unsplash.com/photo-1585254691306-6d3b283880d7?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Hero background"
+          fill
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
