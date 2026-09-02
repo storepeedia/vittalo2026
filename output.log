@@ -6,8 +6,23 @@
 - Local:         http://localhost:3000
 - Network:       http://192.168.0.2:3000
 - Environments: .env.local
-✓ Ready in 808ms
-✓ Running next.config.ts took 83ms
+✓ Ready in 550ms
+✓ Running next.config.ts took 48ms
 
-○ Compiling /camps/[id] ...
- GET /camps/1 200 in 8.8s (next.js: 6.9s, proxy.ts: 337ms, application-code: 1574ms)
+○ Compiling / ...
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  <... items={[...]} row1Interval={3000} row2Interval=... renderItem={function renderItem}>
+                                                                     ^^^^^^^^^^^^^^^^^^^^^
+    at ignore-listed frames {
+  digest: '2505688669'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  <... items={[...]} row1Interval={3000} row2Interval=... renderItem={function renderItem}>
+                                                                     ^^^^^^^^^^^^^^^^^^^^^
+    at ignore-listed frames {
+  digest: '2505688669'
+}
+ GET / 200 in 8.4s (next.js: 4.0s, proxy.ts: 380ms, application-code: 4.0s)
+[browser] Uncaught Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  <... items={[...]} row1Interval={3000} row2Interval=... renderItem={function renderItem}>
+                                                                     ^^^^^^^^^^^^^^^^^^^^^
