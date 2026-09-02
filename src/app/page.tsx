@@ -137,29 +137,27 @@ export default async function Home() {
           </div>
 
           <MobileCarouselSection
-            items={finalCamps}
+            items={finalCamps.map((camp: any) => (
+              <TripCard
+                key={camp.id}
+                id={camp.id}
+                type="camp"
+                title={camp.title}
+                imageUrl={camp.image_url}
+                isActive={camp.is_active !== false}
+                tagsTopLeft={camp.tags_top_left}
+                tagsImageBottom={camp.tags_image_bottom}
+                tagsBodyTop={camp.tags_body_top}
+                campDates={camp.camp_dates}
+                priceEur={camp.price_per_person}
+                pricePln={camp.price_per_person_pln}
+              />
+            ))}
             row1Interval={3000}
             row2Interval={4000}
-            renderItem={(camp: any) => (
-              <TripCard
-                key={camp.id}
-                id={camp.id}
-                type="camp"
-                title={camp.title}
-                imageUrl={camp.image_url}
-                isActive={camp.is_active !== false}
-                tagsTopLeft={camp.tags_top_left}
-                tagsImageBottom={camp.tags_image_bottom}
-                tagsBodyTop={camp.tags_body_top}
-                campDates={camp.camp_dates}
-                priceEur={camp.price_per_person}
-                pricePln={camp.price_per_person_pln}
-              />
-            )}
           />
           <DesktopGrid
-            items={finalCamps}
-            renderItem={(camp: any) => (
+            items={finalCamps.map((camp: any) => (
               <TripCard
                 key={camp.id}
                 id={camp.id}
@@ -174,7 +172,7 @@ export default async function Home() {
                 priceEur={camp.price_per_person}
                 pricePln={camp.price_per_person_pln}
               />
-            )}
+            ))}
           />
 
 
@@ -187,30 +185,28 @@ export default async function Home() {
           </div>
 
           <MobileCarouselSection
-            items={finalPackages}
+            items={finalPackages.map((pkg: any) => (
+              <TripCard
+                key={pkg.id}
+                id={pkg.id}
+                type="package"
+                title={pkg.title}
+                imageUrl={pkg.image_url}
+                isActive={pkg.is_active !== false}
+                tagsTopLeft={pkg.tags_top_left}
+                tagsImageBottom={pkg.tags_image_bottom}
+                tagsBodyTop={pkg.tags_body_top}
+                durationDays={pkg.duration_days}
+                durationNights={pkg.duration_nights}
+                route={pkg.route}
+                startingPriceEur={pkg.starting_price}
+              />
+            ))}
             row1Interval={3000}
             row2Interval={4000}
-            renderItem={(pkg: any) => (
-              <TripCard
-                key={pkg.id}
-                id={pkg.id}
-                type="package"
-                title={pkg.title}
-                imageUrl={pkg.image_url}
-                isActive={pkg.is_active !== false}
-                tagsTopLeft={pkg.tags_top_left}
-                tagsImageBottom={pkg.tags_image_bottom}
-                tagsBodyTop={pkg.tags_body_top}
-                durationDays={pkg.duration_days}
-                durationNights={pkg.duration_nights}
-                route={pkg.route}
-                startingPriceEur={pkg.starting_price}
-              />
-            )}
           />
           <DesktopGrid
-            items={finalPackages}
-            renderItem={(pkg: any) => (
+            items={finalPackages.map((pkg: any) => (
               <TripCard
                 key={pkg.id}
                 id={pkg.id}
@@ -226,7 +222,7 @@ export default async function Home() {
                 route={pkg.route}
                 startingPriceEur={pkg.starting_price}
               />
-            )}
+            ))}
           />
 
         </div>
